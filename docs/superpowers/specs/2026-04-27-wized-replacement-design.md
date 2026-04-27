@@ -261,7 +261,7 @@ const STATUS_MESSAGES = {
    - If `!application.notes_response`: show textarea + submit button
    - If `application.notes_response`: show `[wized="notes-submitted-confirm"]`, hide submit button
 10. Submit notes: `submitNotesResponse()` → `location.reload()`
-11. Withdraw: same confirm pattern as dashboard
+11. Withdraw: show `[wized="status-withdraw-btn"]` only if `application.status` in `['draft','submitted','in_review','waitlisted','accepted']`; confirm dialog → `withdrawApplication(session, application.id, application.status)` → `location.reload()`
 
 ---
 
