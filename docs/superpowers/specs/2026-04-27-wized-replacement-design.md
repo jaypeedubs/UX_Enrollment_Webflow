@@ -89,7 +89,7 @@ The dispatcher at the bottom reads `window.location.pathname` and calls the matc
 ```javascript
 const SUPABASE_URL = 'https://xvweanlqcbgbiyxqhwux.supabase.co';
 const SUPABASE_ANON_KEY = '...'; // safe to inline — RLS enforces isolation
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 ```
 
 ### Functions
@@ -128,7 +128,7 @@ Filters explicitly on `SIGNED_OUT`. `INITIAL_SESSION` events are ignored — no 
 | `loadApplication(session)` | SELECT from applications JOIN programs WHERE applicant_id = auth.uid() LIMIT 1 ORDER BY created_at DESC | application \| null |
 | `loadNotifications(session)` | SELECT from notifications WHERE applicant_id = auth.uid() ORDER BY created_at DESC | notifications[] |
 | `markNotificationsRead(session)` | UPDATE notifications SET read=true WHERE applicant_id = auth.uid() AND read=false | void |
-| `withdrawApplication(session, applicationId)` | UPDATE applications SET status='withdrawn'; INSERT application_events {event_type: 'withdrawn'} | void |
+| `withdrawApplication(session, applicationId, currentStatus)` | Validates `currentStatus` is in `['draft','submitted','in_review','waitlisted','accepted']` before writing. UPDATE applications SET status='withdrawn'; INSERT application_events {event_type: 'withdrawn'} | void |
 | `saveDraft(session, fields)` | UPSERT applications (draft); INSERT application_events {event_type: 'draft_saved'} | application |
 | `uploadCV(session, applicationId, file)` | storage.from('cvs').upload(`${userId}/${filename}`, file); UPDATE applications SET cv_url | storageUrl |
 | `removeCV(session, applicationId)` | UPDATE applications SET cv_url=null | void |
@@ -249,30 +249,30 @@ const STATUS_MESSAGES = {
 
 1. `session = await requireAuth()`
 2. `application = await loadApplication(session)`
-3. `events = await loadApplicationHistory(session, application.id)`
-4. `revealPage()`
-5. Render program name, submitted date
-6. Timeline: `STATUS_ORDER = ['draft','submitted','in_review','decision','enrolled']`. Map `application.status` to index in this order (accepted/rejected/waitlisted all map to 'decision'). Add class `timeline-step-done` to `[wized="timeline-step-*"]` elements for each step at or before the current index.
-7. Event history: clone template row per event; `setText` event-type-label and event-time
-8. More-info section: visible when `events[0]?.event_type === 'more_info_requested'`
+3. If `!application` → redirect `/dashboard`; return
+4. `events = await loadApplicationHistory(session, application.id)`
+5. `revealPage()`
+6. Render program name, submitted date
+7. Timeline: `STATUS_ORDER = ['draft','submitted','in_review','decision','enrolled']`. Map `application.status` to index in this order (accepted/rejected/waitlisted all map to 'decision'). Add class `timeline-step-done` to `[wized="timeline-step-*"]` elements for each step at or before the current index.
+8. Event history: clone template row per event; `setText` event-type-label and event-time
+9. More-info section: visible when `events[0]?.event_type === 'more_info_requested'`
    - Show `[wized="admin-notes-msg"]` with `application.admin_notes`
    - If `!application.notes_response`: show textarea + submit button
    - If `application.notes_response`: show `[wized="notes-submitted-confirm"]`, hide submit button
-9. Submit notes: `submitNotesResponse()` → `location.reload()`
-10. Withdraw: same confirm pattern as dashboard
+10. Submit notes: `submitNotesResponse()` → `location.reload()`
+11. Withdraw: same confirm pattern as dashboard
 
 ---
 
 ### `initEnrollment()`
 
 1. `session = await requireAuth()`
-2. `application = await loadApplication(session)` filtered to status IN ('accepted', 'enrollment_confirmed')
-3. If `application === null` → redirect `/dashboard`
-4. If `application.status === 'enrolled'` → redirect `/dashboard`
-5. `revealPage()`
-6. Render program name, tuition (`(price_cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })`), status badge text
-7. Confirm button: show `[wized="enroll-processing"]` → `createCheckout()` → `window.location.href = result.url`
-8. Error: parse `{error: "..."}` from response → show `[wized="enroll-error-msg"]`
+2. `application = await loadApplication(session)`
+3. If `!application` or `application.status` not in `['accepted', 'enrollment_confirmed']` → redirect `/dashboard`
+4. `revealPage()`
+5. Render program name, tuition (`(price_cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })`), status badge text
+6. Confirm button: show `[wized="enroll-processing"]` → `createCheckout()` → `window.location.href = result.url`
+7. Error: parse `{error: "..."}` from response → show `[wized="enroll-error-msg"]`
 
 ---
 
