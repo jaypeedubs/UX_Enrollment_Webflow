@@ -200,7 +200,7 @@ else if (path === '/enrollment-confirmation') initEnrollment();
 7. Drawer close: hide drawer on `[wized="notif-drawer-close"]` click
 8. Withdraw: confirm dialog on `[wized="withdraw-btn"]` → `withdrawApplication()` → `location.reload()`
 9. Sign out: `[wized="dash-signout"]` click → `signOut()` → redirect `/login`
-10. User name: `setText(q('.dash-user-name'), session.user.user_metadata.first_name + ' ' + ...)`
+10. User name: `setText(q('[wized="dash-user-name"]'), session.user.user_metadata.first_name + ' ' + ...)`
 
 **Payment success polling** (triggered when `?payment=success` in URL and `application.status === 'enrollment_confirmed'`):
 - Show "Processing your enrollment..." banner
@@ -219,6 +219,7 @@ const STATUS_MESSAGES = {
   rejected:             { msg: 'We appreciate your interest in ICIT.', href: '/application-status' },
   enrollment_confirmed: { msg: 'Your enrollment is confirmed. Complete payment to finalize.', href: '/enrollment-confirmation' },
   enrolled:             { msg: 'Welcome to ICIT! Check your email for platform access.', href: '/application-status' },
+  withdrawn:            { msg: 'Your application has been withdrawn.', href: '/application-status' },
 };
 ```
 
@@ -241,7 +242,7 @@ const STATUS_MESSAGES = {
 9. Save draft buttons: call `saveDraft()`, update `applicationId` from response, show `[wized="form-draft-status"]` for 3s
 10. Section advance buttons: `saveDraft()` → on success → `goToSection(next)`
 11. CV: file input change → `uploadCV()` → show filename; remove button → `removeCV()`
-12. Submit: validate CV uploaded → `submitApplication()` → redirect `/dashboard`
+12. Submit: validate CV uploaded → `saveDraft()` → `submitApplication()` → redirect `/dashboard`
 
 ---
 
@@ -253,7 +254,7 @@ const STATUS_MESSAGES = {
 4. `events = await loadApplicationHistory(session, application.id)`
 5. `revealPage()`
 6. Render program name, submitted date
-7. Timeline: `STATUS_ORDER = ['draft','submitted','in_review','decision','enrolled']`. Map `application.status` to index in this order (accepted/rejected/waitlisted all map to 'decision'). Add class `timeline-step-done` to `[wized="timeline-step-*"]` elements for each step at or before the current index.
+7. Timeline: `STATUS_ORDER = ['draft','submitted','in_review','decision','enrolled']`. Map `application.status` to index in this order: accepted/rejected/waitlisted → 'decision'; more_info_requested → 'in_review'; withdrawn → index -1 (no step highlighted). Add class `timeline-step-done` to `[wized="timeline-step-*"]` elements for each step at or before the current index.
 8. Event history: clone template row per event; `setText` event-type-label and event-time
 9. More-info section: visible when `events[0]?.event_type === 'more_info_requested'`
    - Show `[wized="admin-notes-msg"]` with `application.admin_notes`
