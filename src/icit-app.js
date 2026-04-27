@@ -117,6 +117,125 @@
     return data;
   }
 
+  // Validates currentStatus before writing — defense-in-depth.
+  // RLS also enforces ownership, but this prevents a throw with no visible error.
+  async function withdrawApplication(session, applicationId, currentStatus) {
+    if (!WITHDRAW_ALLOWED.includes(currentStatus)) {
+      throw new Error('Cannot withdraw from status: ' + currentStatus);
+    }
+    const { error: upErr } = await supabase
+      .from('applications')
+      .update({ status: 'withdrawn' })
+      .eq('id', applicationId)
+      .eq('applicant_id', session.user.id);
+    if (upErr) throw upErr;
+
+    const { error: evErr } = await supabase
+      .from('application_events')
+      .insert({ application_id: applicationId, event_type: 'withdrawn' });
+    if (evErr) throw evErr;
+  }
+
+  // fields: { id?, programId, firstName, lastName, programAnswers? }
+  // Returns the saved application row.
+  async function saveDraft(session, fields) {
+    // Keep user display name in sync with auth metadata.
+    await supabase.auth.updateUser({
+      data: { first_name: fields.firstName, last_name: fields.lastName },
+    });
+
+    const payload = {
+      applicant_id: session.user.id,
+      program_id: fields.programId,
+      status: 'draft',
+      locked_fields: { program: true, first_name: true, last_name: true },
+    };
+    if (fields.id) payload.id = fields.id;
+    if (fields.programAnswers) payload.program_answers = fields.programAnswers;
+
+    const { data, error } = await supabase
+      .from('applications')
+      .upsert(payload, { onConflict: 'id' })
+      .select()
+      .single();
+    if (error) throw error;
+
+    // Triggers handle-notification via DB webhook.
+    await supabase
+      .from('application_events')
+      .insert({ application_id: data.id, event_type: 'draft_saved' });
+
+    return data;
+  }
+
+  // Returns the storage path string on success.
+  async function uploadCV(session, applicationId, file) {
+    const ext = file.name.split('.').pop();
+    const path = session.user.id + '/' + applicationId + '.' + ext;
+    const { error: upErr } = await supabase.storage
+      .from('cvs')
+      .upload(path, file, { upsert: true });
+    if (upErr) throw upErr;
+
+    const { error: dbErr } = await supabase
+      .from('applications')
+      .update({ cv_url: path })
+      .eq('id', applicationId);
+    if (dbErr) throw dbErr;
+
+    return path;
+  }
+
+  async function removeCV(session, applicationId) {
+    const { error } = await supabase
+      .from('applications')
+      .update({ cv_url: null })
+      .eq('id', applicationId);
+    if (error) throw error;
+  }
+
+  // Guards against double-submission with .eq('status', 'draft').
+  async function submitApplication(session, applicationId) {
+    const { error: upErr } = await supabase
+      .from('applications')
+      .update({
+        status: 'submitted',
+        submitted_at: new Date().toISOString(),
+        locked_fields: { all: true },
+      })
+      .eq('id', applicationId)
+      .eq('status', 'draft');
+    if (upErr) throw upErr;
+
+    const { error: evErr } = await supabase
+      .from('application_events')
+      .insert({ application_id: applicationId, event_type: 'submitted' });
+    if (evErr) throw evErr;
+  }
+
+  async function submitNotesResponse(session, applicationId, response) {
+    const { error } = await supabase
+      .from('applications')
+      .update({ notes_response: response })
+      .eq('id', applicationId);
+    if (error) throw error;
+  }
+
+  // Returns { url: "https://checkout.stripe.com/..." } on success.
+  async function createCheckout(session, applicationId) {
+    const resp = await fetch(EDGE_FN_BASE + '/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + session.access_token,
+      },
+      body: JSON.stringify({ application_id: applicationId }),
+    });
+    const json = await resp.json();
+    if (!resp.ok) throw new Error(json.error || 'Checkout failed');
+    return json;
+  }
+
   // ─── UI placeholder — filled in Task 5 ─────────────────────────────────────
 
   // ─── PAGES placeholder — filled in Tasks 6–10 ───────────────────────────────
