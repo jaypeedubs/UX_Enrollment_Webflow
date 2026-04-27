@@ -61,6 +61,62 @@
     if (error) throw error;
   }
 
+  // loadApplication returns null (not an error) when the user has no application yet.
+  // Uses .maybeSingle() so Supabase returns null instead of an error on zero rows.
+  async function loadApplication(session) {
+    const { data, error } = await supabase
+      .from('applications')
+      .select(`
+        id, status, submitted_at, updated_at,
+        cv_url, admin_notes, notes_response, locked_fields,
+        programs ( id, name, price_cents, program_questions )
+      `)
+      .eq('applicant_id', session.user.id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (error) throw error;
+    return data;
+  }
+
+  async function loadNotifications(session) {
+    const { data, error } = await supabase
+      .from('notifications')
+      .select('id, message, read, created_at')
+      .eq('applicant_id', session.user.id)
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data;
+  }
+
+  async function markNotificationsRead(session) {
+    const { error } = await supabase
+      .from('notifications')
+      .update({ read: true })
+      .eq('applicant_id', session.user.id)
+      .eq('read', false);
+    if (error) throw error;
+  }
+
+  async function loadPrograms() {
+    const { data, error } = await supabase
+      .from('programs')
+      .select('id, name, deadline, price_cents, program_questions')
+      .eq('status', 'active');
+    if (error) throw error;
+    return data;
+  }
+
+  async function loadApplicationHistory(session, applicationId) {
+    const { data, error } = await supabase
+      .from('application_events')
+      .select('id, event_type, created_at, metadata')
+      .eq('application_id', applicationId)
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data;
+  }
+
   // ─── UI placeholder — filled in Task 5 ─────────────────────────────────────
 
   // ─── PAGES placeholder — filled in Tasks 6–10 ───────────────────────────────
