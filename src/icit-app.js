@@ -38,7 +38,28 @@
     if (session) window.location.href = '/dashboard';
   }
 
-  // ─── API placeholder — filled in Tasks 2–4 ──────────────────────────────────
+  // ─── API ────────────────────────────────────────────────────────────────────
+
+  async function signIn(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    return data.session;
+  }
+
+  async function signUp(email, password, firstName, lastName) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { first_name: firstName, last_name: lastName } },
+    });
+    if (error) throw error;
+    return data.session;
+  }
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  }
 
   // ─── UI placeholder — filled in Task 5 ─────────────────────────────────────
 
