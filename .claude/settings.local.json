@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ee1b8f23-54de-4cad-bfb5-0c1896a3398f__data_sites_tool",
+      "mcp__ee1b8f23-54de-4cad-bfb5-0c1896a3398f__data_pages_tool",
+      "mcp__claude_ai_Supabase__list_projects",
+      "mcp__claude_ai_Supabase__list_tables",
+      "mcp__claude_ai_Supabase__list_migrations",
+      "mcp__claude_ai_Webflow__webflow_guide_tool",
+      "mcp__claude_ai_Webflow__data_sites_tool",
+      "mcp__claude_ai_Webflow__de_page_tool",
+      "mcp__claude_ai_Webflow__data_pages_tool",
+      "mcp__claude_ai_Webflow__element_tool",
+      "mcp__claude_ai_Webflow__whtml_builder",
+      "mcp__claude_ai_Supabase__deploy_edge_function",
+      "mcp__claude_ai_Supabase__apply_migration",
+      "mcp__claude_ai_Supabase__execute_sql",
+      "Skill(playwright-cli)",
+      "Bash(playwright-cli close *)",
+      "mcp__claude_ai_Webflow__element_builder",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
