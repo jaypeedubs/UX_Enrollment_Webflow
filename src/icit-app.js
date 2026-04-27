@@ -190,13 +190,14 @@
     const { error } = await supabase
       .from('applications')
       .update({ cv_url: null })
-      .eq('id', applicationId);
+      .eq('id', applicationId)
+      .eq('applicant_id', session.user.id);
     if (error) throw error;
   }
 
   // Guards against double-submission with .eq('status', 'draft').
   async function submitApplication(session, applicationId) {
-    const { error: upErr } = await supabase
+    const { data: updated, error: upErr } = await supabase
       .from('applications')
       .update({
         status: 'submitted',
@@ -204,8 +205,12 @@
         locked_fields: { all: true },
       })
       .eq('id', applicationId)
-      .eq('status', 'draft');
+      .eq('status', 'draft')
+      .select('id');
     if (upErr) throw upErr;
+    if (!updated || updated.length === 0) {
+      throw new Error('Application is no longer a draft and cannot be submitted.');
+    }
 
     const { error: evErr } = await supabase
       .from('application_events')
@@ -217,7 +222,8 @@
     const { error } = await supabase
       .from('applications')
       .update({ notes_response: response })
-      .eq('id', applicationId);
+      .eq('id', applicationId)
+      .eq('applicant_id', session.user.id);
     if (error) throw error;
   }
 
@@ -231,9 +237,15 @@
       },
       body: JSON.stringify({ application_id: applicationId }),
     });
-    const json = await resp.json();
-    if (!resp.ok) throw new Error(json.error || 'Checkout failed');
-    return json;
+    if (!resp.ok) {
+      let msg = 'Checkout failed';
+      try {
+        const body = await resp.json();
+        if (body.error) msg = body.error;
+      } catch (_) { /* non-JSON error body */ }
+      throw new Error(msg);
+    }
+    return resp.json();
   }
 
   // ─── UI placeholder — filled in Task 5 ─────────────────────────────────────
