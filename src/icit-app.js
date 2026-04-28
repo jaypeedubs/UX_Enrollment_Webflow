@@ -248,7 +248,38 @@
     return resp.json();
   }
 
-  // ─── UI placeholder — filled in Task 5 ─────────────────────────────────────
+  // ─── UI ─────────────────────────────────────────────────────────────────────
+
+  function q(sel) { return document.querySelector(sel); }
+  function show(el) { if (el) el.style.display = ''; }
+  function hide(el) { if (el) el.style.display = 'none'; }
+  function setText(el, val) { if (el) el.textContent = val; }
+  function setHref(el, val) { if (el) el.href = val; }
+
+  function revealPage() {
+    const w = document.getElementById('icit-page-wrapper');
+    if (w) w.style.visibility = 'visible';
+  }
+
+  // Clones a template row. Sets clone.style.display = '' so the CSS cascade
+  // (not a hardcoded value) controls the display — works for flex, grid, block.
+  // Caller must populate and append to template.parentElement.
+  function cloneRow(template) {
+    const clone = template.cloneNode(true);
+    clone.style.display = '';
+    return clone;
+  }
+
+  function formatDate(isoString) {
+    if (!isoString) return '';
+    return new Date(isoString).toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+    });
+  }
+
+  function formatCurrency(cents) {
+    return (cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
 
   // ─── PAGES placeholder — filled in Tasks 6–10 ───────────────────────────────
 
