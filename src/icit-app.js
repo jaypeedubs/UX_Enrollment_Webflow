@@ -32,10 +32,13 @@
     return session;
   }
 
-  // Redirects to /dashboard if a session exists. Resolves (void) for guests.
+  // Redirects to /dashboard if a session exists. Hangs (never resolves) if redirect fires.
   async function requireGuest() {
     const session = await getSession();
-    if (session) window.location.href = '/dashboard';
+    if (session) {
+      window.location.href = '/dashboard';
+      return new Promise(() => {}); // intentionally never resolves
+    }
   }
 
   // ─── API ────────────────────────────────────────────────────────────────────
@@ -285,6 +288,8 @@
 
   async function initLogin() {
     await requireGuest(); // redirect to /dashboard if already signed in
+
+    if (!q('[wized="tab-signin"]') || !q('[wized="signin-submit"]') || !q('[wized="signup-submit"]')) return;
 
     const signinSection = q('[wized="signin-section"]');
     const signupSection = q('[wized="signup-section"]');
