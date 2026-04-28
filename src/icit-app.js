@@ -908,5 +908,10 @@
   }
 
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
-
+  const path = window.location.pathname;
+  if (path === '/login')                       initLogin();
+  else if (path === '/dashboard')              initDashboard();
+  else if (path === '/apply')                  initApply();
+  else if (path === '/application-status')     initStatus();
+  else if (path === '/enrollment-confirmation') initEnrollment();
 })();
