@@ -755,7 +755,7 @@
     waitlisted: 3,
     enrollment_confirmed: 3,
     enrolled: 4,
-    withdrawn: -1, // no step highlighted
+    withdrawn: -1,
   };
   const TIMELINE_STEPS = [
     'timeline-step-draft',
@@ -816,20 +816,22 @@
       show(q('[wized="admin-notes-msg"]'));
 
       if (!application.notes_response) {
-        show(q('[wized="notes-response-input"]'));
-        show(q('[wized="submit-notes-response-btn"]'));
-        hide(q('[wized="notes-submitted-confirm"]'));
-
+        const notesInput = q('[wized="notes-response-input"]');
         const notesBtn = q('[wized="submit-notes-response-btn"]');
-        if (notesBtn) notesBtn.addEventListener('click', async (e) => {
-          e.preventDefault();
-          const response = q('[wized="notes-response-input"]').value.trim();
-          if (!response) return;
-          try {
-            await submitNotesResponse(session, application.id, response);
-            location.reload();
-          } catch (err) { console.error(err); }
-        });
+        show(notesInput);
+        show(notesBtn);
+        hide(q('[wized="notes-submitted-confirm"]'));
+        if (notesBtn && notesInput) {
+          notesBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const response = notesInput.value.trim();
+            if (!response) return;
+            try {
+              await submitNotesResponse(session, application.id, response);
+              location.reload();
+            } catch (err) { console.error(err); }
+          });
+        }
       } else {
         hide(q('[wized="notes-response-input"]'));
         hide(q('[wized="submit-notes-response-btn"]'));
@@ -842,19 +844,21 @@
       hide(q('[wized="notes-submitted-confirm"]'));
     }
 
+    const withdrawBtn = q('[wized="status-withdraw-btn"]');
     if (WITHDRAW_ALLOWED.includes(application.status)) {
-      show(q('[wized="status-withdraw-btn"]'));
-      const withdrawBtn = q('[wized="status-withdraw-btn"]');
-      if (withdrawBtn) withdrawBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        if (!confirm('Withdraw your application? This cannot be undone.')) return;
-        try {
-          await withdrawApplication(session, application.id, application.status);
-          location.reload();
-        } catch (err) { console.error('Withdraw error:', err); }
-      });
+      show(withdrawBtn);
+      if (withdrawBtn) {
+        withdrawBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          if (!confirm('Withdraw your application? This cannot be undone.')) return;
+          try {
+            await withdrawApplication(session, application.id, application.status);
+            location.reload();
+          } catch (err) { console.error('Withdraw error:', err); }
+        });
+      }
     } else {
-      hide(q('[wized="status-withdraw-btn"]'));
+      hide(withdrawBtn);
     }
 
     if (application.status === 'draft') {
@@ -865,6 +869,5 @@
   }
 
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
-  // (will be populated in Task 11 — leave blank for now)
 
 })();
