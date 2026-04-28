@@ -378,7 +378,8 @@
     setText(q('[wized="dash-user-name"]'), ((meta.first_name || '') + ' ' + (meta.last_name || '')).trim());
 
     // Sign out
-    q('[wized="dash-signout"]').addEventListener('click', async (e) => {
+    const signoutEl = q('[wized="dash-signout"]');
+    if (signoutEl) signoutEl.addEventListener('click', async (e) => {
       e.preventDefault();
       await signOut();
       window.location.href = '/login';
@@ -451,7 +452,8 @@
     const drawer = q('[wized="notif-drawer"]');
     const notifTemplate = q('[wized="notif-item-msg"]')?.parentElement;
 
-    q('[wized="notif-bell"]').addEventListener('click', async (e) => {
+    const notifBellEl = q('[wized="notif-bell"]');
+    if (notifBellEl) notifBellEl.addEventListener('click', async (e) => {
       e.preventDefault();
       show(drawer);
       await markNotificationsRead(session).catch(() => {});
@@ -476,7 +478,8 @@
       }
     });
 
-    q('[wized="notif-drawer-close"]').addEventListener('click', (e) => {
+    const notifCloseEl = q('[wized="notif-drawer-close"]');
+    if (notifCloseEl) notifCloseEl.addEventListener('click', (e) => {
       e.preventDefault();
       hide(drawer);
     });
