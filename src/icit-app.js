@@ -351,6 +351,137 @@
     });
   }
 
+  const STATUS_MESSAGES = {
+    draft:                { msg: 'Complete and submit your application.',               href: '/apply' },
+    submitted:            { msg: 'Your application is under review.',                  href: '/application-status' },
+    in_review:            { msg: 'Your application is being reviewed by admissions.',  href: '/application-status' },
+    accepted:             { msg: 'Congratulations! Please confirm your enrollment.',   href: '/enrollment-confirmation' },
+    waitlisted:           { msg: "You're on the waitlist. We'll notify you of any change.", href: '/application-status' },
+    rejected:             { msg: 'We appreciate your interest in ICIT.',               href: '/application-status' },
+    enrollment_confirmed: { msg: 'Your enrollment is confirmed. Complete payment to finalize.', href: '/enrollment-confirmation' },
+    enrolled:             { msg: 'Welcome to ICIT! Check your email for platform access.', href: '/application-status' },
+    withdrawn:            { msg: 'Your application has been withdrawn.',               href: '/application-status' },
+  };
+
+  async function initDashboard() {
+    const session = await requireAuth();
+
+    const [application, notifications] = await Promise.all([
+      loadApplication(session),
+      loadNotifications(session),
+    ]);
+
+    hide(q('[wized="dash-loading"]'));
+
+    // User name
+    const meta = session.user.user_metadata || {};
+    setText(q('[wized="dash-user-name"]'), ((meta.first_name || '') + ' ' + (meta.last_name || '')).trim());
+
+    // Sign out
+    q('[wized="dash-signout"]').addEventListener('click', async (e) => {
+      e.preventDefault();
+      await signOut();
+      window.location.href = '/login';
+    });
+
+    if (!application) {
+      // New user — no application yet
+      show(q('[wized="start-application-link"]'));
+      hide(q('[wized="withdraw-btn"]'));
+      revealPage();
+    } else {
+      // Existing application
+      hide(q('[wized="start-application-link"]'));
+      setText(q('[wized="app-program-name"]'), application.programs.name);
+
+      const info = STATUS_MESSAGES[application.status] || { msg: '', href: '/application-status' };
+      setText(q('[wized="app-next-action-msg"]'), info.msg);
+      setHref(q('[wized="app-next-action-link"]'), info.href);
+      show(q('[wized="view-status-link"]'));
+
+      if (WITHDRAW_ALLOWED.includes(application.status)) {
+        show(q('[wized="withdraw-btn"]'));
+        q('[wized="withdraw-btn"]').addEventListener('click', async (e) => {
+          e.preventDefault();
+          if (!confirm('Withdraw your application? This cannot be undone.')) return;
+          try {
+            await withdrawApplication(session, application.id, application.status);
+            location.reload();
+          } catch (err) {
+            console.error('Withdraw error:', err);
+          }
+        });
+      } else {
+        hide(q('[wized="withdraw-btn"]'));
+      }
+
+      // Payment success: poll for enrolled status after Stripe redirects back
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('payment') === 'success' && application.status === 'enrollment_confirmed') {
+        const banner = document.createElement('p');
+        banner.id = 'payment-banner';
+        banner.textContent = 'Processing your enrollment…';
+        document.body.prepend(banner);
+        let elapsed = 0;
+        const poll = setInterval(async () => {
+          elapsed += 3;
+          try {
+            const fresh = await loadApplication(session);
+            if (fresh && fresh.status === 'enrolled') {
+              clearInterval(poll);
+              location.reload();
+            } else if (elapsed >= 30) {
+              clearInterval(poll);
+              history.replaceState({}, '', '/dashboard');
+              banner.textContent = 'Payment received — your enrollment typically confirms within a few minutes.';
+            }
+          } catch (err) {
+            clearInterval(poll);
+          }
+        }, 3000);
+      }
+
+      revealPage();
+    }
+
+    // Notification drawer
+    const unread = notifications.filter((n) => !n.read).length;
+    setText(q('[wized="notif-bell"]'), unread > 0 ? String(unread) : '');
+
+    const drawer = q('[wized="notif-drawer"]');
+    const notifTemplate = q('[wized="notif-item-msg"]')?.parentElement;
+
+    q('[wized="notif-bell"]').addEventListener('click', async (e) => {
+      e.preventDefault();
+      show(drawer);
+      await markNotificationsRead(session).catch(() => {});
+      setText(q('[wized="notif-bell"]'), '');
+
+      if (!notifTemplate) return;
+      // Remove previously cloned rows to avoid duplicates on re-open
+      notifTemplate.parentElement.querySelectorAll('[data-icit-clone]').forEach((el) => el.remove());
+      hide(notifTemplate);
+
+      if (notifications.length === 0) {
+        show(q('[wized="notif-empty"]'));
+      } else {
+        hide(q('[wized="notif-empty"]'));
+        notifications.forEach((notif) => {
+          const row = cloneRow(notifTemplate);
+          row.dataset.icitClone = '1';
+          setText(row.querySelector('[wized="notif-item-msg"]'), notif.message);
+          setText(row.querySelector('[wized="notif-item-time"]'), formatDate(notif.created_at));
+          notifTemplate.parentElement.appendChild(row);
+        });
+      }
+    });
+
+    q('[wized="notif-drawer-close"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      hide(drawer);
+    });
+  }
+
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
   // (will be populated in Task 11 — leave blank for now)
 
