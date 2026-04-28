@@ -558,6 +558,7 @@
 
     // Render program questions for a given program
     function renderQuestions(programId) {
+      programAnswers = {};  // clear stale answers from previous program selection
       const prog = programs.find((p) => p.id === programId);
       const questions = (prog && prog.program_questions) || [];
       const template = q('[wized="question-item"]');
@@ -598,7 +599,17 @@
     }
 
     // Initial question render from draft's program
-    if (draft && draft.program_id) renderQuestions(draft.program_id);
+    if (draft && draft.program_id) {
+      renderQuestions(draft.program_id);
+      // Pre-populate saved answers into cloned inputs
+      if (draft.program_answers && typeof draft.program_answers === 'object') {
+        programAnswers = Object.assign({}, draft.program_answers);
+        Object.entries(draft.program_answers).forEach(([id, val]) => {
+          const input = q('[data-question-id="' + id + '"]');
+          if (input) input.value = val;
+        });
+      }
+    }
 
     if (programSelect) {
       programSelect.addEventListener('change', () => { renderQuestions(programSelect.value); });
@@ -630,7 +641,11 @@
     const saveDraftBtn = q('[wized="save-draft-btn"]');
     if (saveDraftBtn) saveDraftBtn.addEventListener('click', async (e) => {
       e.preventDefault();
-      try { await doSaveDraft(); } catch (err) { console.error(err); }
+      try { await doSaveDraft(); } catch (err) {
+        console.error(err);
+        setText(q('[wized="form-error-msg"]'), err.message || 'Failed to save draft. Please try again.');
+        show(q('[wized="form-error-msg"]'));
+      }
     });
 
     const nextSection1Btn = q('[wized="next-section-1-btn"]');
@@ -643,7 +658,11 @@
     const saveDraft2Btn = q('[wized="save-draft-2-btn"]');
     if (saveDraft2Btn) saveDraft2Btn.addEventListener('click', async (e) => {
       e.preventDefault();
-      try { await doSaveDraft(); } catch (err) { console.error(err); }
+      try { await doSaveDraft(); } catch (err) {
+        console.error(err);
+        setText(q('[wized="form-error-msg"]'), err.message || 'Failed to save draft. Please try again.');
+        show(q('[wized="form-error-msg"]'));
+      }
     });
 
     const backSection2Btn = q('[wized="back-section-2-btn"]');
@@ -662,7 +681,12 @@
     const cvFileInput = q('[wized="cv-file-input"]');
     if (cvFileInput) cvFileInput.addEventListener('change', async (e) => {
       const file = e.target.files[0];
-      if (!file || !applicationId) return;
+      if (!file) return;
+      if (!applicationId) {
+        setText(q('[wized="form-error-msg"]'), 'Please save your draft before uploading a CV.');
+        show(q('[wized="form-error-msg"]'));
+        return;
+      }
       try {
         await uploadCV(session, applicationId, file);
         cvUploaded = true;
@@ -689,7 +713,11 @@
     const saveDraft3Btn = q('[wized="save-draft-3-btn"]');
     if (saveDraft3Btn) saveDraft3Btn.addEventListener('click', async (e) => {
       e.preventDefault();
-      try { await doSaveDraft(); } catch (err) { console.error(err); }
+      try { await doSaveDraft(); } catch (err) {
+        console.error(err);
+        setText(q('[wized="form-error-msg"]'), err.message || 'Failed to save draft. Please try again.');
+        show(q('[wized="form-error-msg"]'));
+      }
     });
 
     const backSection3Btn = q('[wized="back-section-3-btn"]');
