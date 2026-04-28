@@ -745,6 +745,125 @@
     });
   }
 
+  const STATUS_TIMELINE = {
+    draft: 0,
+    submitted: 1,
+    in_review: 2,
+    more_info_requested: 2, // sits within the review phase
+    accepted: 3,
+    rejected: 3,
+    waitlisted: 3,
+    enrollment_confirmed: 3,
+    enrolled: 4,
+    withdrawn: -1, // no step highlighted
+  };
+  const TIMELINE_STEPS = [
+    'timeline-step-draft',
+    'timeline-step-submitted',
+    'timeline-step-in-review',
+    'timeline-step-decision',
+    'timeline-step-enrolled',
+  ];
+
+  async function initStatus() {
+    const session = await requireAuth();
+
+    const application = await loadApplication(session);
+    if (!application) {
+      window.location.href = '/dashboard';
+      return;
+    }
+
+    const events = await loadApplicationHistory(session, application.id);
+    revealPage();
+    hide(q('[wized="status-loading"]'));
+
+    setText(q('[wized="status-program-name"]'), application.programs.name);
+    setText(q('[wized="status-submitted-date"]'), formatDate(application.submitted_at));
+
+    const stepIndex = STATUS_TIMELINE[application.status] ?? -1;
+    TIMELINE_STEPS.forEach((wid, i) => {
+      const el = q('[wized="' + wid + '"]');
+      if (!el) return;
+      if (i <= stepIndex) {
+        el.classList.add('timeline-step-done');
+      } else {
+        el.classList.remove('timeline-step-done');
+      }
+    });
+
+    const eventTemplate = q('[wized="event-type-label"]')?.parentElement;
+    if (eventTemplate) {
+      eventTemplate.parentElement.querySelectorAll('[data-icit-clone]').forEach((el) => el.remove());
+      hide(eventTemplate);
+      if (events.length === 0) {
+        show(q('[wized="events-empty"]'));
+      } else {
+        hide(q('[wized="events-empty"]'));
+        events.forEach((ev) => {
+          const row = cloneRow(eventTemplate);
+          row.dataset.icitClone = '1';
+          setText(row.querySelector('[wized="event-type-label"]'), ev.event_type.replace(/_/g, ' '));
+          setText(row.querySelector('[wized="event-time"]'), formatDate(ev.created_at));
+          eventTemplate.parentElement.appendChild(row);
+        });
+      }
+    }
+
+    const latestEventType = events[0]?.event_type;
+    if (latestEventType === 'more_info_requested') {
+      setText(q('[wized="admin-notes-msg"]'), application.admin_notes || '');
+      show(q('[wized="admin-notes-msg"]'));
+
+      if (!application.notes_response) {
+        show(q('[wized="notes-response-input"]'));
+        show(q('[wized="submit-notes-response-btn"]'));
+        hide(q('[wized="notes-submitted-confirm"]'));
+
+        const notesBtn = q('[wized="submit-notes-response-btn"]');
+        if (notesBtn) notesBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const response = q('[wized="notes-response-input"]').value.trim();
+          if (!response) return;
+          try {
+            await submitNotesResponse(session, application.id, response);
+            location.reload();
+          } catch (err) { console.error(err); }
+        });
+      } else {
+        hide(q('[wized="notes-response-input"]'));
+        hide(q('[wized="submit-notes-response-btn"]'));
+        show(q('[wized="notes-submitted-confirm"]'));
+      }
+    } else {
+      hide(q('[wized="admin-notes-msg"]'));
+      hide(q('[wized="notes-response-input"]'));
+      hide(q('[wized="submit-notes-response-btn"]'));
+      hide(q('[wized="notes-submitted-confirm"]'));
+    }
+
+    if (WITHDRAW_ALLOWED.includes(application.status)) {
+      show(q('[wized="status-withdraw-btn"]'));
+      const withdrawBtn = q('[wized="status-withdraw-btn"]');
+      if (withdrawBtn) withdrawBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (!confirm('Withdraw your application? This cannot be undone.')) return;
+        try {
+          await withdrawApplication(session, application.id, application.status);
+          location.reload();
+        } catch (err) { console.error('Withdraw error:', err); }
+      });
+    } else {
+      hide(q('[wized="status-withdraw-btn"]'));
+    }
+
+    if (application.status === 'draft') {
+      show(q('[wized="edit-draft-link"]'));
+    } else {
+      hide(q('[wized="edit-draft-link"]'));
+    }
+  }
+
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
   // (will be populated in Task 11 — leave blank for now)
 
