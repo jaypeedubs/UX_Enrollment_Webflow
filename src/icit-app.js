@@ -868,6 +868,45 @@
     }
   }
 
+  async function initEnrollment() {
+    const session = await requireAuth();
+
+    const application = await loadApplication(session);
+
+    // Redirect if no application or wrong status
+    if (!application || !['accepted', 'enrollment_confirmed'].includes(application.status)) {
+      window.location.href = '/dashboard';
+      return;
+    }
+
+    revealPage();
+    hide(q('[wized="enroll-loading"]'));
+
+    setText(q('[wized="enroll-program-name"]'), application.programs.name);
+    setText(q('[wized="enroll-tuition"]'), formatCurrency(application.programs.price_cents));
+    setText(
+      q('[wized="enroll-status-badge"]'),
+      application.status === 'enrollment_confirmed' ? 'Enrollment Confirmed' : 'Accepted',
+    );
+
+    hide(q('[wized="enroll-error-msg"]'));
+    hide(q('[wized="enroll-processing"]'));
+
+    q('[wized="confirm-enrollment-btn"]').addEventListener('click', async (e) => {
+      e.preventDefault();
+      show(q('[wized="enroll-processing"]'));
+      hide(q('[wized="enroll-error-msg"]'));
+      try {
+        const result = await createCheckout(session, application.id);
+        window.location.href = result.url;
+      } catch (err) {
+        hide(q('[wized="enroll-processing"]'));
+        setText(q('[wized="enroll-error-msg"]'), err.message || 'Could not start checkout. Please try again.');
+        show(q('[wized="enroll-error-msg"]'));
+      }
+    });
+  }
+
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
 
 })();
