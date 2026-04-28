@@ -485,6 +485,238 @@
     });
   }
 
+  async function initApply() {
+    const session = await requireAuth();
+
+    const [programs, draft] = await Promise.all([
+      loadPrograms(),
+      loadApplication(session),
+    ]);
+
+    // If a non-draft application exists, redirect to dashboard
+    if (draft && draft.status !== 'draft') {
+      window.location.href = '/dashboard';
+      return;
+    }
+
+    revealPage();
+
+    let applicationId = draft ? draft.id : null;
+    let cvUploaded = !!(draft && draft.cv_url);
+    let currentSection = 1;
+    let programAnswers = {};
+
+    // Section stepper
+    function goToSection(n) {
+      ['apply-section-1', 'apply-section-2', 'apply-section-3'].forEach((wid) => {
+        hide(q('[wized="' + wid + '"]'));
+      });
+      show(q('[wized="apply-section-' + n + '"]'));
+      currentSection = n;
+    }
+    goToSection(1);
+
+    // Populate program select
+    const programSelect = q('[wized="program-select"]');
+    if (programSelect) {
+      programs.forEach((prog) => {
+        const opt = document.createElement('option');
+        opt.value = prog.id;
+        opt.textContent = prog.name;
+        programSelect.appendChild(opt);
+      });
+    }
+
+    // Pre-fill from draft
+    if (draft) {
+      applicationId = draft.id;
+      cvUploaded = !!draft.cv_url;
+
+      if (programSelect && draft.program_id) programSelect.value = draft.program_id;
+      if (programSelect && draft.locked_fields?.program) {
+        programSelect.disabled = true;
+        show(q('[wized="program-locked"]'));
+      }
+
+      const meta = session.user.user_metadata || {};
+      if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || '';
+      if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || '';
+      if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || '';
+
+      if (draft.locked_fields?.first_name) {
+        if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').disabled = true;
+        if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').disabled = true;
+        show(q('[wized="first-name-locked"]'));
+        show(q('[wized="last-name-locked"]'));
+      }
+    }
+    // Email is always read-only
+    if (q('[wized="applicant-email"]')) {
+      q('[wized="applicant-email"]').value = session.user.email || '';
+      q('[wized="applicant-email"]').disabled = true;
+    }
+
+    // Render program questions for a given program
+    function renderQuestions(programId) {
+      const prog = programs.find((p) => p.id === programId);
+      const questions = (prog && prog.program_questions) || [];
+      const template = q('[wized="question-item"]');
+      if (!template) return;
+
+      template.parentElement.querySelectorAll('[data-icit-clone]').forEach((el) => el.remove());
+
+      if (questions.length === 0) {
+        show(q('[wized="questions-empty"]'));
+        hide(q('[wized="questions-loading"]'));
+        return;
+      }
+
+      hide(q('[wized="questions-empty"]'));
+      hide(q('[wized="questions-loading"]'));
+      questions.forEach((question) => {
+        const row = cloneRow(template);
+        row.dataset.icitClone = '1';
+        const label = row.querySelector('label') || row.querySelector('[data-question-label]');
+        if (label) label.textContent = question.label;
+        const input = row.querySelector('input, select, textarea');
+        if (input) {
+          input.name = question.id;
+          input.dataset.questionId = question.id;
+          if (question.type === 'select' && question.options) {
+            question.options.forEach((opt) => {
+              const el = document.createElement('option');
+              el.value = opt;
+              el.textContent = opt;
+              input.appendChild(el);
+            });
+          }
+          input.addEventListener('change', (e) => { programAnswers[question.id] = e.target.value; });
+          input.addEventListener('input', (e) => { programAnswers[question.id] = e.target.value; });
+        }
+        template.parentElement.appendChild(row);
+      });
+    }
+
+    // Initial question render from draft's program
+    if (draft && draft.program_id) renderQuestions(draft.program_id);
+
+    if (programSelect) {
+      programSelect.addEventListener('change', () => { renderQuestions(programSelect.value); });
+    }
+
+    // Collect current form fields for saveDraft
+    function collectFields() {
+      return {
+        id: applicationId,
+        programId: programSelect ? programSelect.value : '',
+        firstName: (q('[wized="applicant-first-name"]') || {}).value || '',
+        lastName: (q('[wized="applicant-last-name"]') || {}).value || '',
+        programAnswers: Object.keys(programAnswers).length ? programAnswers : undefined,
+      };
+    }
+
+    async function doSaveDraft() {
+      const fields = collectFields();
+      if (!fields.programId) return;
+      const saved = await saveDraft(session, fields);
+      applicationId = saved.id;
+      const indicator = q('[wized="form-draft-status"]');
+      show(indicator);
+      setTimeout(() => hide(indicator), 3000);
+      return saved;
+    }
+
+    // Section 1 buttons
+    const saveDraftBtn = q('[wized="save-draft-btn"]');
+    if (saveDraftBtn) saveDraftBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try { await doSaveDraft(); } catch (err) { console.error(err); }
+    });
+
+    const nextSection1Btn = q('[wized="next-section-1-btn"]');
+    if (nextSection1Btn) nextSection1Btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try { await doSaveDraft(); goToSection(2); } catch (err) { console.error(err); }
+    });
+
+    // Section 2 buttons
+    const saveDraft2Btn = q('[wized="save-draft-2-btn"]');
+    if (saveDraft2Btn) saveDraft2Btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try { await doSaveDraft(); } catch (err) { console.error(err); }
+    });
+
+    const backSection2Btn = q('[wized="back-section-2-btn"]');
+    if (backSection2Btn) backSection2Btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToSection(1);
+    });
+
+    const nextSection2Btn = q('[wized="next-section-2-btn"]');
+    if (nextSection2Btn) nextSection2Btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try { await doSaveDraft(); goToSection(3); } catch (err) { console.error(err); }
+    });
+
+    // Section 3 — CV
+    const cvFileInput = q('[wized="cv-file-input"]');
+    if (cvFileInput) cvFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file || !applicationId) return;
+      try {
+        await uploadCV(session, applicationId, file);
+        cvUploaded = true;
+        show(q('[wized="cv-remove-btn"]'));
+        const display = q('[wized="cv-file-name"]');
+        if (display) setText(display, file.name);
+      } catch (err) { console.error('CV upload failed:', err); }
+    });
+
+    const cvRemoveBtn = q('[wized="cv-remove-btn"]');
+    if (cvRemoveBtn) cvRemoveBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (!applicationId) return;
+      try {
+        await removeCV(session, applicationId);
+        cvUploaded = false;
+        hide(q('[wized="cv-remove-btn"]'));
+        if (q('[wized="cv-file-input"]')) q('[wized="cv-file-input"]').value = '';
+        const display = q('[wized="cv-file-name"]');
+        if (display) setText(display, '');
+      } catch (err) { console.error(err); }
+    });
+
+    const saveDraft3Btn = q('[wized="save-draft-3-btn"]');
+    if (saveDraft3Btn) saveDraft3Btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try { await doSaveDraft(); } catch (err) { console.error(err); }
+    });
+
+    const backSection3Btn = q('[wized="back-section-3-btn"]');
+    if (backSection3Btn) backSection3Btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToSection(2);
+    });
+
+    const submitAppBtn = q('[wized="submit-application-btn"]');
+    if (submitAppBtn) submitAppBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (!cvUploaded) {
+        alert('Please upload your CV before submitting.');
+        return;
+      }
+      try {
+        await doSaveDraft();
+        await submitApplication(session, applicationId);
+        window.location.href = '/dashboard';
+      } catch (err) {
+        console.error('Submit failed:', err);
+        setText(q('[wized="form-error-msg"]'), err.message || 'Submission failed. Please try again.');
+        show(q('[wized="form-error-msg"]'));
+      }
+    });
+  }
+
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
   // (will be populated in Task 11 — leave blank for now)
 
