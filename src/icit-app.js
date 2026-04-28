@@ -281,7 +281,70 @@
     return (cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   }
 
-  // ─── PAGES placeholder — filled in Tasks 6–10 ───────────────────────────────
+  // ─── PAGES ──────────────────────────────────────────────────────────────────
+
+  async function initLogin() {
+    await requireGuest(); // redirect to /dashboard if already signed in
+
+    const signinSection = q('[wized="signin-section"]');
+    const signupSection = q('[wized="signup-section"]');
+
+    // Default state: show sign-in form, hide sign-up form
+    show(signinSection);
+    hide(signupSection);
+    hide(q('[wized="signin-error-msg"]'));
+    hide(q('[wized="signin-loading"]'));
+    hide(q('[wized="signup-error-msg"]'));
+    hide(q('[wized="signup-loading"]'));
+
+    q('[wized="tab-signin"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      show(signinSection);
+      hide(signupSection);
+    });
+
+    q('[wized="tab-signup"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      hide(signinSection);
+      show(signupSection);
+    });
+
+    q('[wized="signin-submit"]').addEventListener('click', async (e) => {
+      e.preventDefault();
+      hide(q('[wized="signin-error-msg"]'));
+      show(q('[wized="signin-loading"]'));
+      try {
+        await signIn(
+          q('[wized="signin-email"]').value.trim(),
+          q('[wized="signin-password"]').value,
+        );
+        window.location.href = '/dashboard';
+      } catch (err) {
+        hide(q('[wized="signin-loading"]'));
+        setText(q('[wized="signin-error-msg"]'), err.message || 'Invalid email or password.');
+        show(q('[wized="signin-error-msg"]'));
+      }
+    });
+
+    q('[wized="signup-submit"]').addEventListener('click', async (e) => {
+      e.preventDefault();
+      hide(q('[wized="signup-error-msg"]'));
+      show(q('[wized="signup-loading"]'));
+      try {
+        await signUp(
+          q('[wized="signup-email"]').value.trim(),
+          q('[wized="signup-password"]').value,
+          q('[wized="signup-first-name"]').value.trim(),
+          q('[wized="signup-last-name"]').value.trim(),
+        );
+        window.location.href = '/dashboard';
+      } catch (err) {
+        hide(q('[wized="signup-loading"]'));
+        setText(q('[wized="signup-error-msg"]'), err.message || 'Sign up failed. Please try again.');
+        show(q('[wized="signup-error-msg"]'));
+      }
+    });
+  }
 
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
   // (will be populated in Task 11 — leave blank for now)
