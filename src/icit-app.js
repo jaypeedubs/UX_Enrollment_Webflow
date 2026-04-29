@@ -892,19 +892,22 @@
     hide(q('[wized="enroll-error-msg"]'));
     hide(q('[wized="enroll-processing"]'));
 
-    q('[wized="confirm-enrollment-btn"]').addEventListener('click', async (e) => {
-      e.preventDefault();
-      show(q('[wized="enroll-processing"]'));
-      hide(q('[wized="enroll-error-msg"]'));
-      try {
-        const result = await createCheckout(session, application.id);
-        window.location.href = result.url;
-      } catch (err) {
-        hide(q('[wized="enroll-processing"]'));
-        setText(q('[wized="enroll-error-msg"]'), err.message || 'Could not start checkout. Please try again.');
-        show(q('[wized="enroll-error-msg"]'));
-      }
-    });
+    const confirmBtn = q('[wized="confirm-enrollment-btn"]');
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        show(q('[wized="enroll-processing"]'));
+        hide(q('[wized="enroll-error-msg"]'));
+        try {
+          const result = await createCheckout(session, application.id);
+          window.location.href = result.url;
+        } catch (err) {
+          hide(q('[wized="enroll-processing"]'));
+          setText(q('[wized="enroll-error-msg"]'), err.message || 'Could not start checkout. Please try again.');
+          show(q('[wized="enroll-error-msg"]'));
+        }
+      });
+    }
   }
 
   // ─── DISPATCHER ─────────────────────────────────────────────────────────────
