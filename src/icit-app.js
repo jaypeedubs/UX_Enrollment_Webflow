@@ -294,8 +294,11 @@
     const signinSection = q('[wized="signin-section"]');
     const signupSection = q('[wized="signup-section"]');
 
-    // Default state: show sign-in form, hide sign-up form
+    // Default state: show sign-in form, hide sign-up form.
+    // Must also toggle the Webflow CSS class since show/hide only manage inline styles.
+    signinSection.classList.remove('auth-form-hidden');
     show(signinSection);
+    signupSection.classList.add('auth-form-hidden');
     hide(signupSection);
     hide(q('[wized="signin-error-msg"]'));
     hide(q('[wized="signin-loading"]'));
@@ -306,7 +309,9 @@
 
     q('[wized="tab-signin"]').addEventListener('click', (e) => {
       e.preventDefault();
+      signinSection.classList.remove('auth-form-hidden');
       show(signinSection);
+      signupSection.classList.add('auth-form-hidden');
       hide(signupSection);
       q('[wized="tab-signin"]').classList.add('auth-tab-active');
       q('[wized="tab-signup"]').classList.remove('auth-tab-active');
@@ -314,7 +319,9 @@
 
     q('[wized="tab-signup"]').addEventListener('click', (e) => {
       e.preventDefault();
+      signinSection.classList.add('auth-form-hidden');
       hide(signinSection);
+      signupSection.classList.remove('auth-form-hidden');
       show(signupSection);
       q('[wized="tab-signin"]').classList.remove('auth-tab-active');
       q('[wized="tab-signup"]').classList.add('auth-tab-active');
