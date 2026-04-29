@@ -508,10 +508,10 @@
 
     // Section stepper
     function goToSection(n) {
-      ['apply-section-1', 'apply-section-2', 'apply-section-3'].forEach((wid) => {
+      ['form-section-1', 'form-section-2', 'form-section-3'].forEach((wid) => {
         hide(q('[wized="' + wid + '"]'));
       });
-      show(q('[wized="apply-section-' + n + '"]'));
+      show(q('[wized="form-section-' + n + '"]'));
       currentSection = n;
     }
     goToSection(1);
