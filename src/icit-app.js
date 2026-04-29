@@ -302,16 +302,22 @@
     hide(q('[wized="signup-error-msg"]'));
     hide(q('[wized="signup-loading"]'));
 
+    revealPage();
+
     q('[wized="tab-signin"]').addEventListener('click', (e) => {
       e.preventDefault();
       show(signinSection);
       hide(signupSection);
+      q('[wized="tab-signin"]').classList.add('auth-tab-active');
+      q('[wized="tab-signup"]').classList.remove('auth-tab-active');
     });
 
     q('[wized="tab-signup"]').addEventListener('click', (e) => {
       e.preventDefault();
       hide(signinSection);
       show(signupSection);
+      q('[wized="tab-signin"]').classList.remove('auth-tab-active');
+      q('[wized="tab-signup"]').classList.add('auth-tab-active');
     });
 
     q('[wized="signin-submit"]').addEventListener('click', async (e) => {
@@ -336,13 +342,20 @@
       hide(q('[wized="signup-error-msg"]'));
       show(q('[wized="signup-loading"]'));
       try {
-        await signUp(
+        const session = await signUp(
           q('[wized="signup-email"]').value.trim(),
           q('[wized="signup-password"]').value,
           q('[wized="signup-first-name"]').value.trim(),
           q('[wized="signup-last-name"]').value.trim(),
         );
-        window.location.href = '/dashboard';
+        if (session) {
+          window.location.href = '/dashboard';
+        } else {
+          // Supabase requires email confirmation before issuing a session
+          hide(q('[wized="signup-loading"]'));
+          setText(q('[wized="signup-error-msg"]'), 'Account created! Check your email to confirm your account, then sign in.');
+          show(q('[wized="signup-error-msg"]'));
+        }
       } catch (err) {
         hide(q('[wized="signup-loading"]'));
         setText(q('[wized="signup-error-msg"]'), err.message || 'Sign up failed. Please try again.');
@@ -387,17 +400,23 @@
 
     if (!application) {
       // New user — no application yet
+      show(q('[wized="dash-no-application"]'));
+      hide(q('[wized="dash-application"]'));
       show(q('[wized="start-application-link"]'));
       hide(q('[wized="withdraw-btn"]'));
       revealPage();
     } else {
       // Existing application
+      hide(q('[wized="dash-no-application"]'));
+      show(q('[wized="dash-application"]'));
       hide(q('[wized="start-application-link"]'));
       setText(q('[wized="app-program-name"]'), application.programs.name);
 
       const info = STATUS_MESSAGES[application.status] || { msg: '', href: '/application-status' };
       setText(q('[wized="app-next-action-msg"]'), info.msg);
       setHref(q('[wized="app-next-action-link"]'), info.href);
+      setText(q('[wized="app-submitted-date"]'), application.submitted_at ? formatDate(application.submitted_at) : '—');
+      setText(q('[wized="app-updated-date"]'), application.updated_at ? formatDate(application.updated_at) : '—');
       show(q('[wized="view-status-link"]'));
 
       if (WITHDRAW_ALLOWED.includes(application.status)) {
@@ -447,7 +466,7 @@
 
     // Notification drawer
     const unread = notifications.filter((n) => !n.read).length;
-    setText(q('[wized="notif-bell"]'), unread > 0 ? String(unread) : '');
+    setText(q('[wized="notif-unread-count"]'), unread > 0 ? String(unread) : '');
 
     const drawer = q('[wized="notif-drawer"]');
     const notifTemplate = q('[wized="notif-item-msg"]')?.parentElement;
@@ -457,7 +476,7 @@
       e.preventDefault();
       show(drawer);
       await markNotificationsRead(session).catch(() => {});
-      setText(q('[wized="notif-bell"]'), '');
+      setText(q('[wized="notif-unread-count"]'), '');
 
       if (!notifTemplate) return;
       // Remove previously cloned rows to avoid duplicates on re-open
@@ -690,8 +709,10 @@
       try {
         await uploadCV(session, applicationId, file);
         cvUploaded = true;
+        hide(q('[wized="cv-upload-zone"]'));
+        show(q('[wized="cv-upload-success"]'));
         show(q('[wized="cv-remove-btn"]'));
-        const display = q('[wized="cv-file-name"]');
+        const display = q('[wized="cv-filename"]');
         if (display) setText(display, file.name);
       } catch (err) { console.error('CV upload failed:', err); }
     });
@@ -703,9 +724,11 @@
       try {
         await removeCV(session, applicationId);
         cvUploaded = false;
+        show(q('[wized="cv-upload-zone"]'));
+        hide(q('[wized="cv-upload-success"]'));
         hide(q('[wized="cv-remove-btn"]'));
         if (q('[wized="cv-file-input"]')) q('[wized="cv-file-input"]').value = '';
-        const display = q('[wized="cv-file-name"]');
+        const display = q('[wized="cv-filename"]');
         if (display) setText(display, '');
       } catch (err) { console.error(err); }
     });
@@ -780,6 +803,7 @@
 
     setText(q('[wized="status-program-name"]'), application.programs.name);
     setText(q('[wized="status-submitted-date"]'), formatDate(application.submitted_at));
+    setText(q('[wized="status-badge"]'), application.status.replace(/_/g, ' '));
 
     const stepIndex = STATUS_TIMELINE[application.status] ?? -1;
     TIMELINE_STEPS.forEach((wid, i) => {
