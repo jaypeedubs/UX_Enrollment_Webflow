@@ -758,11 +758,11 @@
     withdrawn: -1,
   };
   const TIMELINE_STEPS = [
-    'timeline-step-draft',
-    'timeline-step-submitted',
-    'timeline-step-in-review',
-    'timeline-step-decision',
-    'timeline-step-enrolled',
+    'tl-draft',
+    'tl-submitted',
+    'tl-review',
+    'tl-decision',
+    'tl-enrolled',
   ];
 
   async function initStatus() {
