@@ -30,15 +30,24 @@ Deno.serve(async (req) => {
     })
   }
 
-  // Admin-only: must present the service role key
+  // Admin-only: accept service role key (Retool) OR a JWT with role=admin claim
   const authHeader = req.headers.get('Authorization')
   const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-  if (!authHeader || authHeader !== `Bearer ${serviceKey}`) {
-    return new Response('Unauthorized', { status: 401 })
+  let authorized = authHeader === `Bearer ${serviceKey}`
+  if (!authorized && authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.slice(7)
+    const anonClient = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      { global: { headers: { Authorization: `Bearer ${token}` } } }
+    )
+    const { data: { user } } = await anonClient.auth.getUser()
+    authorized = user?.app_metadata?.role === 'admin'
   }
+  if (!authorized) return new Response('Unauthorized', { status: 401 })
 
   try {
-    const { application_id, event_type, admin_notes } = await req.json()
+    const { application_id, event_type, admin_notes, applicant_message } = await req.json()
 
     if (!application_id || !event_type) {
       return new Response(
@@ -101,7 +110,9 @@ Deno.serve(async (req) => {
     await admin.from('application_events').insert({
       application_id,
       event_type,
-      metadata: admin_notes ? { admin_notes } : undefined,
+      metadata: (admin_notes || applicant_message)
+        ? { ...(admin_notes ? { admin_notes } : {}), ...(applicant_message ? { applicant_message } : {}) }
+        : undefined,
     })
 
     return new Response(

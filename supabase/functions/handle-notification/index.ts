@@ -59,10 +59,19 @@ Deno.serve(async (req) => {
     const emailTpl = templates?.find((t) => t.channel === 'email')
     const inAppTpl = templates?.find((t) => t.channel === 'in_app')
 
+    const applicantMessage = typeof metadata?.applicant_message === 'string'
+      ? metadata.applicant_message
+      : ''
+    const applicantMessageHtml = applicantMessage
+      ? `<blockquote style="border-left:3px solid #123161;padding-left:16px;color:#374151;margin:16px 0;">${applicantMessage}</blockquote>`
+      : ''
+
     const vars: Record<string, string> = {
       applicant_name: applicantName,
       program_name: programName,
       admin_notes: app.admin_notes ?? '',
+      applicant_message: applicantMessage,
+      applicant_message_html: applicantMessageHtml,
       site_url: SITE_URL,
       dashboard_url: `${SITE_URL}/dashboard`,
       apply_url: `${SITE_URL}/apply`,

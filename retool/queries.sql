@@ -34,6 +34,7 @@ SELECT
   p.id   AS program_id,
   p.name AS program_name,
   p.deadline AS program_deadline,
+  a.applicant_id,
   u.email AS applicant_email,
   u.raw_user_meta_data->>'first_name' AS first_name,
   u.raw_user_meta_data->>'last_name'  AS last_name,
@@ -48,13 +49,13 @@ FROM applications a
 JOIN programs p ON p.id = a.program_id
 JOIN auth.users u ON u.id = a.applicant_id
 WHERE
-  ({{ status_filter.value }} = '' OR a.status = {{ status_filter.value }})
-  AND ({{ program_filter.value }} = '' OR p.id::text = {{ program_filter.value }})
+  ({{ status_filter.value || '' }}::text = '' OR a.status = {{ status_filter.value || '' }}::text)
+  AND ({{ program_filter.value || '' }}::text = '' OR p.id = {{ program_filter.value || null }}::uuid)
   AND (
-    {{ search_input.value }} = ''
-    OR u.email ILIKE '%' || {{ search_input.value }} || '%'
-    OR u.raw_user_meta_data->>'first_name' ILIKE '%' || {{ search_input.value }} || '%'
-    OR u.raw_user_meta_data->>'last_name'  ILIKE '%' || {{ search_input.value }} || '%'
+    {{ search_input.value || '' }}::text = ''
+    OR u.email ILIKE '%' || {{ search_input.value || '' }}::text || '%'
+    OR u.raw_user_meta_data->>'first_name' ILIKE '%' || {{ search_input.value || '' }}::text || '%'
+    OR u.raw_user_meta_data->>'last_name'  ILIKE '%' || {{ search_input.value || '' }}::text || '%'
   )
 ORDER BY
   CASE a.status
@@ -94,17 +95,16 @@ SELECT
   COALESCE(u.email, 'system') AS triggered_by
 FROM application_events ae
 LEFT JOIN auth.users u ON u.id = ae.triggered_by
-WHERE ae.application_id = {{ applications_table.selectedRow.id }}
+WHERE ae.application_id = {{ applications_table.selectedRow?.id ?? null }}::uuid
 ORDER BY ae.created_at DESC;
 
 
 -- ============================================================
 -- Query: notifications_list
 -- In-app notifications for the selected applicant.
--- Wire to: applications_table.selectedRow.applicant_id (add this
--- column to the table data if needed).
+-- Wire to: applications_table.selectedRow.id
 -- ============================================================
 SELECT id, message, read, created_at
 FROM notifications
-WHERE applicant_id = {{ applications_table.selectedRow.applicant_id }}
+WHERE application_id = {{ applications_table.selectedRow?.id ?? null }}::uuid
 ORDER BY created_at DESC;
