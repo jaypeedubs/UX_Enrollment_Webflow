@@ -1,0 +1,20 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  <head><title>Signing in…</title></head>
+  <body>
+    <script>
+      import { supabase } from '../../lib/supabase';
+
+      (async () => {
+        const { error } = await supabase.auth.exchangeCodeForSession(window.location.href);
+        if (error) {
+          window.location.replace('/?error=' + encodeURIComponent(error.message));
+        } else {
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </body>
+</html>

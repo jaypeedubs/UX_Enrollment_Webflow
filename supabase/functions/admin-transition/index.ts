@@ -1,5 +1,10 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+
 // event_type values the admin can fire and their resulting status.
 // null = no status change (e.g. more_info_requested keeps status = in_review)
 const EVENT_STATUS_MAP: Record<string, string | null> = {
@@ -14,7 +19,7 @@ const EVENT_STATUS_MAP: Record<string, string | null> = {
 // Which admin events are allowed from each current application status.
 // Statuses not listed here are terminal (enrolled, enrollment_confirmed, draft).
 const ALLOWED_EVENTS: Record<string, string[]> = {
-  submitted:   ['in_review', 'rejected', 'withdrawn'],
+  submitted:   ['in_review', 'accepted', 'rejected', 'waitlisted', 'more_info_requested', 'withdrawn'],
   in_review:   ['accepted', 'rejected', 'waitlisted', 'more_info_requested', 'withdrawn'],
   waitlisted:  ['accepted', 'rejected', 'withdrawn'],
   accepted:    ['rejected', 'withdrawn'],
@@ -22,12 +27,7 @@ const ALLOWED_EVENTS: Record<string, string[]> = {
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'authorization, content-type',
-      },
-    })
+    return new Response(null, { headers: CORS })
   }
 
   // Admin-only: accept service role key (Retool) OR a JWT with role=admin claim
@@ -52,14 +52,14 @@ Deno.serve(async (req) => {
     if (!application_id || !event_type) {
       return new Response(
         JSON.stringify({ error: 'application_id and event_type are required' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { 'Content-Type': 'application/json', ...CORS } }
       )
     }
 
     if (!(event_type in EVENT_STATUS_MAP)) {
       return new Response(
         JSON.stringify({ error: `Unknown event_type: ${event_type}` }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { 'Content-Type': 'application/json', ...CORS } }
       )
     }
 
@@ -72,7 +72,7 @@ Deno.serve(async (req) => {
       .single()
 
     if (appErr || !app) {
-      return new Response(JSON.stringify({ error: 'Application not found' }), { status: 404 })
+      return new Response(JSON.stringify({ error: 'Application not found' }), { status: 404, headers: { 'Content-Type': 'application/json', ...CORS } })
     }
 
     const allowed = ALLOWED_EVENTS[app.status]
@@ -81,7 +81,7 @@ Deno.serve(async (req) => {
         JSON.stringify({
           error: `Cannot apply event '${event_type}' to application in status '${app.status}'`,
         }),
-        { status: 422, headers: { 'Content-Type': 'application/json' } }
+        { status: 422, headers: { 'Content-Type': 'application/json', ...CORS } }
       )
     }
 
@@ -101,7 +101,7 @@ Deno.serve(async (req) => {
       if (updateErr) {
         return new Response(
           JSON.stringify({ error: updateErr.message }),
-          { status: 500, headers: { 'Content-Type': 'application/json' } }
+          { status: 500, headers: { 'Content-Type': 'application/json', ...CORS } }
         )
       }
     }
@@ -116,23 +116,15 @@ Deno.serve(async (req) => {
     })
 
     return new Response(
-      JSON.stringify({
-        ok: true,
-        old_status: app.status,
-        new_status: newStatus ?? app.status,
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      }
+      JSON.stringify({ ok: true, old_status: app.status, new_status: newStatus ?? app.status }),
+      { headers: { 'Content-Type': 'application/json', ...CORS } }
     )
-  } catch (err) {
-    console.error(err)
+  } catch (err: any) {
+    const message = err?.message ?? JSON.stringify(err) ?? String(err)
+    console.error('admin-transition error:', message)
     return new Response(
-      JSON.stringify({ error: String(err) }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ error: message }),
+      { status: 500, headers: { 'Content-Type': 'application/json', ...CORS } }
     )
   }
 })

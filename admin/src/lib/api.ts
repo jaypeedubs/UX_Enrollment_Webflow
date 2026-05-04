@@ -1,39 +1,26 @@
 import { supabase } from './supabase';
 import type { Application, Program } from './types';
 
+async function invokeAdminRead(resource?: string): Promise<any> {
+  const { data: { session } } = await supabase.auth.getSession();
+  const token = session?.access_token;
+  if (!token) throw new Error('No active session');
+  const url = new URL(`${import.meta.env.PUBLIC_SUPABASE_URL}/functions/v1/admin-read`);
+  if (resource) url.searchParams.set('resource', resource);
+  const res = await fetch(url.toString(), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      apikey: import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    },
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
 export async function getApplications(): Promise<Application[]> {
-  const { data, error } = await supabase
-    .from('applications')
-    .select(`
-      id,
-      applicant_id,
-      status,
-      first_name,
-      last_name,
-      email,
-      admin_notes,
-      locked_fields,
-      submitted_at,
-      updated_at,
-      programs ( name, course_code )
-    `)
-    .order('updated_at', { ascending: false });
-
-  if (error) throw error;
-
-  return (data ?? []).map((row: any) => ({
-    ...row,
-    program_name: row.programs?.name ?? '',
-    course_code: row.programs?.course_code ?? '',
-  }));
+  return invokeAdminRead();
 }
 
 export async function getPrograms(): Promise<Program[]> {
-  const { data, error } = await supabase
-    .from('programs')
-    .select('id, name, course_code')
-    .order('name');
-
-  if (error) throw error;
-  return data ?? [];
+  return invokeAdminRead('programs');
 }
