@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ICIT — Course / Lecture Player UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Bodoni+Moda+SC:opsz,wght@6..96,400..900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { background: var(--linens-lightest-linen); }
+  .msym, .mi { font-family: var(--font-icons); font-weight: 700; line-height: 1; }
+
+  /* ===== App chrome ===== */
+  .app-shell {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    min-height: 100vh;
+  }
+  .app-top {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px;
+    background: var(--linens-white);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky; top: 0; z-index: 30;
+  }
+  .app-top .left { display: flex; align-items: center; gap: 28px; }
+  .app-brand { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--fg-brand); letter-spacing: -0.01em; }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .breadcrumb .slash { color: var(--tans-tan-darker); }
+  .breadcrumb .here { color: var(--fg-1); }
+  .app-top .right { display: flex; align-items: center; gap: 14px; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--linens-lightest-linen); border: 1px solid var(--border-subtle);
+    color: var(--fg-1); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-icons); font-size: 22px; font-weight: 700;
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--course-asc); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-body); font-weight: 700; font-size: 14px;
+  }
+
+  /* ===== Course-color theming. We're showing ASC; swap class for other courses. ===== */
+  .theme-asc { --c-1: var(--asc-1); --c-3: var(--asc-3); --c-5: var(--asc-5); --c-7: var(--asc-7); }
+
+  /* ===== Module sidebar ===== */
+  .sidebar {
+    background: var(--linens-white);
+    border-right: 1px solid var(--border-subtle);
+    padding: 28px 0 56px;
+    overflow-y: auto;
+  }
+  .course-header { padding: 0 24px 24px; border-bottom: 1px solid var(--border-subtle); }
+  .course-header .badge {
+    display: inline-block; padding: 5px 10px; border-radius: 999px;
+    background: var(--c-1); color: var(--c-7);
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .course-header h2 {
+    font-family: var(--font-heading); font-size: 24px; font-weight: 500;
+    line-height: 1.15; letter-spacing: -0.022em; color: var(--fg-brand);
+    margin: 0 0 14px;
+  }
+  .progress {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-size: 11px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .progress-bar { flex: 1; height: 4px; background: var(--linens-lighter-linen); border-radius: 999px; overflow: hidden; }
+  .progress-bar > span { display: block; height: 100%; width: 58%; background: var(--c-5); }
+
+  .sidebar h4 {
+    font-family: var(--font-body); font-size: 11px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2);
+    margin: 24px 24px 12px;
+  }
+  .module-list { list-style: none; padding: 0; margin: 0; }
+  .module {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .module-head {
+    width: 100%; text-align: left; background: transparent; border: 0;
+    padding: 14px 24px; cursor: pointer;
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-body); font-size: 14px; color: var(--fg-1);
+  }
+  .module-head .num {
+    flex: 0 0 28px; height: 28px; border-radius: 50%;
+    background: var(--linens-lighter-linen); color: var(--fg-1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  }
+  .module.done .module-head .num { background: var(--c-5); color: #fff; }
+  .module.done .module-head .num::before { content: "check"; font-family: var(--font-icons); font-size: 16px; }
+  .module.done .module-head .num span { display: none; }
+  .module.active > .module-head { background: var(--c-1); }
+  .module.active > .module-head .num { background: var(--c-5); color: #fff; }
+  .module-head .title { flex: 1; font-weight: 500; }
+  .module-head .title small { display: block; color: var(--fg-2); font-weight: 400; font-size: 12px; margin-top: 2px; }
+  .module-head .chev { font-family: var(--font-icons); font-size: 20px; color: var(--fg-2); transition: transform var(--duration); }
+  .module.open .module-head .chev { transform: rotate(180deg); }
+
+  .sublist { list-style: none; padding: 0 0 12px; margin: 0; background: var(--linens-lightest-linen); display: none; }
+  .module.open .sublist { display: block; }
+  .sublist li {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 24px 10px 66px;
+    font-family: var(--font-body); font-size: 13px; color: var(--fg-1);
+    cursor: pointer;
+  }
+  .sublist li:hover { background: var(--linens-white-linen); }
+  .sublist li.current { background: var(--linens-white); color: var(--fg-brand); font-weight: 600; }
+  .sublist li.current::before { content: ""; width: 3px; height: 18px; background: var(--c-5); margin-left: -36px; margin-right: 12px; border-radius: 2px; }
+  .sublist li .ico { color: var(--fg-2); font-family: var(--font-icons); font-size: 18px; }
+  .sublist li .dur { margin-left: auto; color: var(--fg-2); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+  /* ===== Main / lecture region ===== */
+  .lecture { padding: 28px 32px 80px; max-width: 1080px; }
+  .lecture-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--font-body); font-size: 12px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2); margin-bottom: 14px;
+  }
+  .lecture-eyebrow .num { color: var(--c-7); }
+  .lecture-eyebrow .rule { width: 36px; height: 1px; background: var(--tans-tan-darker); }
+  .lecture-title {
+    font-family: var(--font-heading); font-size: 44px; font-weight: 500;
+    line-height: 1.1; letter-spacing: -0.022em; color: var(--fg-brand);
+    margin: 0 0 12px; max-width: 22ch;
+  }
+  .lecture-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 18px;
+    font-family: var(--font-body); font-size: 13px; color: var(--fg-2);
+    margin-bottom: 28px;
+  }
+  .lecture-meta .pip { display: inline-flex; align-items: center; gap: 6px; }
+  .lecture-meta .pip .mi { font-size: 16px; color: var(--c-5); }
+
+  /* ===== Video player ===== */
+  .player {
+    position: relative; aspect-ratio: 16/9; width: 100%;
+    background: #03192c; border-radius: 12px; overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background-image: linear-gradient(180deg, rgba(3,25,44,0.0) 40%, rgba(3,25,44,0.85) 100%), url("../../assets/img-clinical-1.jpg");
+    background-size: cover; background-position: center;
+  }
+  .player .play-big {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 88px; height: 88px; border-radius: 50%;
+    background: var(--tans-burlywood); color: var(--blues-midnight-1);
+    border: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-icons); font-size: 40px; font-weight: 700;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+  }
+  .player .badge-live {
+    position: absolute; top: 18px; left: 18px;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--linens-white); color: var(--c-7);
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+  }
+  .player .controls {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 18px 20px;
+    display: flex; align-items: center; gap: 14px;
+    color: #fff;
+  }
+  .player .controls .btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.10); color: #fff; border: 0; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-icons); font-size: 20px; font-weight: 700;
+  }
+  .player .controls .scrub { flex: 1; height: 4px; background: rgba(255,255,255,0.20); border-radius: 999px; position: relative; }
+  .player .controls .scrub > span { position: absolute; left: 0; top: 0; bottom: 0; width: 38%; background: var(--tans-burlywood); border-radius: 999px; }
+  .player .controls .scrub::after { content: ""; position: absolute; left: 38%; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; background: var(--tans-burlywood); }
+  .player .controls .time { font-family: var(--font-body); font-size: 12px; font-variant-numeric: tabular-nums; opacity: 0.85; }
+
+  /* ===== Below player: tabs + content ===== */
+  .tabs {
+    display: flex; gap: 28px; margin: 32px 0 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .tabs button {
+    background: transparent; border: 0; cursor: pointer;
+    padding: 14px 0; margin-bottom: -1px;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2); border-bottom: 2px solid transparent;
+  }
+  .tabs button.on { color: var(--fg-brand); border-bottom-color: var(--c-5); }
+
+  .lecture-grid {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 48px;
+    margin-top: 32px;
+  }
+
+  .lecture-body h3 {
+    font-family: var(--font-heading); font-size: 26px; font-weight: 500;
+    color: var(--fg-brand); letter-spacing: -0.022em; margin: 32px 0 12px;
+  }
+  .lecture-body p { font-size: 15px; line-height: 1.65; color: var(--fg-1); }
+  .lecture-body ul { padding-left: 18px; }
+  .lecture-body ul li { font-size: 15px; line-height: 1.65; color: var(--fg-1); margin-bottom: 6px; }
+
+  /* Aside cards */
+  .aside-card {
+    background: #fff; border: 1px solid var(--border-subtle);
+    border-radius: 16px; padding: 22px;
+    margin-bottom: 18px;
+  }
+  .aside-card h5 {
+    font-family: var(--font-body); font-size: 11px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2); margin: 0 0 14px;
+  }
+  .aside-card .ftr-name {
+    font-family: var(--font-heading); font-size: 20px; font-weight: 500;
+    color: var(--fg-brand); letter-spacing: -0.02em; margin: 0 0 4px;
+  }
+  .aside-card .ftr-title {
+    font-family: var(--font-body); font-size: 12px; color: var(--fg-2);
+    letter-spacing: 0.02em;
+  }
+  .faculty-row { display: flex; gap: 14px; align-items: center; }
+  .faculty-avatar {
+    width: 56px; height: 56px; border-radius: 50%; flex: 0 0 56px;
+    background-size: cover; background-position: center top;
+  }
+
+  .resources li {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; border-top: 1px solid var(--border-subtle);
+    font-size: 14px; color: var(--fg-1);
+  }
+  .resources li:first-child { border-top: 0; }
+  .resources .ext {
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; padding: 4px 7px; border-radius: 4px;
+    background: var(--c-1); color: var(--c-7); flex: 0 0 auto;
+  }
+  .resources .name { flex: 1; }
+  .resources .dl { font-family: var(--font-icons); font-size: 20px; color: var(--fg-2); }
+
+  /* Up next pill */
+  .upnext {
+    margin-top: 36px; padding: 22px 24px;
+    border-radius: 20px;
+    background: var(--linens-white);
+    border: 1px solid var(--border-subtle);
+    display: flex; align-items: center; gap: 18px;
+  }
+  .upnext .label {
+    font-family: var(--font-body); font-size: 11px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--c-7);
+    flex: 0 0 auto;
+  }
+  .upnext .next-title {
+    font-family: var(--font-heading); font-size: 22px; font-weight: 500;
+    color: var(--fg-brand); letter-spacing: -0.02em;
+    flex: 1;
+  }
+  .upnext .next-meta {
+    font-family: var(--font-body); font-size: 12px; color: var(--fg-2);
+  }
+  .upnext .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border-radius: 999px;
+    background: var(--c-5); color: #fff; border: 0; cursor: pointer;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .upnext .btn .mi { font-size: 18px; }
+
+  @media (max-width: 1100px) { .app-shell { grid-template-columns: 1fr; } .sidebar { display: none; } .lecture-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="theme-asc" data-screen-label="Course Player Kit">
+
+<div class="app-shell">
+
+  <!-- ===== Top bar ===== -->
+  <header class="app-top">
+    <div class="left">
+      <div class="app-brand">ICIT</div>
+      <div class="breadcrumb">
+        <span>ASC</span><span class="slash">/</span>
+        <span>Module 7</span><span class="slash">/</span>
+        <span class="here">Electrode Insertion Trauma</span>
+      </div>
+    </div>
+    <div class="right">
+      <button class="icon-btn" title="Discussion"><span class="msym">forum</span></button>
+      <button class="icon-btn" title="Notifications"><span class="msym">notifications</span></button>
+      <div class="avatar">SR</div>
+    </div>
+  </header>
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <div class="course-header">
+      <span class="badge">ASC · Advanced Surgeons</span>
+      <h2>Cochlear Implant Surgery</h2>
+      <div class="progress">
+        <span>Wk 7/13</span>
+        <div class="progress-bar"><span></span></div>
+      </div>
+    </div>
+
+    <h4>Modules</h4>
+    <ul class="module-list">
+      <li class="module done">
+        <button class="module-head"><span class="num"><span>01</span></span><span class="title">Anatomy & Imaging<small>4 lectures · Wk 1</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module done">
+        <button class="module-head"><span class="num"><span>02</span></span><span class="title">Candidacy<small>3 lectures · Wk 2</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module done">
+        <button class="module-head"><span class="num"><span>03</span></span><span class="title">Device Selection<small>3 lectures · Wk 3</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module done">
+        <button class="module-head"><span class="num"><span>04</span></span><span class="title">Pre-Op Planning<small>2 lectures · Wk 4</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module done">
+        <button class="module-head"><span class="num"><span>05</span></span><span class="title">Cortical Mastoidectomy<small>4 lectures · Wk 5</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module done">
+        <button class="module-head"><span class="num"><span>06</span></span><span class="title">Cochleostomy & Round Window<small>3 lectures · Wk 6</small></span><span class="chev">expand_more</span></button>
+      </li>
+
+      <li class="module active open">
+        <button class="module-head"><span class="num"><span>07</span></span><span class="title">Electrode Insertion Trauma<small>5 lectures · Wk 7</small></span><span class="chev">expand_more</span></button>
+        <ul class="sublist">
+          <li><span class="ico">play_circle</span><span>7.1 · Mechanisms of Insertion Trauma</span><span class="dur">14:22</span></li>
+          <li class="current"><span class="ico">play_circle</span><span>7.2 · Hearing Preservation Techniques</span><span class="dur">22:08</span></li>
+          <li><span class="ico">play_circle</span><span>7.3 · Slow Insertion & Force Profiles</span><span class="dur">18:47</span></li>
+          <li><span class="ico">description</span><span>7.4 · Reading: Adunka et al. (2018)</span><span class="dur">PDF</span></li>
+          <li><span class="ico">quiz</span><span>7.5 · Knowledge Check</span><span class="dur">10 Q</span></li>
+        </ul>
+      </li>
+
+      <li class="module">
+        <button class="module-head"><span class="num"><span>08</span></span><span class="title">Closure & Imaging<small>3 lectures · Wk 8</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module">
+        <button class="module-head"><span class="num"><span>09</span></span><span class="title">Pediatric Considerations<small>4 lectures · Wk 9</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module">
+        <button class="module-head"><span class="num"><span>10</span></span><span class="title">Revision Surgery<small>3 lectures · Wk 10</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module">
+        <button class="module-head"><span class="num"><span>11</span></span><span class="title">Complications<small>3 lectures · Wk 11</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module">
+        <button class="module-head"><span class="num"><span>12</span></span><span class="title">Hands-On Temporal Bone<small>Lab · Wk 12</small></span><span class="chev">expand_more</span></button>
+      </li>
+      <li class="module">
+        <button class="module-head"><span class="num"><span>13</span></span><span class="title">Final Assessment<small>Capstone · Wk 13</small></span><span class="chev">expand_more</span></button>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ===== Lecture view ===== -->
+  <main class="lecture">
+
+    <div class="lecture-eyebrow">
+      <span class="num">Module 07 · Lecture 7.2</span>
+      <span class="rule"></span>
+      <span>Live this week</span>
+    </div>
+
+    <h1 class="lecture-title">Hearing Preservation Techniques in Cochlear Implant Surgery</h1>
+
+    <div class="lecture-meta">
+      <span class="pip"><span class="mi msym">schedule</span> 22 min · pre-recorded</span>
+      <span class="pip"><span class="mi msym">groups</span> Live web class · Thu 8:30 PM EST</span>
+      <span class="pip"><span class="mi msym">person</span> Adunka, Eshraghi</span>
+      <span class="pip"><span class="mi msym">menu_book</span> 2 readings · 1 quiz</span>
+    </div>
+
+    <!-- Player -->
+    <div class="player">
+      <span class="badge-live">Module 7 · 7.2</span>
+      <button class="play-big" aria-label="Play">play_arrow</button>
+      <div class="controls">
+        <button class="btn">play_arrow</button>
+        <span class="time">08:23</span>
+        <div class="scrub"><span></span></div>
+        <span class="time">22:08</span>
+        <button class="btn">closed_caption</button>
+        <button class="btn">settings</button>
+        <button class="btn">fullscreen</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" role="tablist">
+      <button class="on">Overview</button>
+      <button>Transcript</button>
+      <button>Resources</button>
+      <button>Discussion (12)</button>
+      <button>Quiz</button>
+    </div>
+
+    <!-- Body + aside -->
+    <div class="lecture-grid">
+
+      <article class="lecture-body">
+        <p>This lecture reviews evidence-based techniques for preserving residual low-frequency hearing during cochlear implant electrode insertion. We discuss soft surgical technique, slow insertion velocities, the round window approach, and the role of intraoperative ECochG.</p>
+
+        <h3>Learning objectives</h3>
+        <ul>
+          <li>Distinguish the principal mechanisms of insertion trauma — direct trauma, hydraulic trauma, and inflammatory cascade.</li>
+          <li>Describe the soft surgical technique pioneered by Lehnhardt and refinements over the past two decades.</li>
+          <li>Compare round-window and cochleostomy approaches with respect to hearing preservation outcomes.</li>
+          <li>Interpret intraoperative electrocochleography (ECochG) findings during insertion.</li>
+        </ul>
+
+        <h3>Key references</h3>
+        <ul>
+          <li>Adunka OF, Buchman CA. Cochlear implant electrode arrays: hearing preservation strategies. <em>Otol Neurotol</em> 2018.</li>
+          <li>Roland JT et al. Soft surgical technique and the round window approach. <em>Laryngoscope</em> 2014.</li>
+          <li>Carlson ML et al. Intraoperative ECochG monitoring during CI surgery. <em>Otol Neurotol</em> 2017.</li>
+        </ul>
+      </article>
+
+      <aside>
+        <div class="aside-card">
+          <h5>Lecturers</h5>
+          <div class="faculty-row" style="margin-bottom:14px">
+            <div class="faculty-avatar" style="background-image:url('../../assets/img-faculty.jpg')"></div>
+            <div>
+              <div class="ftr-name">Adrien Eshraghi, MD</div>
+              <div class="ftr-title">Course Director · ASC</div>
+            </div>
+          </div>
+          <div class="faculty-row">
+            <div class="faculty-avatar" style="background-image:url('../../assets/img-tbalkany5.jpg')"></div>
+            <div>
+              <div class="ftr-name">Oliver Adunka, MD</div>
+              <div class="ftr-title">Guest Faculty · OSU</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="aside-card">
+          <h5>Resources</h5>
+          <ul class="resources" style="list-style:none;padding:0;margin:0">
+            <li><span class="ext">PDF</span><span class="name">Adunka et al. (2018) — Hearing preservation review</span><span class="dl msym">download</span></li>
+            <li><span class="ext">PDF</span><span class="name">Roland et al. (2014) — Round window approach</span><span class="dl msym">download</span></li>
+            <li><span class="ext">PPT</span><span class="name">Lecture slides — Module 7.2</span><span class="dl msym">download</span></li>
+            <li><span class="ext">CSV</span><span class="name">ECochG sample dataset</span><span class="dl msym">download</span></li>
+          </ul>
+        </div>
+
+        <div class="aside-card">
+          <h5>Live web class</h5>
+          <div class="ftr-name" style="font-size:18px">Thursday, 8:30 PM EST</div>
+          <div class="ftr-title" style="margin-bottom:14px">Q&amp;A with Drs. Eshraghi &amp; Adunka — Zoom</div>
+          <button class="btn-pill" style="background:var(--asc-5);color:#fff;font-family:var(--font-body);font-weight:600;font-size:13px;padding:11px 18px;border-radius:999px;border:0;display:inline-flex;align-items:center;gap:8px">
+            Add to Calendar <span class="msym" style="font-size:18px">event</span>
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Up next -->
+    <div class="upnext">
+      <span class="label">Up next · 7.3</span>
+      <div style="flex:1">
+        <div class="next-title">Slow Insertion & Force Profiles</div>
+        <div class="next-meta">18:47 · Pre-recorded · Drs. Eshraghi, Adunka</div>
+      </div>
+      <button class="btn">Continue <span class="mi msym">arrow_right_alt</span></button>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

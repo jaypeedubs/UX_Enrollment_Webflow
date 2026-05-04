@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section 3 — Detail Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Open Sans', sans-serif; background: #f0ece8; padding: 24px; color: #382e27; font-size: 13px; }
+
+  .page-title { font-size: 17px; font-weight: 700; color: #123161; margin-bottom: 4px; }
+  .page-sub   { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+
+  /* ── SHELL ── */
+  .shell { display: flex; height: 640px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 24px rgba(18,49,97,0.13); }
+
+  /* LEFT stub */
+  .left-stub { width: 240px; flex-shrink: 0; background: #fff; border-right: 1px solid #e8e0da; display: flex; flex-direction: column; }
+  .stub-header { padding: 14px 16px; border-bottom: 1px solid #e8e0da; font-weight: 700; font-size: 13px; color: #123161; }
+  .stub-row { display: flex; align-items: center; gap: 9px; padding: 10px 16px; border-bottom: 1px solid #f0ece8; font-size: 12px; }
+  .stub-row.selected { background: #e8edf5; border-left: 3px solid #123161; padding-left: 13px; }
+  .cc { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .asc  { background: #c5543b; } .fac { background: #3d7a7a; } .aac { background: #5b6b82; }
+
+  /* RIGHT — detail panel */
+  .right { flex: 1; background: #faf7f5; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* Detail header */
+  .det-header { background: #fff; border-bottom: 1px solid #e8e0da; padding: 16px 20px 0; }
+  .det-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+  .det-identity { display: flex; align-items: center; gap: 12px; }
+  .det-course-circle { width: 42px; height: 42px; border-radius: 50%; background: #c5543b; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; letter-spacing: 0.05em; flex-shrink: 0; }
+  .det-name { font-family: 'Bodoni Moda SC', serif; font-size: 18px; font-weight: 500; color: #123161; line-height: 1.2; }
+  .det-sub  { font-size: 12px; color: #64748b; margin-top: 2px; display: flex; align-items: center; gap: 8px; }
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+  .badge-submitted { background: #dbeafe; color: #1d4ed8; }
+
+  /* Action buttons */
+  .det-actions { display: flex; gap: 7px; align-items: center; }
+  .btn { padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; font-family: 'Open Sans', sans-serif; display: flex; align-items: center; gap: 5px; }
+  .btn .msym { font-family: 'Material Symbols Outlined'; font-size: 15px; }
+  .btn-accept   { background: #123161; color: #fff; }
+  .btn-accept:hover { background: #0b2447; }
+  .btn-waitlist { background: #fff; color: #382e27; border: 1px solid #e2d8d0; }
+  .btn-more     { background: #fff; color: #382e27; border: 1px solid #e2d8d0; }
+  .btn-reject   { background: #b91c1c; color: #fff; }
+  .btn-reject:hover { background: #991b1b; }
+
+  /* Tabs */
+  .det-tabs { display: flex; gap: 0; border-top: 1px solid #f0ece8; margin-top: 2px; }
+  .det-tab { padding: 9px 16px; font-size: 12px; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; cursor: pointer; }
+  .det-tab.active { color: #123161; border-bottom-color: #123161; }
+
+  /* Tab body */
+  .det-body { flex: 1; overflow-y: auto; padding: 18px 20px; }
+
+  /* Application info grid */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .info-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin-bottom: 3px; }
+  .info-field .val  { font-size: 13px; color: #382e27; }
+  .info-field .val.locked { color: #94a3b8; font-style: italic; font-size: 12px; }
+
+  .section-heading { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin: 16px 0 8px; border-top: 1px solid #e8e0da; padding-top: 14px; }
+
+  /* Program answers */
+  .answer-block { background: #fff; border: 1px solid #e8e0da; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+  .answer-q { font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 4px; }
+  .answer-a { font-size: 13px; color: #382e27; line-height: 1.5; }
+
+  /* CV tab placeholder */
+  .cv-frame { background: #e8e0da; border-radius: 8px; height: 340px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: #94a3b8; font-size: 13px; }
+  .cv-frame .msym { font-family: 'Material Symbols Outlined'; font-size: 36px; color: #c8bdb6; }
+
+  /* Notes tab */
+  .notes-warn { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 6px; padding: 9px 12px; font-size: 12px; color: #92400e; margin-bottom: 12px; display: flex; gap: 7px; align-items: flex-start; }
+  .notes-warn .msym { font-family: 'Material Symbols Outlined'; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .notes-area { width: 100%; min-height: 160px; border: 1px solid #e2d8d0; border-radius: 6px; padding: 10px 12px; font-family: 'Open Sans', sans-serif; font-size: 13px; color: #382e27; background: #fff; resize: vertical; }
+  .notes-area:focus { outline: none; border-color: #63a3da; box-shadow: 0 0 0 3px rgba(99,163,218,.15); }
+  .notes-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 11px; color: #94a3b8; }
+
+  /* Timeline tab */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0ece8; }
+  .tl-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 3px; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: #123161; flex-shrink: 0; }
+  .tl-dot.system { background: #94a3b8; }
+  .tl-line { width: 1px; background: #e8e0da; flex: 1; margin-top: 4px; }
+  .tl-content { flex: 1; }
+  .tl-event { font-size: 12px; font-weight: 600; color: #382e27; }
+  .tl-meta   { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+  .tl-note   { background: #f8f5f2; border-radius: 5px; padding: 6px 9px; font-size: 12px; color: #64748b; margin-top: 5px; font-style: italic; }
+
+  /* Annotations */
+  .annotations { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+  .ann { background: #fff; border: 1px solid #e2d8d0; border-radius: 8px; padding: 11px 13px; }
+  .ann-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #123161; margin-bottom: 4px; }
+  .ann-text  { font-size: 11px; color: #64748b; line-height: 1.5; }
+  code { background: #f1f5f9; padding: 1px 4px; border-radius: 3px; font-size: 10px; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="page-title">Design — Section 3 of 5: Application Detail Panel</div>
+<div class="page-sub">Right pane of the split layout. Tabs: Application · CV · Admin Notes · Timeline. Action buttons live in the header — always visible regardless of active tab.</div>
+
+<div class="shell">
+
+  <!-- LEFT STUB (context) -->
+  <div class="left-stub">
+    <div class="stub-header">Applications <span style="font-size:10px;font-weight:400;color:#94a3b8;">— New (4)</span></div>
+    <div class="stub-row selected">
+      <div class="cc asc">ASC</div>
+      <div>
+        <div style="font-weight:700;font-size:12px;">Jane Smith</div>
+        <div style="font-size:10px;color:#64748b;">Apr 28</div>
+      </div>
+    </div>
+    <div class="stub-row">
+      <div class="cc fac">FAC</div>
+      <div>
+        <div style="font-size:12px;">Ana Torres</div>
+        <div style="font-size:10px;color:#64748b;">Apr 25</div>
+      </div>
+    </div>
+    <div class="stub-row">
+      <div class="cc aac">AAC</div>
+      <div>
+        <div style="font-size:12px;">Raj Patel</div>
+        <div style="font-size:10px;color:#64748b;">Apr 22</div>
+      </div>
+    </div>
+    <div style="padding:16px;font-size:11px;color:#b0a8a2;margin-top:auto;border-top:1px solid #f0ece8;">← Stub for context only</div>
+  </div>
+
+  <!-- DETAIL PANEL -->
+  <div class="right">
+
+    <!-- Header -->
+    <div class="det-header">
+      <div class="det-top">
+        <div class="det-identity">
+          <div class="det-course-circle">ASC</div>
+          <div>
+            <div class="det-name">Jane Smith</div>
+            <div class="det-sub">
+              jsmith@clinic.edu
+              <span style="color:#e2d8d0;">·</span>
+              <span>+1 (312) 555-0142</span>
+              <span style="color:#e2d8d0;">·</span>
+              <span class="badge badge-submitted">submitted</span>
+            </div>
+          </div>
+        </div>
+        <div class="det-actions">
+          <button class="btn btn-accept"><span class="msym">check_circle</span> Accept</button>
+          <button class="btn btn-waitlist"><span class="msym">schedule</span> Waitlist</button>
+          <button class="btn btn-more"><span class="msym">help</span> More Info</button>
+          <button class="btn btn-reject"><span class="msym">cancel</span> Reject</button>
+        </div>
+      </div>
+      <div class="det-tabs">
+        <div class="det-tab active">Application</div>
+        <div class="det-tab">CV</div>
+        <div class="det-tab">Admin Notes</div>
+        <div class="det-tab">Timeline</div>
+      </div>
+    </div>
+
+    <!-- Tab: Application (default shown) -->
+    <div class="det-body">
+
+      <div class="section-heading">Applicant</div>
+      <div class="info-grid">
+        <div class="info-field"><label>First name</label><div class="val locked">Jane <span style="font-family:'Material Symbols Outlined';font-size:12px;vertical-align:middle;">lock</span></div></div>
+        <div class="info-field"><label>Last name</label><div class="val locked">Smith <span style="font-family:'Material Symbols Outlined';font-size:12px;vertical-align:middle;">lock</span></div></div>
+        <div class="info-field"><label>Email</label><div class="val">jsmith@clinic.edu</div></div>
+        <div class="info-field"><label>Phone</label><div class="val">+1 (312) 555-0142</div></div>
+        <div class="info-field"><label>Program</label><div class="val locked">Advanced Surgeons Course (ASC) <span style="font-family:'Material Symbols Outlined';font-size:12px;vertical-align:middle;">lock</span></div></div>
+        <div class="info-field"><label>Submitted</label><div class="val">April 28, 2026 — 9:14 AM</div></div>
+      </div>
+
+      <div class="section-heading">Program questions</div>
+      <div class="answer-block">
+        <div class="answer-q">Years of clinical experience in CI surgery</div>
+        <div class="answer-a">5+</div>
+      </div>
+      <div class="answer-block">
+        <div class="answer-q">What do you hope to gain from this program?</div>
+        <div class="answer-a">I am looking to deepen my understanding of electrode insertion techniques and hands-on temporal bone practicum. My fellowship covered the fundamentals but I want subspecialty-level depth in pediatric candidacy evaluation.</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- CV TAB PREVIEW -->
+<div style="margin-top:20px;background:#fff;border:1px solid #e2d8d0;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(18,49,97,0.08);">
+  <div style="background:#faf7f5;border-bottom:1px solid #e8e0da;padding:10px 20px;display:flex;gap:16px;font-size:12px;">
+    <span style="color:#64748b;">Application</span>
+    <span style="color:#64748b;">CV</span>
+    <span style="color:#123161;font-weight:700;border-bottom:2px solid #123161;padding-bottom:6px;margin-bottom:-11px;">← CV tab active</span>
+    <span style="color:#64748b;">Admin Notes</span>
+    <span style="color:#64748b;">Timeline</span>
+  </div>
+  <div style="padding:18px 20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <span style="font-size:12px;color:#64748b;">smith_jane_cv.pdf</span>
+      <a style="font-size:12px;color:#123161;display:flex;align-items:center;gap:4px;text-decoration:none;">
+        <span style="font-family:'Material Symbols Outlined';font-size:14px;">download</span> Download
+      </a>
+    </div>
+    <div class="cv-frame">
+      <span class="msym">description</span>
+      <span>CV renders here via signed Supabase storage URL</span>
+      <span style="font-size:11px;">PDF inline in &lt;iframe&gt; — no download needed to review</span>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN NOTES TAB PREVIEW -->
+<div style="margin-top:16px;background:#fff;border:1px solid #e2d8d0;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(18,49,97,0.08);">
+  <div style="background:#faf7f5;border-bottom:1px solid #e8e0da;padding:10px 20px;display:flex;gap:16px;font-size:12px;">
+    <span style="color:#64748b;">Application</span>
+    <span style="color:#64748b;">CV</span>
+    <span style="color:#64748b;">Admin Notes</span>
+    <span style="color:#123161;font-weight:700;border-bottom:2px solid #123161;padding-bottom:6px;margin-bottom:-11px;">← Admin Notes tab active</span>
+    <span style="color:#64748b;">Timeline</span>
+  </div>
+  <div style="padding:18px 20px;">
+    <div class="notes-warn">
+      <span class="msym">visibility_off</span>
+      <span>These notes are visible to ICIT reviewers only. Applicants never see this content.</span>
+    </div>
+    <textarea class="notes-area" placeholder="Add internal notes about this applicant…">Strong CI surgery background. Publications in temporal bone lab outcomes. Recommend acceptance — pending review of CV for fellowship pedigree.</textarea>
+    <div class="notes-footer">
+      <span>Last saved: May 2, 2026 at 10:31 AM by jared@icit.edu</span>
+      <button class="btn btn-accept" style="padding:5px 14px;font-size:12px;">Save notes</button>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE TAB PREVIEW -->
+<div style="margin-top:16px;background:#fff;border:1px solid #e2d8d0;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(18,49,97,0.08);">
+  <div style="background:#faf7f5;border-bottom:1px solid #e8e0da;padding:10px 20px;display:flex;gap:16px;font-size:12px;">
+    <span style="color:#64748b;">Application</span>
+    <span style="color:#64748b;">CV</span>
+    <span style="color:#64748b;">Admin Notes</span>
+    <span style="color:#123161;font-weight:700;border-bottom:2px solid #123161;padding-bottom:6px;margin-bottom:-11px;">← Timeline tab active</span>
+  </div>
+  <div style="padding:18px 20px;">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <div class="tl-event">Moved to in_review</div>
+          <div class="tl-meta">May 2, 2026 · 10:28 AM · jared@icit.edu</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot system"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <div class="tl-event">Application submitted</div>
+          <div class="tl-meta">April 28, 2026 · 9:14 AM · applicant</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot system"></div></div>
+        <div class="tl-content">
+          <div class="tl-event">Draft saved</div>
+          <div class="tl-meta">April 27, 2026 · 6:55 PM · applicant</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="annotations" style="margin-top:20px;">
+  <div class="ann">
+    <div class="ann-label">Action buttons</div>
+    <div class="ann-text">Pinned to the detail header — always visible regardless of which tab is active. Each opens a confirmation dialog before firing. Actions adjust per status: an accepted applicant only shows Reject.</div>
+  </div>
+  <div class="ann">
+    <div class="ann-label">Tabs</div>
+    <div class="ann-text"><strong>Application</strong> — personal info + locked-field indicators + program Q&amp;A answers.<br><strong>CV</strong> — signed URL iframe, download link.<br><strong>Admin Notes</strong> — free-text, auto-saves, timestamp + author.<br><strong>Timeline</strong> — <code>application_events</code> audit log.</div>
+  </div>
+  <div class="ann">
+    <div class="ann-label">Locked fields</div>
+    <div class="ann-text">Fields with <code>locked_fields</code> set show a lock icon and muted text. Reminds reviewers which data is immutable — first name, last name, and program lock on first submit.</div>
+  </div>
+  <div class="ann">
+    <div class="ann-label">Notes privacy</div>
+    <div class="ann-text">Amber warning banner at top of Admin Notes tab. Stores to <code>applications.admin_notes</code> — a column the applicant's RLS policy cannot read. Last-saved timestamp shows who edited.</div>
+  </div>
+</div>
+
+<p style="font-size:12px;color:#64748b;margin-top:16px;">Does the detail panel look right? Any tabs to add, fields to surface, or changes to the action button row before we move to Section 4 — confirmation dialogs?</p>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+  warning: could not transcribe /Users/m4macmini/Projects/UX_Enrollment_Webflow/ICIT Design System/uploads/ICIT Animated Logo (720p).mp4: Video transcription requires faster-whisper. Run: pip install 'graphifyy[video]'
+  warning: could not transcribe /Users/m4macmini/Projects/UX_Enrollment_Webflow/ICIT Design System/assets/icit-logo-animated.mp4: Video transcription requires faster-whisper. Run: pip install 'graphifyy[video]'
+[]

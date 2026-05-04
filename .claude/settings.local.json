@@ -22,7 +22,16 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git checkout *)",
-      "Bash(mkdir -p docs/superpowers/specs)"
+      "Bash(mkdir -p docs/superpowers/specs)",
+      "Bash(node --check /Users/m4macmini/Projects/UX_Enrollment_Webflow/src/icit-app.js)",
+      "Bash(node -e \"require\\('terser'\\)\")",
+      "Bash(npx terser *)",
+      "Bash(node --check src/icit-app.min.js)",
+      "Bash(node --check src/icit-app.js)",
+      "Bash(node *)",
+      "Bash(xargs ls *)",
+      "Bash(xargs -I{} sh -c 'jq -r \"select\\(.message.content != null\\) | .message.content[] | select\\(.type == \\\\\"tool_use\\\\\"\\) | [.name, \\(.input.command // \\\\\"\\\\\"\\)] | @tsv\" \"{}\" 2>/dev/null')",
+      "Skill(checkpoint)"
     ]
   }
 }

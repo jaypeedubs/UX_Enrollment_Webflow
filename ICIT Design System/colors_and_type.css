@@ -1,0 +1,259 @@
+/* ============================================================
+   ICIT Design System — Colors & Type
+   Source: jareds-spectacular-site-818130.webflow CSS tokens
+   ============================================================ */
+
+/* ----- Webfonts ----- */
+@font-face {
+  font-family: "Bodoni Moda SC";
+  src: url("./fonts/BodoniModaSC-VariableFont_opszwght.ttf") format("truetype-variations");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Open Sans, Faculty Glyphic, and Material Symbols come from Google Fonts.
+   In any HTML using this stylesheet, also include:
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Faculty+Glyphic&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+*/
+
+:root {
+  /* ============ COLORS ============ */
+
+  /* Foundations */
+  --linens-white:           #ffffff;
+  --linens-lightest-linen:  #faf7f5;
+  --linens-white-linen:     #f2f0ee;
+  --linens-lighter-linen:   #ebe3de;
+  --linens-linen:           #e4d9d1;
+  --linens-warm-tope:       #b9b0a1;
+  --linens-azure:           #ebf7fa;
+  --linens-honeydew:        #ecf7fa;
+  --linens-ivory:           #fafaeb;
+
+  --tans-burlywood:         #ecbd9c;
+  --tans-burlywood-trans:   #ecbd9c66; /* 40% */
+  --tans-tan:               #c9b4a7;
+  --tans-tan-dark:          #b9a597;
+  --tans-tan-darker:        #b69f8f;
+  --tans-tan-darkest:       #927e70;
+
+  --blues-cornflower:       #63a3da;
+  --blues-royal:            #16609f;
+  --blues-midnight-1:       #123161; /* primary brand */
+  --blues-midnight-2:       #191c74;
+  --blues-midnight-3:       #0b0c23;
+  --blues-dark:             #03192c;
+
+  --greys-dim:              #826d5f;
+  --greys-dimmer:           #68574b;
+
+  --blacks-black:           #382e27;
+  --blacks-black-dark:      #201a16;
+  --blacks-black-darker:    #1d1813;
+  --blacks-black-darkest:   #211c17;
+
+  /* Course / category colors (each comes with a 1-9 ramp; primary = 5) */
+  --course-asc:    #c5543b;  /* Advanced Surgeons (rust/red) */
+  --course-isc:    #d9883d;  /* International Surgeons (amber) */
+  --course-aac:    #5b6b82;  /* Advanced Audiology (slate) */
+  --course-fac:    #3d7a7a;  /* Foundational Audiology (teal) */
+  --course-ifac:   #5d8591;  /* International Foundational Aud. (blue-teal) */
+  --course-citec:  #5d6b9e;  /* Team Efficiency (periwinkle) */
+
+  /* Course ramps (light → dark, 1–9) */
+  --asc-1:#fae8e3; --asc-2:#f4cbc0; --asc-3:#ea9e89; --asc-4:#d77459; --asc-5:#c5543b;
+  --asc-6:#a13b25; --asc-7:#792a1a; --asc-8:#561d11; --asc-9:#3a130b;
+
+  --isc-1:#fef3e6; --isc-2:#fce0ba; --isc-3:#f4bc79; --isc-4:#e9a157; --isc-5:#d9883d;
+  --isc-6:#b86a1f;
+
+  --aac-1:#eff1f5; --aac-2:#d7dce6; --aac-3:#a8b3c7; --aac-4:#7f8fa8; --aac-5:#5b6b82;
+  --aac-6:#444f62; --aac-7:#2f3746; --aac-8:#1f252f; --aac-9:#141820;
+
+  --fac-1:#eff4f4; --fac-2:#d6e4e4; --fac-3:#a3c2c2; --fac-4:#729d9d; --fac-5:#3d7a7a;
+  --fac-6:#275d5d; --fac-7:#174343; --fac-8:#0d2c2c; --fac-9:#071e1e;
+
+  --ifac-1:#eff3f5; --ifac-2:#d7e3e9; --ifac-3:#a7c0ce; --ifac-4:#7da0b2; --ifac-5:#5d8591;
+  --ifac-6:#416570; --ifac-7:#2b4951; --ifac-8:#1b3137; --ifac-9:#112126;
+
+  --citec-1:#eff1f6; --citec-2:#d8dcea; --citec-3:#a9b4d4; --citec-4:#808fba;
+  --citec-5:#5d6b9e; --citec-6:#41507d; --citec-7:#2c385d; --citec-8:#1c2540; --citec-9:#11172b;
+
+  /* ============ SEMANTIC ============ */
+
+  /* Surfaces */
+  --bg-primary:        var(--linens-white);
+  --bg-secondary:      var(--linens-lightest-linen);
+  --bg-tertiary:       var(--linens-lighter-linen);
+  --bg-subtle:         var(--linens-linen);
+  --bg-dark:           var(--blues-dark);
+  --bg-dark-deeper:    var(--blues-midnight-3);
+
+  /* Text */
+  --fg-1:              var(--blacks-black);            /* default text on light */
+  --fg-2:              var(--greys-dim);               /* secondary text */
+  --fg-muted:          var(--tans-tan-dark);           /* tertiary, less important */
+  --fg-on-dark:        var(--linens-white);            /* primary text on dark */
+  --fg-on-dark-2:      var(--linens-lighter-linen);    /* secondary text on dark */
+  --fg-on-dark-muted:  var(--linens-warm-tope);
+  --fg-brand:          var(--blues-midnight-1);
+
+  /* Borders */
+  --border-subtle:     var(--linens-lighter-linen);
+  --border-default:    var(--tans-tan);
+  --border-strong:     var(--blacks-black);
+  --border-on-dark:    rgba(201, 180, 167, 0.10);
+
+  /* Interactive */
+  --link:              var(--blues-royal);
+  --link-hover:        var(--blues-cornflower);
+  --link-active:       var(--blues-midnight-2);
+  --action-primary:    var(--blues-midnight-1);  /* navy buttons */
+  --action-accent:     var(--tans-burlywood);    /* tan/peach accent */
+  --action-accent-tr:  var(--tans-burlywood-trans);
+  --focus-ring:        #1c3256;
+
+  /* Feedback */
+  --error-bg:          var(--asc-1);
+  --error-border:      var(--asc-3);
+  --error-text:        var(--asc-7);
+
+  /* ============ TYPOGRAPHY ============ */
+
+  /* Families */
+  --font-heading:      "Bodoni Moda SC", "Bodoni Moda", Georgia, "Times New Roman", serif;
+  --font-body:         "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-ui:           "Faculty Glyphic", "Open Sans", system-ui, sans-serif;
+  --font-icons:        "Material Symbols Outlined", "Material Symbols", sans-serif;
+
+  /* Modular scale (1.25 ratio off 1rem = 16px) — webflow exact values */
+  --fs-micro:          0.64rem;     /* 10.24 */
+  --fs-small:          0.8rem;      /* 12.8 */
+  --fs-base:           1rem;        /* 16 */
+  --fs-large:          1.125rem;    /* 18 */
+  --fs-h6:             1.25rem;     /* 20 */
+  --fs-h5:             1.563rem;    /* 25 */
+  --fs-h4:             1.953rem;    /* 31.25 */
+  --fs-h3:             2.441rem;    /* 39 */
+  --fs-h2:             3.052rem;    /* 49 */
+  --fs-h1:             3.815rem;    /* 61 */
+  --fs-display:        6.125rem;    /* 98 — hero only */
+
+  --lh-tight:          1.15;        /* headings */
+  --lh-base:           1.6;         /* body */
+  --lh-snug:           1.3;
+  --tracking-heading:  -0.022em;
+  --tracking-body:     0.15em;      /* small caps / sign-text */
+  --tracking-caps:     0.22em;
+  --tracking-eyebrow:  0.308px;
+
+  /* ============ SPACING / SHAPE ============ */
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 112px;   /* canonical section padding */
+
+  --radius-sm:  3px;
+  --radius-md:  8px;
+  --radius-lg:  20px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  --shadow-sm: 0 1px 2px rgba(56, 46, 39, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 12, 35, 0.08), 0 1px 2px rgba(11, 12, 35, 0.04);
+  --shadow-lg: 0 24px 60px rgba(3, 25, 44, 0.18), 0 2px 6px rgba(3, 25, 44, 0.08);
+
+  --container: 1280px;
+  --container-narrow: 880px;
+  --easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration: 220ms;
+}
+
+/* ============ SEMANTIC ELEMENT STYLES ============ */
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--fg-1);
+  background: var(--bg-primary);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, .heading {
+  font-family: var(--font-heading);
+  color: var(--fg-brand);
+  font-weight: 500;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-heading);
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1, .h1 { font-size: var(--fs-h1); }
+h2, .h2 { font-size: var(--fs-h2); }
+h3, .h3 { font-size: var(--fs-h3); }
+h4, .h4 { font-size: var(--fs-h4); }
+h5, .h5 { font-size: var(--fs-h5); font-weight: 600; }
+h6, .h6 { font-size: var(--fs-h6); font-weight: 600; }
+
+.display {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, var(--fs-display));
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--fg-brand);
+  font-weight: 500;
+}
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+p.lead, .lead { font-size: var(--fs-large); line-height: 1.55; color: var(--fg-1); }
+p.muted, .muted { color: var(--fg-2); }
+
+/* Eyebrows / "sign-text" — small caps numbering used throughout the site */
+.eyebrow, .sign-text {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+a { color: var(--link); text-decoration: none; transition: color var(--duration) var(--easing); }
+a:hover { color: var(--link-hover); }
+a:active { color: var(--link-active); }
+
+small, .small { font-size: var(--fs-small); }
+.micro { font-size: var(--fs-micro); letter-spacing: var(--tracking-caps); text-transform: uppercase; }
+
+/* Material Symbols helper */
+.msym {
+  font-family: var(--font-icons);
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section 2 — List View</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Open Sans', sans-serif; background: #f0ece8; padding: 24px; color: #382e27; font-size: 13px; }
+
+  .page-title { font-size: 17px; font-weight: 700; color: #123161; margin-bottom: 4px; }
+  .page-sub { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+
+  /* ── SPLIT SHELL ── */
+  .shell { display: flex; height: 620px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 24px rgba(18,49,97,0.13); }
+
+  /* ── LEFT PANE ── */
+  .left { width: 420px; flex-shrink: 0; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #e8e0da; }
+
+  .left-header { padding: 14px 16px 0; border-bottom: 1px solid #e8e0da; }
+  .left-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .left-title { font-weight: 700; font-size: 14px; color: #123161; }
+  .search-box { display: flex; align-items: center; gap: 6px; background: #f8f5f2; border: 1px solid #e2d8d0; border-radius: 6px; padding: 5px 10px; font-size: 12px; color: #64748b; width: 160px; }
+
+  /* Course tabs */
+  .course-tabs { display: flex; gap: 0; overflow-x: auto; }
+  .course-tab { padding: 7px 12px; font-size: 11px; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; letter-spacing: 0.04em; }
+  .course-tab.active { color: #123161; border-bottom-color: #123161; }
+
+  /* Status sub-tabs */
+  .status-bar { display: flex; gap: 4px; padding: 8px 16px; background: #faf7f5; border-bottom: 1px solid #e8e0da; flex-wrap: wrap; }
+  .status-pill { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid transparent; }
+  .status-pill.active  { background: #123161; color: #fff; }
+  .status-pill.default { background: #fff; color: #64748b; border-color: #e2d8d0; }
+  .status-pill .count  { font-size: 10px; opacity: 0.75; margin-left: 3px; }
+
+  /* List */
+  .list { flex: 1; overflow-y: auto; }
+  .list-row { position: relative; display: flex; align-items: center; padding: 10px 16px; border-bottom: 1px solid #f0ece8; cursor: pointer; transition: background 0.12s; gap: 10px; }
+  .list-row:hover { background: #f8f5f2; }
+  .list-row.selected { background: #e8edf5; border-left: 3px solid #123161; padding-left: 13px; }
+  .list-row.unread .row-name { font-weight: 700; }
+
+  .row-avatar { width: 32px; height: 32px; border-radius: 50%; background: #e8edf5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #123161; flex-shrink: 0; }
+  .row-main { flex: 1; min-width: 0; }
+  .row-name { font-size: 13px; color: #382e27; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-meta { font-size: 11px; color: #64748b; margin-top: 1px; }
+  .row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+  .row-date { font-size: 11px; color: #94a3b8; }
+
+  /* Status badge */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; }
+  .badge-submitted  { background: #dbeafe; color: #1d4ed8; }
+  .badge-in-review  { background: #fef3c7; color: #92400e; }
+  .badge-waitlisted { background: #ede9fe; color: #5b21b6; }
+  .badge-accepted   { background: #dcfce7; color: #166534; }
+  .badge-info       { background: #fee2e2; color: #991b1b; }
+
+  /* Ellipsis menu */
+  .row-menu-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 6px; background: #123161; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; cursor: pointer; opacity: 0; transition: opacity 0.12s; font-family: 'Material Symbols Outlined'; }
+  .list-row:hover .row-menu-btn { opacity: 1; }
+  .list-row.menu-open .row-menu-btn { opacity: 1; background: #0b2447; }
+
+  /* Submenu dropdown */
+  .submenu { position: absolute; right: 8px; top: 42px; background: #fff; border: 1px solid #e2d8d0; border-radius: 8px; box-shadow: 0 8px 24px rgba(18,49,97,0.14); z-index: 10; min-width: 160px; overflow: hidden; }
+  .submenu-item { display: flex; align-items: center; gap: 8px; padding: 9px 14px; font-size: 12px; color: #382e27; cursor: pointer; transition: background 0.1s; }
+  .submenu-item:hover { background: #f8f5f2; }
+  .submenu-item .msym { font-family: 'Material Symbols Outlined'; font-size: 16px; color: #64748b; }
+  .submenu-item.danger { color: #792a1a; }
+  .submenu-item.danger .msym { color: #ea9e89; }
+  .submenu-divider { height: 1px; background: #f0ece8; }
+
+  /* ── RIGHT PANE ── */
+  .right { flex: 1; background: #faf7f5; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 13px; flex-direction: column; gap: 8px; }
+  .right-icon { font-family: 'Material Symbols Outlined'; font-size: 40px; color: #d1c7bf; }
+
+  /* Annotation callouts */
+  .annotations { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .ann { background: #fff; border: 1px solid #e2d8d0; border-radius: 8px; padding: 12px 14px; }
+  .ann-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #123161; margin-bottom: 5px; }
+  .ann-text { font-size: 12px; color: #64748b; line-height: 1.5; }
+  code { background: #f1f5f9; padding: 1px 4px; border-radius: 3px; font-size: 11px; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="page-title">Design — Section 2 of 5: List View</div>
+<div class="page-sub">Left pane of the split layout. Hover over a row to reveal the ··· submenu. The highlighted row (Smith) is selected — its detail appears in the right panel.</div>
+
+<div class="shell">
+  <!-- LEFT PANE -->
+  <div class="left">
+    <div class="left-header">
+      <div class="left-header-top">
+        <span class="left-title">Applications</span>
+        <div class="search-box">
+          <span style="font-family:'Material Symbols Outlined';font-size:15px;">search</span>
+          Search name or email
+        </div>
+      </div>
+      <!-- Course tabs -->
+      <div class="course-tabs">
+        <div class="course-tab active">All Courses</div>
+        <div class="course-tab">ASC</div>
+        <div class="course-tab">ISC</div>
+        <div class="course-tab">AAC</div>
+        <div class="course-tab">FAC</div>
+        <div class="course-tab">IFAC</div>
+        <div class="course-tab">CITEC</div>
+      </div>
+    </div>
+
+    <!-- Status sub-tabs -->
+    <div class="status-bar">
+      <div class="status-pill active">New<span class="count">(4)</span></div>
+      <div class="status-pill default">In Review<span class="count">(2)</span></div>
+      <div class="status-pill default">Waitlisted<span class="count">(6)</span></div>
+      <div class="status-pill default">Accepted<span class="count">(11)</span></div>
+      <div class="status-pill default">Paid<span class="count">(3)</span></div>
+      <div class="status-pill default">Enrolled<span class="count">(8)</span></div>
+      <div class="status-pill default">All</div>
+    </div>
+
+    <!-- Rows -->
+    <div class="list">
+
+      <!-- Row 1: selected + unread -->
+      <div class="list-row selected unread">
+        <div class="row-avatar">JS</div>
+        <div class="row-main">
+          <div class="row-name">Jane Smith</div>
+          <div class="row-meta">jsmith@clinic.edu · ASC</div>
+        </div>
+        <div class="row-right">
+          <span class="badge badge-submitted">submitted</span>
+          <span class="row-date">Apr 28</span>
+        </div>
+      </div>
+
+      <!-- Row 2: hover state with open submenu -->
+      <div class="list-row menu-open unread" style="background:#f8f5f2;">
+        <div class="row-avatar">AT</div>
+        <div class="row-main">
+          <div class="row-name">Ana Torres</div>
+          <div class="row-meta">atorres@hospital.mx · FAC</div>
+        </div>
+        <div class="row-right" style="margin-right:32px;">
+          <span class="badge badge-submitted">submitted</span>
+          <span class="row-date">Apr 25</span>
+        </div>
+        <div class="row-menu-btn" style="opacity:1;">more_vert</div>
+        <!-- Submenu open -->
+        <div class="submenu">
+          <div class="submenu-item">
+            <span class="msym">open_in_new</span> Open application
+          </div>
+          <div class="submenu-divider"></div>
+          <div class="submenu-item">
+            <span class="msym">check_circle</span> Accept
+          </div>
+          <div class="submenu-item">
+            <span class="msym">schedule</span> Waitlist
+          </div>
+          <div class="submenu-item">
+            <span class="msym">help</span> Request more info
+          </div>
+          <div class="submenu-divider"></div>
+          <div class="submenu-item danger">
+            <span class="msym">cancel</span> Reject
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: unread -->
+      <div class="list-row unread">
+        <div class="row-avatar" style="background:#e8f5e9;color:#166534;">RP</div>
+        <div class="row-main">
+          <div class="row-name">Raj Patel</div>
+          <div class="row-meta">rpatel@nhs.uk · AAC</div>
+        </div>
+        <div class="row-right">
+          <span class="badge badge-submitted">submitted</span>
+          <span class="row-date">Apr 22</span>
+        </div>
+        <div class="row-menu-btn">more_vert</div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="list-row unread">
+        <div class="row-avatar" style="background:#fdf4e3;color:#92400e;">ML</div>
+        <div class="row-main">
+          <div class="row-name">Min-Ji Lee</div>
+          <div class="row-meta">mjlee@seoulmed.kr · ASC</div>
+        </div>
+        <div class="row-right">
+          <span class="badge badge-submitted">submitted</span>
+          <span class="row-date">Apr 19</span>
+        </div>
+        <div class="row-menu-btn">more_vert</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT PANE (placeholder) -->
+  <div class="right">
+    <span class="right-icon">person_search</span>
+    <span>Select an applicant to review</span>
+    <span style="font-size:11px;color:#b0a8a2;">(Jane Smith selected — detail shown here)</span>
+  </div>
+</div>
+
+<!-- Annotations -->
+<div class="annotations">
+  <div class="ann">
+    <div class="ann-label">Row columns</div>
+    <div class="ann-text">Avatar initials · Full name (bold if unread) · Email + course · Status badge · Submitted date. Name truncates with ellipsis — full name in detail panel.</div>
+  </div>
+  <div class="ann">
+    <div class="ann-label">Hover → ··· submenu</div>
+    <div class="ann-text">Ellipsis button appears on row hover (right-aligned). Menu: <strong>Open</strong>, <strong>Accept</strong>, <strong>Waitlist</strong>, <strong>Request More Info</strong>, then <strong>Reject</strong> (red, separated by divider). Available actions adjust per status — e.g., a waitlisted row removes "Waitlist" and shows "Accept".</div>
+  </div>
+  <div class="ann">
+    <div class="ann-label">Status filtering</div>
+    <div class="ann-text">Course tabs across top. Status pills below. "New" = <code>submitted</code> status. "Paid" = <code>enrollment_confirmed</code>. Counts update live. URL reflects filter: <code>?course=ASC&status=submitted</code></div>
+  </div>
+</div>
+
+<p style="font-size:12px;color:#64748b;margin-top:16px;">Does the list view look right? Any columns to add, remove, or reorder before we move to the detail panel?</p>
+
+</body>
+</html>

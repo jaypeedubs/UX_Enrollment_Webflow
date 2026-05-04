@@ -1,0 +1,2891 @@
+{
+  "nodes": [
+    {
+      "id": "tests_icit_app_test_js",
+      "label": "icit-app.test.js",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_icit_app_test_createelement",
+      "label": "createElement()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L7"
+    },
+    {
+      "id": "tests_icit_app_test_createcontext",
+      "label": "createContext()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L27"
+    },
+    {
+      "id": "tests_icit_app_test_tick",
+      "label": "tick()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L103"
+    },
+    {
+      "id": "tests_icit_app_test_testloginrevealswhenmarkersaremissing",
+      "label": "testLoginRevealsWhenMarkersAreMissing()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L109"
+    },
+    {
+      "id": "tests_icit_app_test_testsignupsendsconfirmationbacktologin",
+      "label": "testSignUpSendsConfirmationBackToLogin()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L117"
+    },
+    {
+      "id": "tests_icit_app_test_testloginauthreturnshowslogininsteadofdashboardredirect",
+      "label": "testLoginAuthReturnShowsLoginInsteadOfDashboardRedirect()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L151"
+    },
+    {
+      "id": "tests_icit_app_test_testapplyrevealswhendataloadfails",
+      "label": "testApplyRevealsWhenDataLoadFails()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L181"
+    },
+    {
+      "id": "tests_icit_app_test_testdashboardrenderswhennotificationsfail",
+      "label": "testDashboardRendersWhenNotificationsFail()",
+      "file_type": "code",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L195"
+    },
+    {
+      "id": "supabase_functions_stripe_webhook_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/stripe-webhook/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_create_checkout_session_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/create-checkout-session/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_handle_notification_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/handle-notification/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "handle_notification_index_interpolate",
+      "label": "interpolate()",
+      "file_type": "code",
+      "source_file": "supabase/functions/handle-notification/index.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "supabase_functions_admin_transition_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/admin-transition/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "supabase_functions_moodle_handoff_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/moodle-handoff/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "icit_design_system_slides_deck_stage_js",
+      "label": "deck-stage.js",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "slides_deck_stage_pad2",
+      "label": "pad2()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L58"
+    },
+    {
+      "id": "slides_deck_stage_deckstage",
+      "label": "DeckStage",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L268"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_observedattributes",
+      "label": ".observedAttributes()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L269"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L271"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_designwidth",
+      "label": ".designWidth()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L288"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_designheight",
+      "label": ".designHeight()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L291"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_connectedcallback",
+      "label": ".connectedCallback()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L295"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_disconnectedcallback",
+      "label": ".disconnectedCallback()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L305"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_attributechangedcallback",
+      "label": ".attributeChangedCallback()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L313"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_render",
+      "label": "._render()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L324"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_syncprintpagerule",
+      "label": "._syncPrintPageRule()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L393"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_onslotchange",
+      "label": "._onSlotChange()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L407"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_collectslides",
+      "label": "._collectSlides()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L414"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_loadnotes",
+      "label": "._loadNotes()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L453"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_restoreindex",
+      "label": "._restoreIndex()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L465"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_applyindex",
+      "label": "._applyIndex()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L476"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_flashoverlay",
+      "label": "._flashOverlay()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L518"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_fit",
+      "label": "._fit()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L527"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_onresize",
+      "label": "._onResize()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L542"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_onmousemove",
+      "label": "._onMouseMove()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L544"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_ontapback",
+      "label": "._onTapBack()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L549"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_ontapforward",
+      "label": "._onTapForward()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L554"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_onkey",
+      "label": "._onKey()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L559"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_go",
+      "label": "._go()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L592"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_index",
+      "label": ".index()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L606"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_length",
+      "label": ".length()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L608"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_goto",
+      "label": ".goTo()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L610"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_next",
+      "label": ".next()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L611"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_prev",
+      "label": ".prev()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L612"
+    },
+    {
+      "id": "slides_deck_stage_deckstage_reset",
+      "label": ".reset()",
+      "file_type": "code",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L613"
+    },
+    {
+      "id": "retool_test_admin_api_js",
+      "label": "test-admin-api.js",
+      "file_type": "code",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "retool_test_admin_api_pass",
+      "label": "pass()",
+      "file_type": "code",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L7"
+    },
+    {
+      "id": "retool_test_admin_api_fail",
+      "label": "fail()",
+      "file_type": "code",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "retool_test_admin_api_post",
+      "label": "post()",
+      "file_type": "code",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L12"
+    },
+    {
+      "id": "retool_test_admin_api_rest",
+      "label": "rest()",
+      "file_type": "code",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L22"
+    },
+    {
+      "id": "src_icit_app_js",
+      "label": "icit-app.js",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_getsession",
+      "label": "getSession()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L54"
+    },
+    {
+      "id": "src_icit_app_requireauth",
+      "label": "requireAuth()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L61"
+    },
+    {
+      "id": "src_icit_app_requireguest",
+      "label": "requireGuest()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L71"
+    },
+    {
+      "id": "src_icit_app_isloginauthreturn",
+      "label": "isLoginAuthReturn()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L79"
+    },
+    {
+      "id": "src_icit_app_completeloginauthreturn",
+      "label": "completeLoginAuthReturn()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L87"
+    },
+    {
+      "id": "src_icit_app_signin",
+      "label": "signIn()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L98"
+    },
+    {
+      "id": "src_icit_app_signup",
+      "label": "signUp()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L104"
+    },
+    {
+      "id": "src_icit_app_signout",
+      "label": "signOut()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L117"
+    },
+    {
+      "id": "src_icit_app_loadapplication",
+      "label": "loadApplication()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L124"
+    },
+    {
+      "id": "src_icit_app_loadnotifications",
+      "label": "loadNotifications()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L140"
+    },
+    {
+      "id": "src_icit_app_marknotificationsread",
+      "label": "markNotificationsRead()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L150"
+    },
+    {
+      "id": "src_icit_app_loadprograms",
+      "label": "loadPrograms()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L159"
+    },
+    {
+      "id": "src_icit_app_loadapplicationhistory",
+      "label": "loadApplicationHistory()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L168"
+    },
+    {
+      "id": "src_icit_app_withdrawapplication",
+      "label": "withdrawApplication()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L180"
+    },
+    {
+      "id": "src_icit_app_savedraft",
+      "label": "saveDraft()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L199"
+    },
+    {
+      "id": "src_icit_app_uploadcv",
+      "label": "uploadCV()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L230"
+    },
+    {
+      "id": "src_icit_app_removecv",
+      "label": "removeCV()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L247"
+    },
+    {
+      "id": "src_icit_app_submitapplication",
+      "label": "submitApplication()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L257"
+    },
+    {
+      "id": "src_icit_app_submitnotesresponse",
+      "label": "submitNotesResponse()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L279"
+    },
+    {
+      "id": "src_icit_app_createcheckout",
+      "label": "createCheckout()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L289"
+    },
+    {
+      "id": "src_icit_app_q",
+      "label": "q()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L311"
+    },
+    {
+      "id": "src_icit_app_show",
+      "label": "show()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L312"
+    },
+    {
+      "id": "src_icit_app_hide",
+      "label": "hide()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L319"
+    },
+    {
+      "id": "src_icit_app_settext",
+      "label": "setText()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L320"
+    },
+    {
+      "id": "src_icit_app_sethref",
+      "label": "setHref()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L321"
+    },
+    {
+      "id": "src_icit_app_revealpage",
+      "label": "revealPage()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L323"
+    },
+    {
+      "id": "src_icit_app_pageroot",
+      "label": "pageRoot()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L328"
+    },
+    {
+      "id": "src_icit_app_showpageerror",
+      "label": "showPageError()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L332"
+    },
+    {
+      "id": "src_icit_app_initpage",
+      "label": "initPage()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L342"
+    },
+    {
+      "id": "src_icit_app_ensurefallback",
+      "label": "ensureFallback()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L352"
+    },
+    {
+      "id": "src_icit_app_normalizequestions",
+      "label": "normalizeQuestions()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L362"
+    },
+    {
+      "id": "src_icit_app_escapehtml",
+      "label": "escapeHtml()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L375"
+    },
+    {
+      "id": "src_icit_app_updateapplystepper",
+      "label": "updateApplyStepper()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L384"
+    },
+    {
+      "id": "src_icit_app_cleargeneratedquestions",
+      "label": "clearGeneratedQuestions()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L398"
+    },
+    {
+      "id": "src_icit_app_questionhost",
+      "label": "questionHost()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L402"
+    },
+    {
+      "id": "src_icit_app_creategeneratedquestion",
+      "label": "createGeneratedQuestion()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L424"
+    },
+    {
+      "id": "src_icit_app_setcvprogress",
+      "label": "setCvProgress()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L463"
+    },
+    {
+      "id": "src_icit_app_filenamefrompath",
+      "label": "filenameFromPath()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L469"
+    },
+    {
+      "id": "src_icit_app_applydesignsystemclasses",
+      "label": "applyDesignSystemClasses()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L477"
+    },
+    {
+      "id": "src_icit_app_clonerow",
+      "label": "cloneRow()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L571"
+    },
+    {
+      "id": "src_icit_app_formatdate",
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L580"
+    },
+    {
+      "id": "src_icit_app_formatcurrency",
+      "label": "formatCurrency()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L587"
+    },
+    {
+      "id": "src_icit_app_initlogin",
+      "label": "initLogin()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L593"
+    },
+    {
+      "id": "src_icit_app_initdashboard",
+      "label": "initDashboard()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L705"
+    },
+    {
+      "id": "src_icit_app_initapply",
+      "label": "initApply()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L870"
+    },
+    {
+      "id": "src_icit_app_initstatus",
+      "label": "initStatus()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1246"
+    },
+    {
+      "id": "src_icit_app_initenrollment",
+      "label": "initEnrollment()",
+      "file_type": "code",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1363"
+    },
+    {
+      "id": "src_icit_app_min_js",
+      "label": "icit-app.min.js",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_a",
+      "label": "a()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_o",
+      "label": "o()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_r",
+      "label": "r()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_s",
+      "label": "s()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_c",
+      "label": "c()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_d",
+      "label": "d()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_l",
+      "label": "l()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_p",
+      "label": "p()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_m",
+      "label": "m()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_u",
+      "label": "u()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_w",
+      "label": "w()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_f",
+      "label": "f()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_g",
+      "label": "g()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_h",
+      "label": "h()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_b",
+      "label": "b()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_z",
+      "label": "z()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_y",
+      "label": "y()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_v",
+      "label": "v()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min",
+      "label": "_()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_icit_app_min_e",
+      "label": "E()",
+      "file_type": "code",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_createelement",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_createcontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_tick",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_testloginrevealswhenmarkersaremissing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_testsignupsendsconfirmationbacktologin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_testloginauthreturnshowslogininsteadofdashboardredirect",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L151",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_testapplyrevealswhendataloadfails",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_js",
+      "target": "tests_icit_app_test_testdashboardrenderswhennotificationsfail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L195",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_createcontext",
+      "target": "tests_icit_app_test_createelement",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testloginrevealswhenmarkersaremissing",
+      "target": "tests_icit_app_test_createcontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testloginrevealswhenmarkersaremissing",
+      "target": "tests_icit_app_test_tick",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testsignupsendsconfirmationbacktologin",
+      "target": "tests_icit_app_test_createcontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testsignupsendsconfirmationbacktologin",
+      "target": "tests_icit_app_test_tick",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testloginauthreturnshowslogininsteadofdashboardredirect",
+      "target": "tests_icit_app_test_createcontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testloginauthreturnshowslogininsteadofdashboardredirect",
+      "target": "tests_icit_app_test_tick",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testapplyrevealswhendataloadfails",
+      "target": "tests_icit_app_test_createcontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L182",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testapplyrevealswhendataloadfails",
+      "target": "tests_icit_app_test_tick",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L190",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testdashboardrenderswhennotificationsfail",
+      "target": "tests_icit_app_test_createelement",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L197",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testdashboardrenderswhennotificationsfail",
+      "target": "tests_icit_app_test_createcontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L203",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_icit_app_test_testdashboardrenderswhennotificationsfail",
+      "target": "tests_icit_app_test_tick",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/icit-app.test.js",
+      "source_location": "L232",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_stripe_webhook_index_ts",
+      "target": "supabase_js_2",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/stripe-webhook/index.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_stripe_webhook_index_ts",
+      "target": "npm_stripe",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/stripe-webhook/index.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_create_checkout_session_index_ts",
+      "target": "supabase_js_2",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/create-checkout-session/index.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_create_checkout_session_index_ts",
+      "target": "npm_stripe",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/create-checkout-session/index.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_handle_notification_index_ts",
+      "target": "supabase_js_2",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/handle-notification/index.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_handle_notification_index_ts",
+      "target": "npm_resend",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/handle-notification/index.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_handle_notification_index_ts",
+      "target": "handle_notification_index_interpolate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/handle-notification/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_admin_transition_index_ts",
+      "target": "supabase_js_2",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/admin-transition/index.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "supabase_functions_moodle_handoff_index_ts",
+      "target": "supabase_js_2",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/moodle-handoff/index.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "icit_design_system_slides_deck_stage_js",
+      "target": "slides_deck_stage_pad2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "icit_design_system_slides_deck_stage_js",
+      "target": "slides_deck_stage_deckstage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L268",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_observedattributes",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L269",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L271",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_designwidth",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L288",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_designheight",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L291",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_connectedcallback",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L295",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_disconnectedcallback",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L305",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_attributechangedcallback",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L313",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_render",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L324",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_syncprintpagerule",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L393",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_onslotchange",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L407",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_collectslides",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L414",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_loadnotes",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L453",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_restoreindex",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L465",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_applyindex",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L476",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_flashoverlay",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L518",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_fit",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L527",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_onresize",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L542",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_onmousemove",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L544",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_ontapback",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L549",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_ontapforward",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L554",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_onkey",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L559",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L592",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_index",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L606",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_length",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L608",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_goto",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L610",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_next",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L611",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_prev",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L612",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage",
+      "target": "slides_deck_stage_deckstage_reset",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L613",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_connectedcallback",
+      "target": "slides_deck_stage_deckstage_render",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L296",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_connectedcallback",
+      "target": "slides_deck_stage_deckstage_loadnotes",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L297",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_connectedcallback",
+      "target": "slides_deck_stage_deckstage_syncprintpagerule",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L298",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_attributechangedcallback",
+      "target": "slides_deck_stage_deckstage_fit",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L319",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_attributechangedcallback",
+      "target": "slides_deck_stage_deckstage_syncprintpagerule",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L320",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onslotchange",
+      "target": "slides_deck_stage_deckstage_collectslides",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L408",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onslotchange",
+      "target": "slides_deck_stage_deckstage_restoreindex",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L409",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onslotchange",
+      "target": "slides_deck_stage_deckstage_applyindex",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L410",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onslotchange",
+      "target": "slides_deck_stage_deckstage_fit",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L411",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_applyindex",
+      "target": "slides_deck_stage_deckstage_flashoverlay",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L515",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onresize",
+      "target": "slides_deck_stage_deckstage_fit",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L542",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onmousemove",
+      "target": "slides_deck_stage_deckstage_flashoverlay",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L546",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_ontapback",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L551",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_ontapforward",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L556",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onkey",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L569",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_onkey",
+      "target": "slides_deck_stage_deckstage_flashoverlay",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L588",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_go",
+      "target": "slides_deck_stage_deckstage_flashoverlay",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L596",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_go",
+      "target": "slides_deck_stage_deckstage_applyindex",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L600",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_goto",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L610",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_next",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L611",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_prev",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L612",
+      "weight": 1.0
+    },
+    {
+      "source": "slides_deck_stage_deckstage_reset",
+      "target": "slides_deck_stage_deckstage_go",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_location": "L613",
+      "weight": 1.0
+    },
+    {
+      "source": "retool_test_admin_api_js",
+      "target": "retool_test_admin_api_pass",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "retool_test_admin_api_js",
+      "target": "retool_test_admin_api_fail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "retool_test_admin_api_js",
+      "target": "retool_test_admin_api_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "retool_test_admin_api_js",
+      "target": "retool_test_admin_api_rest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "retool/test-admin-api.js",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_getsession",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_requireauth",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_requireguest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_isloginauthreturn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_completeloginauthreturn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_signin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_signup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_signout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_loadapplication",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_loadnotifications",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L140",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_marknotificationsread",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_loadprograms",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_loadapplicationhistory",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_withdrawapplication",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L180",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_savedraft",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L199",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_uploadcv",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_removecv",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L247",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_submitapplication",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L257",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_submitnotesresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L279",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_createcheckout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L289",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_q",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L311",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_show",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L312",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_hide",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L319",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_settext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L320",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_sethref",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L321",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_revealpage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L323",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_pageroot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L328",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_showpageerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L332",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_initpage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L342",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_ensurefallback",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L352",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_normalizequestions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L362",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_escapehtml",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L375",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_updateapplystepper",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L384",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_cleargeneratedquestions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L398",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_questionhost",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L402",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_creategeneratedquestion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L424",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_setcvprogress",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L463",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_filenamefrompath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L469",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_applydesignsystemclasses",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L477",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_clonerow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L571",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_formatdate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L580",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_formatcurrency",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L587",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_initlogin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L593",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_initdashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L705",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_initapply",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L870",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_initstatus",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1246",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_js",
+      "target": "src_icit_app_initenrollment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1363",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_requireauth",
+      "target": "src_icit_app_getsession",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_requireguest",
+      "target": "src_icit_app_getsession",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_completeloginauthreturn",
+      "target": "src_icit_app_isloginauthreturn",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_completeloginauthreturn",
+      "target": "src_icit_app_getsession",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_completeloginauthreturn",
+      "target": "src_icit_app_signout",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_showpageerror",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_showpageerror",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L338",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_showpageerror",
+      "target": "src_icit_app_show",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L339",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_ensurefallback",
+      "target": "src_icit_app_pageroot",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L354",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_updateapplystepper",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L386",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_questionhost",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L405",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_questionhost",
+      "target": "src_icit_app_pageroot",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L408",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_setcvprogress",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L465",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_setcvprogress",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L465",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_applydesignsystemclasses",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L495",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_completeloginauthreturn",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L594",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_requireguest",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L595",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L597",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_revealpage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L599",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_show",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L614",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_hide",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L616",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initlogin",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L623",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_requireauth",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L706",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_loadapplication",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L708",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_loadnotifications",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L709",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_hide",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L714",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L714",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L718",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_show",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L730",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_ensurefallback",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L735",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_revealpage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L743",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_sethref",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L754",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_formatdate",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L755",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initdashboard",
+      "target": "src_icit_app_escapehtml",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L779",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_requireauth",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L871",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_loadprograms",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L874",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_loadapplication",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L875",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_revealpage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L884",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_applydesignsystemclasses",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L885",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L904",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_hide",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L933",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_show",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L934",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initapply",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L935",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_requireauth",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1247",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_loadapplication",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1249",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_loadapplicationhistory",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1255",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_revealpage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1256",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_hide",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1257",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1257",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_show",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1258",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1272",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initstatus",
+      "target": "src_icit_app_formatdate",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1273",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_requireauth",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1364",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_loadapplication",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1366",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_revealpage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1374",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_hide",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1375",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_q",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1375",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_settext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1377",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_initenrollment",
+      "target": "src_icit_app_formatcurrency",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.js",
+      "source_location": "L1378",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_a",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_o",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_r",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_s",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_c",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_d",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_l",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_p",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_m",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_u",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_w",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_g",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_h",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_b",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_z",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_y",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_v",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_h",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_js",
+      "target": "src_icit_app_min_e",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_o",
+      "target": "src_icit_app_min_a",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_r",
+      "target": "src_icit_app_min_a",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_r",
+      "target": "src_icit_app_min_s",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_b",
+      "target": "src_icit_app_min_g",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_y",
+      "target": "src_icit_app_min_w",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_y",
+      "target": "src_icit_app_min_p",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_h",
+      "target": "src_icit_app_min_m",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_h",
+      "target": "src_icit_app_min_p",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min",
+      "target": "src_icit_app_min_p",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min",
+      "target": "src_icit_app_min_u",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min",
+      "target": "src_icit_app_min_m",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min",
+      "target": "src_icit_app_min_g",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_e",
+      "target": "src_icit_app_min_p",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_icit_app_min_e",
+      "target": "src_icit_app_min_m",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icit-app.min.js",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

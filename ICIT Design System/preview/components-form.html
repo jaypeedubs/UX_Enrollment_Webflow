@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Form Inputs</title>
+<link rel="stylesheet" href="preview-card.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Bodoni+Moda+SC:opsz,wght@6..96,500&display=swap" rel="stylesheet">
+<style>
+  .icit-input{width:100%;padding:12px 14px;border:1px solid #ccb7aa;border-radius:3px;background:#fff;font:400 14px var(--font-body);color:#382e27}
+  .icit-input:focus{outline:none;border-color:#1c3256;box-shadow:0 0 0 3px rgba(28,50,86,.12)}
+  .icit-label{font:600 11px var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:#826d5f;margin-bottom:6px;display:block}
+</style>
+</head><body>
+<div class="card">
+  <div class="label-mini">Component · Form Inputs (Application)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div><label class="icit-label">Full Name</label><input class="icit-input" value="Dr. Sarah Reyes"></div>
+    <div><label class="icit-label">Credentials</label><input class="icit-input" value="MD, FACS"></div>
+    <div><label class="icit-label">Email</label><input class="icit-input" value="sreyes@example.org"></div>
+    <div><label class="icit-label">Institution</label><input class="icit-input" placeholder="Mayo Clinic"></div>
+    <div style="grid-column:1/-1"><label class="icit-label">Course</label>
+      <select class="icit-input"><option>Advanced Surgeons Course (ASC)</option><option>Foundational Audiology (FAC)</option></select>
+    </div>
+    <div style="grid-column:1/-1"><label class="icit-label">Statement of Interest</label>
+      <textarea class="icit-input" rows="3" style="resize:vertical;font-family:var(--font-body)">Subspecialty training in CI surgery to add depth to my fellowship.</textarea>
+    </div>
+  </div>
+</div>
+</body></html>

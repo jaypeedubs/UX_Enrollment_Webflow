@@ -1,0 +1,87 @@
+<h2>Design — Section 1 of 5: Screens & Navigation</h2>
+<p class="subtitle">The full inventory of screens in the admin panel and how they connect. Does this match your mental model?</p>
+
+<div class="section">
+  <h3>Pages (Astro routes)</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;">
+
+    <div style="background:#fff;border:1px solid #e2d8d0;border-radius:8px;padding:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:#64748b;text-transform:uppercase;margin-bottom:6px;">Auth</div>
+      <div style="font-family:monospace;font-size:12px;color:#123161;margin-bottom:4px;">/admin/login</div>
+      <div style="color:#64748b;font-size:12px;">Supabase magic link or email+password for users with <code style="background:#f1f5f9;padding:1px 4px;border-radius:3px;font-size:11px;">role: "admin"</code> in their JWT. Redirects to <code style="background:#f1f5f9;padding:1px 4px;border-radius:3px;font-size:11px;">/admin</code> on success.</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e2d8d0;border-radius:8px;padding:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:#64748b;text-transform:uppercase;margin-bottom:6px;">Dashboard</div>
+      <div style="font-family:monospace;font-size:12px;color:#123161;margin-bottom:4px;">/admin</div>
+      <div style="color:#64748b;font-size:12px;">Summary stats: total unreviewed, counts by course, applications needing action (info requested, awaiting review). Quick-links into filtered list views.</div>
+    </div>
+
+    <div style="background:#fff;border:2px solid #123161;border-radius:8px;padding:14px;grid-column:1/-1;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:#123161;text-transform:uppercase;margin-bottom:6px;">Main Panel — Split-Pane ★</div>
+      <div style="font-family:monospace;font-size:12px;color:#123161;margin-bottom:4px;">/admin/applications</div>
+      <div style="color:#64748b;font-size:12px;margin-bottom:10px;">One screen, two panes. All the requested list views are filter states of this single route — no separate pages needed.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">All unread (submitted)</div>
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">By course → submitted</div>
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">By course → all</div>
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">By course → waitlisted</div>
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">By course → accepted</div>
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">By course → paid</div>
+        <div style="background:#e8edf5;border-radius:20px;padding:3px 10px;font-size:11px;color:#123161;">By course → enrolled</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e2d8d0;border-radius:8px;padding:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:#64748b;text-transform:uppercase;margin-bottom:6px;">Deep Link</div>
+      <div style="font-family:monospace;font-size:12px;color:#123161;margin-bottom:4px;">/admin/applications/:id</div>
+      <div style="color:#64748b;font-size:12px;">Shareable URL for a specific application. Renders split-pane with that record pre-selected in the detail panel. Useful for bookmarking or sharing between reviewers.</div>
+    </div>
+
+    <div style="background:#fff;border:1px dashed #ccc;border-radius:8px;padding:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:#64748b;text-transform:uppercase;margin-bottom:6px;">Suggested Addition</div>
+      <div style="font-family:monospace;font-size:12px;color:#64748b;margin-bottom:4px;">/admin/programs <span style="font-size:10px;color:#ccc;">(future)</span></div>
+      <div style="color:#64748b;font-size:12px;">Out of scope for now — Retool handles this. Placeholder route so the nav link exists and can be wired up later.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>Global nav (persistent header)</h3>
+  <div style="background:#123161;color:#fff;border-radius:8px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-family:monospace;">
+    <div style="display:flex;align-items:center;gap:20px;">
+      <span style="font-family:'Bodoni Moda SC',serif;font-size:14px;letter-spacing:0.05em;">ICIT Admin</span>
+      <span style="opacity:0.5;">|</span>
+      <span style="background:rgba(255,255,255,0.15);padding:3px 10px;border-radius:4px;">Applications</span>
+      <span style="opacity:0.6;">Dashboard</span>
+      <span style="opacity:0.4;">Programs ↗</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="background:rgba(236,189,156,0.3);color:#ecbd9c;border-radius:20px;padding:2px 10px;font-size:10px;">3 unread</span>
+      <span style="opacity:0.7;font-size:11px;">jared@icit.edu</span>
+      <span style="opacity:0.5;">Sign out</span>
+    </div>
+  </div>
+  <p style="font-size:12px;color:#64748b;margin-top:6px;">Midnight blue bar, Bodoni Moda SC wordmark, tan badge for unread count. "Programs" links out to Retool.</p>
+</div>
+
+<div class="section">
+  <h3>Suggested screens from codebase review (not in original brief)</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:12px;">
+    <div style="background:#fef9f0;border:1px solid #f5deb3;border-radius:6px;padding:10px;">
+      <div style="font-weight:700;margin-bottom:4px;">Request More Info</div>
+      <div style="color:#64748b;">Action already in backend. Sends applicant a notification asking them to respond. Needs a compose-message dialog in the panel.</div>
+    </div>
+    <div style="background:#fef9f0;border:1px solid #f5deb3;border-radius:6px;padding:10px;">
+      <div style="font-weight:700;margin-bottom:4px;">Event Timeline</div>
+      <div style="color:#64748b;"><code style="font-size:10px;">application_events</code> table already logs everything. Show audit trail in the detail panel: submitted → in_review → accepted, with timestamps and who acted.</div>
+    </div>
+    <div style="background:#fef9f0;border:1px solid #f5deb3;border-radius:6px;padding:10px;">
+      <div style="font-weight:700;margin-bottom:4px;">CV Inline Viewer</div>
+      <div style="color:#64748b;">Generate a signed Supabase storage URL and render it in an <code style="font-size:10px;">&lt;iframe&gt;</code> inside the detail panel. No download required to review a CV.</div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle">Does this screen inventory look right? Any screens to add or remove before we move to the list view design?</p>

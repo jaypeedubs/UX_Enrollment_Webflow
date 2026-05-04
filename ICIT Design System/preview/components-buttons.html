@@ -1,0 +1,70 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Buttons</title>
+<link rel="stylesheet" href="preview-card.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0&display=swap" rel="stylesheet">
+<style>
+  .btn-pill{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:.04em;cursor:pointer;border:0}
+  .btn-pill .arr{font-family:'Material Symbols Outlined';font-size:20px;font-weight:700}
+  .btn-circle{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;font-family:'Material Symbols Outlined';font-size:24px;font-weight:700}
+</style>
+</head><body>
+<div class="card">
+  <div class="label-mini">Buttons · Pills (canonical CTA)</div>
+  <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:24px">
+    <button class="btn-pill" style="background:#123161;color:#fff">Register Now <span class="arr">arrow_right_alt</span></button>
+    <button class="btn-pill" style="background:#ecbd9c;color:#123161">Apply <span class="arr">arrow_right_alt</span></button>
+    <button class="btn-pill" style="background:transparent;color:#123161;border:1.5px solid #123161;padding:12.5px 20.5px">Learn More <span class="arr">arrow_right_alt</span></button>
+  </div>
+  <div class="label-mini">Buttons · Circular Icon (dark surfaces)</div>
+  <div style="display:flex;gap:14px;align-items:center;background:#03192c;padding:24px;border-radius:8px">
+    <button class="btn-circle" style="background:#ecbd9c;color:#123161">arrow_right_alt</button>
+    <button class="btn-circle" style="background:#ecbd9c66;color:#fff;backdrop-filter:none">arrow_outward</button>
+    <button class="btn-circle" style="background:#fff;color:#123161">play_arrow</button>
+    <button class="btn-circle" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3)">menu</button>
+  </div>
+</div>
+
+<div class="card" style="margin-top:24px">
+  <div class="label-mini">Application Portal · Button Variants (Webflow classes)</div>
+  <style>
+    .portal-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:6px;font:600 14px var(--font-body);cursor:pointer;transition:background .15s,color .15s}
+    .btn-primary-1-2{background:#1a3a5c;color:#fff;border:none}
+    .btn-primary-1-2:hover{background:#123161}
+    .btn-ghost-1{background:transparent;color:#6b7280;border:1px solid #d1d5db}
+    .btn-ghost-1:hover{background:#f3f4f6;color:#374151}
+    .btn-submit{background:#16a34a;color:#fff;border:none}
+    .btn-submit:hover{background:#15803d}
+    .btn-danger-1{background:transparent;color:#792a1a;border:1.5px solid #ea9e89}
+    .btn-danger-1:hover{background:#fef2f2}
+    .row-label{font:600 11px var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:#826d5f;margin:16px 0 6px}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .usage-note{font-size:12px;color:#826d5f;margin:8px 0 0;line-height:1.5}
+  </style>
+
+  <div class="row-label">Primary — navy (next / continue)</div>
+  <div class="btn-row">
+    <button class="portal-btn btn-primary-1-2">Next Step</button>
+    <button class="portal-btn btn-primary-1-2">Continue</button>
+  </div>
+  <p class="usage-note">Webflow class: <code>btn-primary-1-2</code> or <code>btn-primary-1</code>. Use for forward progression only.</p>
+
+  <div class="row-label">Ghost — transparent (back / save draft)</div>
+  <div class="btn-row">
+    <button class="portal-btn btn-ghost-1">Back</button>
+    <button class="portal-btn btn-ghost-1">Save Draft</button>
+  </div>
+  <p class="usage-note">Webflow class: <code>btn-ghost-1</code>. Secondary or reversible actions.</p>
+
+  <div class="row-label">Submit — green (final submission)</div>
+  <div class="btn-row">
+    <button class="portal-btn btn-submit">Submit Application</button>
+  </div>
+  <p class="usage-note">Webflow class: <code>btn-submit</code>. Only on the final submission step.</p>
+
+  <div class="row-label">Danger — red outline (destructive actions)</div>
+  <div class="btn-row">
+    <button class="portal-btn btn-danger-1">Withdraw Application</button>
+    <button class="portal-btn btn-danger-1">Remove CV</button>
+  </div>
+  <p class="usage-note">Webflow class: <code>btn-danger-1</code> or <code>btn-danger</code>. Use for any action that permanently removes or cancels something — Withdraw, Remove CV, delete. Always red-outlined, never red-filled. The hover state adds a faint red tint (<code>#fef2f2</code>) to signal danger without aggression.</p>
+</div>
+</body></html>

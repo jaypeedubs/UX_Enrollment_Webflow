@@ -1,0 +1,99 @@
+<h2>Admin Panel — Layout Approach</h2>
+<p class="subtitle">Three navigation models for the application review panel. Which fits your workflow best?</p>
+
+<div class="options">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Split-Pane (Recommended)</h3>
+      <p>Left column: filterable application list. Right panel: application detail opens in place. Gmail-style — never lose your position in the list while reviewing a record.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;font-size:12px;">
+        <div style="background:#e8edf5;border-radius:4px;padding:6px 10px;flex:0 0 38%;font-family:monospace;font-size:11px;color:#333;">
+          <div style="font-weight:700;margin-bottom:4px;color:#123161;">LIST</div>
+          <div style="background:#fff;border-radius:3px;padding:4px 6px;margin-bottom:3px;border-left:3px solid #63a3da;">Smith, J. · ASC · submitted</div>
+          <div style="background:#f5f0eb;border-radius:3px;padding:4px 6px;margin-bottom:3px;">Lee, M. · FAC · in_review</div>
+          <div style="background:#f5f0eb;border-radius:3px;padding:4px 6px;margin-bottom:3px;">Patel, R. · AAC · waitlisted</div>
+          <div style="background:#f5f0eb;border-radius:3px;padding:4px 6px;">Torres, A. · ASC · accepted</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e2d8d0;border-radius:4px;padding:6px 10px;flex:1;font-size:11px;color:#333;">
+          <div style="font-weight:700;color:#123161;margin-bottom:4px;">Smith, Jane — ASC</div>
+          <div style="color:#64748b;margin-bottom:6px;">submitted 2026-04-28</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <span style="background:#123161;color:#fff;border-radius:3px;padding:2px 7px;font-size:10px;">Accept</span>
+            <span style="background:#fff;border:1px solid #ea9e89;color:#792a1a;border-radius:3px;padding:2px 7px;font-size:10px;">Reject</span>
+            <span style="background:#fff;border:1px solid #ccc;color:#555;border-radius:3px;padding:2px 7px;font-size:10px;">More Info</span>
+          </div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>Pros</h4><ul><li>Never lose list context</li><li>Fast sequential review</li><li>One screen, no navigation</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Detail panel is narrow on small screens</li><li>CV viewing needs expand/modal</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Tab Dashboard + Full-Screen Detail</h3>
+      <p>Top-level tabs per course, status sub-tabs within each. Row click opens full-screen detail view (back button returns to list). Most screen real estate for the detail view.</p>
+      <div style="margin-top:12px;font-size:11px;font-family:monospace;">
+        <div style="display:flex;gap:0;border-bottom:2px solid #123161;margin-bottom:6px;">
+          <div style="background:#123161;color:#fff;padding:4px 10px;border-radius:3px 3px 0 0;font-size:10px;">ASC</div>
+          <div style="padding:4px 10px;color:#64748b;font-size:10px;">FAC</div>
+          <div style="padding:4px 10px;color:#64748b;font-size:10px;">AAC</div>
+          <div style="padding:4px 10px;color:#64748b;font-size:10px;">ISC</div>
+        </div>
+        <div style="display:flex;gap:6px;margin-bottom:8px;">
+          <span style="background:#e8edf5;color:#123161;border-radius:12px;padding:2px 8px;font-size:10px;">New (3)</span>
+          <span style="background:#f5f0eb;color:#64748b;border-radius:12px;padding:2px 8px;font-size:10px;">Waitlisted (5)</span>
+          <span style="background:#f5f0eb;color:#64748b;border-radius:12px;padding:2px 8px;font-size:10px;">Accepted (12)</span>
+          <span style="background:#f5f0eb;color:#64748b;border-radius:12px;padding:2px 8px;font-size:10px;">Enrolled (8)</span>
+        </div>
+        <div style="background:#e8edf5;border-radius:4px;padding:4px 8px;margin-bottom:3px;display:flex;justify-content:space-between;">
+          <span>Smith, Jane</span><span style="color:#64748b;">submitted 04/28 ···</span>
+        </div>
+        <div style="background:#f5f0eb;border-radius:4px;padding:4px 8px;margin-bottom:3px;display:flex;justify-content:space-between;">
+          <span>Torres, Ana</span><span style="color:#64748b;">submitted 04/25 ···</span>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>Pros</h4><ul><li>Full width for detail view</li><li>Course-first mental model</li><li>Status counts visible at a glance</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Navigate away from list to review</li><li>More clicks per workflow</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Sidebar Nav + Full-Width List</h3>
+      <p>Persistent left sidebar with course/status links. Selected filter shows full-width table. Row click opens a drawer from the right (slides in over the list).</p>
+      <div style="margin-top:12px;display:flex;gap:8px;font-size:11px;">
+        <div style="background:#123161;color:#fff;border-radius:4px;padding:6px 8px;font-size:10px;min-width:80px;">
+          <div style="font-weight:700;margin-bottom:6px;opacity:0.7;font-size:9px;letter-spacing:0.1em;">COURSES</div>
+          <div style="margin-bottom:3px;background:rgba(255,255,255,0.15);padding:2px 5px;border-radius:2px;">ASC</div>
+          <div style="margin-bottom:3px;padding:2px 5px;opacity:0.6;">FAC</div>
+          <div style="margin-bottom:3px;padding:2px 5px;opacity:0.6;">AAC</div>
+          <div style="font-weight:700;margin:8px 0 4px;opacity:0.7;font-size:9px;letter-spacing:0.1em;">STATUS</div>
+          <div style="margin-bottom:3px;padding:2px 5px;opacity:0.6;">New</div>
+          <div style="margin-bottom:3px;padding:2px 5px;opacity:0.6;">Waitlisted</div>
+          <div style="margin-bottom:3px;padding:2px 5px;opacity:0.6;">Accepted</div>
+        </div>
+        <div style="flex:1;font-size:10px;">
+          <div style="background:#e8edf5;border-radius:3px;padding:4px 6px;margin-bottom:3px;display:flex;justify-content:space-between;"><span>Smith, Jane · ASC</span><span>submitted ···</span></div>
+          <div style="background:#f5f0eb;border-radius:3px;padding:4px 6px;margin-bottom:3px;display:flex;justify-content:space-between;"><span>Torres, Ana · ASC</span><span>in_review ···</span></div>
+          <div style="background:#f5f0eb;border-radius:3px;padding:4px 6px;margin-bottom:3px;display:flex;justify-content:space-between;"><span>Lee, Min · ASC</span><span>submitted ···</span></div>
+        </div>
+      </div>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>Pros</h4><ul><li>Classic admin panel feel</li><li>Sidebar always visible for navigation</li><li>Works well with many courses</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Drawer competes with list for space</li><li>Familiar but not optimized for review flow</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;">My recommendation: <strong>A (Split-Pane)</strong> — keeps you in the list while reviewing, fastest for sequential decisions. The detail panel can expand/maximize for CV viewing.</p>

@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ICIT — Marketing UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Bodoni+Moda+SC:opsz,wght@6..96,400..900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  /* ===== Marketing kit — page-level styles ===== */
+  body { background: var(--bg-secondary); }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 32px; }
+
+  /* ===== Top nav ===== */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,247,245,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: var(--container); margin: 0 auto;
+  }
+  .nav .brand {
+    font-family: var(--font-heading);
+    font-size: 22px; font-weight: 600; color: var(--fg-brand);
+    letter-spacing: -0.01em;
+  }
+  .nav ul { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; }
+  .nav ul a {
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; color: var(--fg-1); text-transform: uppercase;
+  }
+  .nav ul a:hover { color: var(--link); }
+
+  /* ===== Buttons ===== */
+  .btn-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; border-radius: 999px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 600;
+    letter-spacing: 0.04em; cursor: pointer; border: 0;
+    transition: background var(--duration) var(--easing), transform var(--duration) var(--easing);
+  }
+  .btn-pill .arr { font-family: var(--font-icons); font-size: 20px; font-weight: 700; transition: transform var(--duration) var(--easing); }
+  .btn-pill:hover .arr { transform: translateX(4px); }
+  .btn-primary { background: var(--blues-midnight-1); color: #fff; }
+  .btn-primary:hover { background: var(--blues-midnight-2); }
+  .btn-accent { background: var(--tans-burlywood); color: var(--blues-midnight-1); }
+  .btn-accent:hover { background: var(--tans-tan-darker); }
+  .btn-ghost-light {
+    background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 12.5px 20.5px;
+  }
+  .btn-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; cursor: pointer;
+    font-family: var(--font-icons); font-size: 24px; font-weight: 700;
+    transition: background var(--duration) var(--easing);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: 720px;
+    background: var(--blues-dark);
+    color: #fff;
+    overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url("../../assets/img-hero-slider.jpg") center/cover no-repeat;
+    opacity: 0.55;
+  }
+  .hero-shade {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(3,25,44,0.35) 0%, rgba(3,25,44,0.85) 70%, rgba(3,25,44,0.95) 100%);
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 96px 32px; max-width: var(--container); margin: 0 auto; width: 100%; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--linens-warm-tope); margin-bottom: 28px;
+  }
+  .hero-eyebrow .num { color: var(--tans-burlywood); }
+  .hero-eyebrow .rule { width: 80px; height: 1px; background: var(--linens-warm-tope); }
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(56px, 7vw, 88px);
+    font-weight: 500; line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #fff; margin: 0 0 24px;
+    max-width: 14ch;
+  }
+  .hero h1 em { font-family: var(--font-heading); font-style: italic; font-weight: 400; color: var(--tans-burlywood); }
+  .hero p.lede {
+    font-size: 19px; line-height: 1.55; color: var(--linens-lighter-linen);
+    max-width: 56ch; margin: 0 0 40px;
+  }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .hero-meta {
+    position: absolute; bottom: 32px; right: 32px; z-index: 2;
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--linens-warm-tope);
+  }
+  .hero-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--tans-burlywood); }
+
+  /* ===== Section opener (numbered eyebrow + Bodoni title) ===== */
+  .section { padding: 112px 0; }
+  .section.cream { background: var(--linens-lightest-linen); }
+  .section.dark  { background: var(--blues-dark); color: var(--fg-on-dark); }
+  .section.linen { background: var(--linens-lighter-linen); }
+  .opener {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-body); font-size: 13px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--blacks-black); margin-bottom: 28px;
+  }
+  .section.dark .opener { color: var(--linens-lighter-linen); }
+  .opener .num { color: var(--blacks-black); }
+  .section.dark .opener .num { color: var(--tans-burlywood); }
+  .opener .rule { width: 80px; height: 1px; background: var(--tans-tan-darker); }
+  .opener h2 {
+    /* unused — title is its own element */
+  }
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 500; line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: var(--fg-brand); max-width: 18ch;
+    margin: 0 0 24px;
+  }
+  .section.dark .section-title { color: #fff; }
+  .section-title em { font-family: var(--font-heading); font-style: italic; font-weight: 400; }
+  .section-lede {
+    font-size: 18px; line-height: 1.55; color: var(--fg-1); max-width: 56ch; margin: 0;
+  }
+  .section.dark .section-lede { color: var(--linens-lighter-linen); }
+
+  /* ===== Memorial Tribute ===== */
+  .tribute-grid { display: grid; grid-template-columns: 5fr 6fr; gap: 64px; align-items: center; }
+  .tribute-portrait {
+    width: 100%; aspect-ratio: 4/5;
+    background: url("../../assets/img-balkany.jpg") center/cover no-repeat;
+    border-radius: 4px;
+  }
+  .tribute-quote {
+    font-family: var(--font-heading);
+    font-size: 28px; line-height: 1.35; color: var(--fg-1);
+    font-weight: 500; font-style: italic;
+    margin: 24px 0 16px;
+  }
+  .tribute-attribution {
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2);
+  }
+
+  /* ===== Courses grid ===== */
+  .courses-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 64px;
+  }
+  .course-card {
+    background: #fff; border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    display: flex; flex-direction: column;
+    transition: transform var(--duration) var(--easing);
+  }
+  .course-card:hover { transform: translateY(-3px); }
+  .course-cover {
+    aspect-ratio: 4/3; position: relative;
+    background-size: cover; background-position: center;
+  }
+  .course-tag {
+    position: absolute; top: 16px; left: 16px;
+    background: #fff; font-family: var(--font-body);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 7px 12px; border-radius: 999px;
+  }
+  .course-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .course-eyebrow {
+    font-family: var(--font-body); font-size: 11px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .course-name {
+    font-family: var(--font-heading); font-size: 26px; font-weight: 500;
+    line-height: 1.1; letter-spacing: -0.022em; color: var(--fg-brand);
+    margin: 0;
+  }
+  .course-summary { font-size: 14px; line-height: 1.55; color: var(--fg-1); margin: 0; flex: 1; }
+  .course-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--border-subtle);
+  }
+  .course-meta {
+    font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    color: var(--fg-2);
+  }
+
+  /* Course color hooks (one tag color per course) */
+  .c-asc   .course-tag { color: var(--course-asc); }
+  .c-isc   .course-tag { color: var(--course-isc); }
+  .c-aac   .course-tag { color: var(--course-aac); }
+  .c-fac   .course-tag { color: var(--course-fac); }
+  .c-ifac  .course-tag { color: var(--course-ifac); }
+  .c-citec .course-tag { color: var(--course-citec); }
+
+  .c-asc   .course-foot .btn-circle { background: var(--course-asc); color: #fff; }
+  .c-isc   .course-foot .btn-circle { background: var(--course-isc); color: #fff; }
+  .c-aac   .course-foot .btn-circle { background: var(--course-aac); color: #fff; }
+  .c-fac   .course-foot .btn-circle { background: var(--course-fac); color: #fff; }
+  .c-ifac  .course-foot .btn-circle { background: var(--course-ifac); color: #fff; }
+  .c-citec .course-foot .btn-circle { background: var(--course-citec); color: #fff; }
+
+  /* ===== MSTB feature ===== */
+  .mstb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .mstb-img {
+    aspect-ratio: 4/5; border-radius: 4px;
+    background: url("../../assets/img-clinical-2.jpg") center/cover no-repeat;
+  }
+  .mstb-list { list-style: none; padding: 0; margin: 32px 0 32px; }
+  .mstb-list li {
+    display: flex; gap: 12px; padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    font-size: 15px; color: var(--linens-lighter-linen);
+  }
+  .mstb-list li:last-child { border-bottom: 1px solid rgba(255,255,255,0.10); }
+  .mstb-list li .k {
+    flex: 0 0 36px; color: var(--tans-burlywood);
+    font-family: var(--font-body); font-size: 11px; font-weight: 700;
+    letter-spacing: var(--tracking-caps);
+    padding-top: 2px;
+  }
+
+  /* ===== Faculty ===== */
+  .faculty-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+  .faculty-card { display: flex; flex-direction: column; gap: 12px; }
+  .faculty-img {
+    aspect-ratio: 4/5; border-radius: 4px; background-size: cover; background-position: center top;
+  }
+  .faculty-name {
+    font-family: var(--font-heading); font-size: 22px; font-weight: 500;
+    line-height: 1.15; letter-spacing: -0.02em; color: var(--fg-brand); margin: 6px 0 0;
+  }
+  .faculty-title {
+    font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--fg-2);
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    background: var(--blues-midnight-3); color: var(--linens-lighter-linen);
+    padding: 96px 0 32px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; }
+  .footer-brand { font-family: var(--font-heading); font-size: 56px; font-weight: 500; color: #fff; letter-spacing: -0.02em; line-height: 1; margin: 0 0 20px; }
+  .footer-mission { font-size: 14px; line-height: 1.6; color: var(--linens-lighter-linen); max-width: 36ch; }
+  .footer h4 {
+    font-family: var(--font-body); font-size: 11px; font-weight: 700;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase;
+    color: var(--linens-warm-tope); margin: 0 0 18px;
+  }
+  .footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer a { color: var(--linens-lighter-linen); font-size: 14px; }
+  .footer a:hover { color: var(--tans-burlywood); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 80px; padding-top: 28px;
+    border-top: 1px solid rgba(201,180,167,0.10);
+    font-size: 12px; color: var(--linens-warm-tope);
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== Floating menu button ===== */
+  .float-menu {
+    position: fixed; right: 28px; bottom: 28px; z-index: 60;
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--blues-midnight-1); color: #fff; border: 0;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: var(--shadow-lg);
+    font-family: var(--font-icons); font-size: 28px; font-weight: 700;
+  }
+
+  @media (max-width: 980px) {
+    .courses-grid, .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+    .tribute-grid, .mstb-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav ul { display: none; }
+  }
+</style>
+</head>
+<body data-screen-label="Marketing UI Kit">
+
+<!-- ===== Nav ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">ICIT</div>
+    <ul>
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">MSTB</a></li>
+      <li><a href="#">Faculty</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <button class="btn-pill btn-primary">Apply <span class="arr">arrow_right_alt</span></button>
+  </div>
+</nav>
+
+<!-- ===== 0 — Hero ===== -->
+<section class="hero" data-screen-label="Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="num">01</span>
+      <span class="rule"></span>
+      <span>Cochlear Implant Training</span>
+    </div>
+    <h1>The Institute for <em>Cochlear Implant</em> Training</h1>
+    <p class="lede">Online, certificate-bearing courses for surgeons, audiologists, and their multidisciplinary teams — built around weekly live web classes, asynchronous didactics, and hands-on clinical practica.</p>
+    <div class="hero-cta">
+      <button class="btn-pill btn-accent">View Courses <span class="arr">arrow_right_alt</span></button>
+      <button class="btn-pill btn-ghost-light">Watch Intro <span class="arr">play_arrow</span></button>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span>Founded 2018</span>
+    <span class="dot"></span>
+    <span>Miami, FL</span>
+    <span class="dot"></span>
+    <span>In Memory of Dr. Thomas Balkany</span>
+  </div>
+</section>
+
+<!-- ===== 1 — Memorial Tribute ===== -->
+<section class="section cream" data-screen-label="Memorial Tribute">
+  <div class="container">
+    <div class="opener">
+      <span class="num">01</span>
+      <span class="rule"></span>
+      <span>Memorial Tribute</span>
+    </div>
+    <div class="tribute-grid">
+      <div class="tribute-portrait" role="img" aria-label="Dr. Thomas Balkany"></div>
+      <div>
+        <h2 class="section-title">In memory of <em>Thomas J. Balkany,</em> MD</h2>
+        <p class="section-lede">A pioneer of cochlear implantation and lifelong educator. The Institute carries forward his commitment to clinical training, mentorship, and evidence-based care.</p>
+        <p class="tribute-quote">"To restore hearing is to restore connection — to family, to language, to the life one knows."</p>
+        <p class="tribute-attribution">— Dr. Thomas Balkany, 1944–2023</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2 — Courses ===== -->
+<section class="section linen" data-screen-label="Courses">
+  <div class="container">
+    <div class="opener">
+      <span class="num">02</span>
+      <span class="rule"></span>
+      <span>Curriculum</span>
+    </div>
+    <h2 class="section-title">Six tracks for the <em>multidisciplinary</em> CI team</h2>
+    <p class="section-lede">Each course is taught online with live weekly web classes, recorded didactic lectures, knowledge assessments, and a moderated discussion board.</p>
+
+    <div class="courses-grid">
+
+      <article class="course-card c-asc">
+        <div class="course-cover" style="background-image:url('../../assets/img-asc.jpg')">
+          <span class="course-tag">ASC</span>
+        </div>
+        <div class="course-body">
+          <span class="course-eyebrow">Advanced Surgeons</span>
+          <h3 class="course-name">Advanced Cochlear Implant Surgeons</h3>
+          <p class="course-summary">Subspecialty training in CI surgery for infants, children, and adults — adds depth to neurotology and pediatric otolaryngology fellowships.</p>
+          <div class="course-foot">
+            <span class="course-meta">13 weeks · Hands-on lab</span>
+            <button class="btn-circle">arrow_right_alt</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card c-aac">
+        <div class="course-cover" style="background-image:url('../../assets/img-aac.jpg')">
+          <span class="course-tag">AAC</span>
+        </div>
+        <div class="course-body">
+          <span class="course-eyebrow">Advanced Audiology</span>
+          <h3 class="course-name">Advanced Cochlear Implant Audiology</h3>
+          <p class="course-summary">Focused on programming nuance, troubleshooting, and complex candidacy — for audiologists already practicing CI.</p>
+          <div class="course-foot">
+            <span class="course-meta">12 weeks · Live + async</span>
+            <button class="btn-circle">arrow_right_alt</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card c-fac">
+        <div class="course-cover" style="background-image:url('../../assets/img-clinical-3.jpg')">
+          <span class="course-tag">FAC</span>
+        </div>
+        <div class="course-body">
+          <span class="course-eyebrow">Foundational Audiology</span>
+          <h3 class="course-name">Foundational Cochlear Implant Audiology</h3>
+          <p class="course-summary">A first deep training in CI audiology — candidacy, device selection, surgical implications, and initial programming.</p>
+          <div class="course-foot">
+            <span class="course-meta">10 weeks · Online</span>
+            <button class="btn-circle">arrow_right_alt</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card c-isc">
+        <div class="course-cover" style="background-image:url('../../assets/img-clinical-1.jpg')">
+          <span class="course-tag">ISC</span>
+        </div>
+        <div class="course-body">
+          <span class="course-eyebrow">International Surgeons</span>
+          <h3 class="course-name">International CI Surgeons Course</h3>
+          <p class="course-summary">A surgical curriculum tailored for international practice patterns and device availability.</p>
+          <div class="course-foot">
+            <span class="course-meta">12 weeks · English</span>
+            <button class="btn-circle">arrow_right_alt</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card c-ifac">
+        <div class="course-cover" style="background-image:url('../../assets/img-clinical-4.jpg')">
+          <span class="course-tag">IFAC</span>
+        </div>
+        <div class="course-body">
+          <span class="course-eyebrow">International Foundational</span>
+          <h3 class="course-name">International Foundational Audiology</h3>
+          <p class="course-summary">Foundational programming and candidacy training for audiologists practicing outside North America.</p>
+          <div class="course-foot">
+            <span class="course-meta">10 weeks · Online</span>
+            <button class="btn-circle">arrow_right_alt</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card c-citec">
+        <div class="course-cover" style="background-image:url('../../assets/img-clinical-5.jpg')">
+          <span class="course-tag">CITEC</span>
+        </div>
+        <div class="course-body">
+          <span class="course-eyebrow">Team Efficiency</span>
+          <h3 class="course-name">CI Team Efficiency Course</h3>
+          <p class="course-summary">Workflow, scheduling, and care-pathway training for the full CI clinical team — schedulers, surgeons, audiologists, SLPs.</p>
+          <div class="course-foot">
+            <span class="course-meta">8 weeks · Self-paced</span>
+            <button class="btn-circle">arrow_right_alt</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3 — MSTB v3 ===== -->
+<section class="section dark" data-screen-label="MSTB">
+  <div class="container">
+    <div class="opener">
+      <span class="num">03</span>
+      <span class="rule"></span>
+      <span>MSTB v3</span>
+    </div>
+    <div class="mstb-grid">
+      <div class="mstb-img" role="img" aria-label="Audiologist conducting speech testing"></div>
+      <div>
+        <h2 class="section-title">Minimum Speech <em>Test Battery</em></h2>
+        <p class="section-lede">Updated and streamlined test battery for pre-operative determination of candidacy and post-operative assessment of cochlear implant performance in adults.</p>
+        <ul class="mstb-list">
+          <li><span class="k">v3.1</span><span>Test files, scoresheets, and recommended quiet/noise levels</span></li>
+          <li><span class="k">PDF</span><span>Manual covering protocol, stimulus calibration, and reporting</span></li>
+          <li><span class="k">XLSX</span><span>Editable scoresheet templates for clinic workflows</span></li>
+          <li><span class="k">FREE</span><span>Distributed at no cost to qualified clinics — sign-up required</span></li>
+        </ul>
+        <button class="btn-pill btn-accent">Signup &amp; Download <span class="arr">arrow_right_alt</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4 — Faculty ===== -->
+<section class="section cream" data-screen-label="Faculty">
+  <div class="container">
+    <div class="opener">
+      <span class="num">04</span>
+      <span class="rule"></span>
+      <span>Faculty</span>
+    </div>
+    <h2 class="section-title">Practicing CI clinicians, <em>teaching from clinic</em></h2>
+    <p class="section-lede">Course faculty are active surgeons and audiologists from leading academic CI programs — none of them are full-time educators.</p>
+
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <div class="faculty-img" style="background-image:url('../../assets/img-tbalkany5.jpg')"></div>
+        <div class="faculty-title">Director Emeritus</div>
+        <h3 class="faculty-name">Thomas J. Balkany, MD</h3>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img" style="background-image:url('../../assets/img-faculty.jpg')"></div>
+        <div class="faculty-title">Course Director · ASC</div>
+        <h3 class="faculty-name">Adrien Eshraghi, MD</h3>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img" style="background-image:url('../../assets/img-cedric.webp')"></div>
+        <div class="faculty-title">Course Director · AAC</div>
+        <h3 class="faculty-name">Cedric Navarro, AuD</h3>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-img" style="background-image:url('../../assets/img-philomin.webp')"></div>
+        <div class="faculty-title">Course Director · FAC</div>
+        <h3 class="faculty-name">Philomin Joseph, AuD</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5 — Footer ===== -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">ICIT</div>
+        <p class="footer-mission">The Thomas Balkany Institute for Cochlear Implant Training — online, evidence-based education for the multidisciplinary CI team.</p>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#">Surgeons (ASC)</a></li>
+          <li><a href="#">Audiology (AAC)</a></li>
+          <li><a href="#">Foundational (FAC)</a></li>
+          <li><a href="#">International (ISC, IFAC)</a></li>
+          <li><a href="#">Teams (CITEC)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">MSTB-3 Download</a></li>
+          <li><a href="#">Video Library</a></li>
+          <li><a href="#">Faculty</a></li>
+          <li><a href="#">Discussion Board</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@icit.org">info@icit.org</a></li>
+          <li><a href="#">Apply</a></li>
+          <li><a href="#">Application Status</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ICIT · Miami, Florida</span>
+      <span>In partnership with the University of Miami Miller School of Medicine</span>
+    </div>
+  </div>
+</footer>
+
+<button class="float-menu" aria-label="Open menu">menu</button>
+
+</body>
+</html>

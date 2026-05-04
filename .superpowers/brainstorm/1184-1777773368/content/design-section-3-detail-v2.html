@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section 3 v2 — Detail Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Open Sans', sans-serif; background: #f0ece8; padding: 24px; color: #382e27; font-size: 13px; }
+
+  .page-title { font-size: 17px; font-weight: 700; color: #123161; margin-bottom: 4px; }
+  .page-sub   { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+  .change-tag { display:inline-block; background:#fef3c7; color:#92400e; font-size:10px; font-weight:700; padding:1px 7px; border-radius:20px; margin-left:6px; vertical-align:middle; }
+
+  .shell { display: flex; height: 600px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 24px rgba(18,49,97,0.13); }
+
+  /* LEFT STUB */
+  .left-stub { width: 220px; flex-shrink: 0; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #e8e0da; }
+  .stub-header { padding: 14px 16px; border-bottom: 1px solid #e8e0da; font-weight: 700; font-size: 13px; color: #123161; }
+  .stub-row { display: flex; align-items: center; gap: 9px; padding: 10px 16px; border-bottom: 1px solid #f0ece8; font-size: 12px; }
+  .stub-row.selected { background: #e8edf5; border-left: 3px solid #123161; padding-left: 13px; }
+  .stub-row.prev { opacity: 0.45; }
+  .stub-row.next { opacity: 0.45; }
+  .cc { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .asc { background: #c5543b; } .fac { background: #3d7a7a; } .aac { background: #5b6b82; }
+
+  /* RIGHT DETAIL */
+  .right { flex: 1; background: #faf7f5; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* Header */
+  .det-header { background: #fff; border-bottom: 1px solid #e8e0da; padding: 14px 20px 0; }
+
+  /* Top row: nav arrows + identity + actions */
+  .det-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+
+  /* Navigation arrows */
+  .nav-arrows { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+  .nav-btn { width: 30px; height: 30px; border-radius: 6px; border: 1px solid #e2d8d0; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #382e27; transition: background 0.1s, border-color 0.1s; }
+  .nav-btn:hover { background: #f8f5f2; border-color: #c8bdb6; }
+  .nav-btn.disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+  .nav-btn .msym { font-family: 'Material Symbols Outlined'; font-size: 18px; }
+  .nav-count { font-size: 11px; color: #94a3b8; padding: 0 6px; white-space: nowrap; }
+
+  /* Vertical divider */
+  .nav-divider { width: 1px; height: 28px; background: #e8e0da; flex-shrink: 0; }
+
+  /* Identity */
+  .det-identity { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+  .det-course-circle { width: 40px; height: 40px; border-radius: 50%; background: #c5543b; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .det-name { font-family: 'Bodoni Moda SC', serif; font-size: 17px; font-weight: 500; color: #123161; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .det-sub  { font-size: 11px; color: #64748b; margin-top: 2px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+  .badge-submitted { background: #dbeafe; color: #1d4ed8; }
+
+  /* Action buttons */
+  .det-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+  .btn { padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; font-family: 'Open Sans', sans-serif; display: flex; align-items: center; gap: 5px; }
+  .btn .msym { font-family: 'Material Symbols Outlined'; font-size: 14px; }
+  .btn-accept   { background: #123161; color: #fff; }
+  .btn-waitlist { background: #fff; color: #382e27; border: 1px solid #e2d8d0; }
+  .btn-more     { background: #fff; color: #382e27; border: 1px solid #e2d8d0; }
+  .btn-reject   { background: #b91c1c; color: #fff; }
+
+  /* Tabs */
+  .det-tabs { display: flex; gap: 0; border-top: 1px solid #f0ece8; }
+  .det-tab { padding: 9px 16px; font-size: 12px; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; cursor: pointer; }
+  .det-tab.active { color: #123161; border-bottom-color: #123161; }
+
+  /* Tab body */
+  .det-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .info-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin-bottom: 3px; }
+  .info-field .val  { font-size: 13px; color: #382e27; }
+  .info-field .val.locked { color: #94a3b8; font-style: italic; font-size: 12px; }
+
+  .section-heading { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin: 14px 0 8px; border-top: 1px solid #e8e0da; padding-top: 12px; }
+
+  .answer-block { background: #fff; border: 1px solid #e8e0da; border-radius: 8px; padding: 11px 13px; margin-bottom: 9px; }
+  .answer-q { font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 3px; }
+  .answer-a { font-size: 13px; color: #382e27; line-height: 1.5; }
+
+  /* Annotation */
+  .ann-box { background: #fff; border: 2px solid #fcd34d; border-radius: 8px; padding: 12px 16px; margin-top: 20px; font-size: 12px; color: #382e27; }
+  .ann-box strong { color: #123161; }
+  code { background: #f1f5f9; padding: 1px 4px; border-radius: 3px; font-size: 11px; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="page-title">Design — Section 3 of 5: Detail Panel <span class="change-tag">updated</span></div>
+<div class="page-sub">Navigation arrows added to the header — step through applicants without returning to the list.</div>
+
+<div class="shell">
+
+  <!-- LEFT STUB -->
+  <div class="left-stub">
+    <div class="stub-header">New <span style="font-size:10px;font-weight:400;color:#94a3b8;">(4)</span></div>
+    <div class="stub-row prev">
+      <div class="cc fac">FAC</div>
+      <div><div style="font-size:12px;">Ana Torres</div><div style="font-size:10px;color:#64748b;">Apr 25</div></div>
+    </div>
+    <div class="stub-row selected">
+      <div class="cc asc">ASC</div>
+      <div><div style="font-weight:700;font-size:12px;">Jane Smith</div><div style="font-size:10px;color:#94a3b8;">2 of 4</div></div>
+    </div>
+    <div class="stub-row next">
+      <div class="cc aac">AAC</div>
+      <div><div style="font-size:12px;">Raj Patel</div><div style="font-size:10px;color:#64748b;">Apr 22</div></div>
+    </div>
+    <div class="stub-row next" style="opacity:0.25;">
+      <div class="cc asc">ASC</div>
+      <div><div style="font-size:12px;">Min-Ji Lee</div><div style="font-size:10px;color:#64748b;">Apr 19</div></div>
+    </div>
+    <div style="padding:14px;font-size:10px;color:#b0a8a2;margin-top:auto;border-top:1px solid #f0ece8;">← List context</div>
+  </div>
+
+  <!-- DETAIL -->
+  <div class="right">
+    <div class="det-header">
+      <div class="det-top">
+
+        <!-- Nav arrows -->
+        <div class="nav-arrows">
+          <button class="nav-btn"><span class="msym">chevron_left</span></button>
+          <span class="nav-count">2 / 4</span>
+          <button class="nav-btn"><span class="msym">chevron_right</span></button>
+        </div>
+
+        <div class="nav-divider"></div>
+
+        <!-- Identity -->
+        <div class="det-identity">
+          <div class="det-course-circle">ASC</div>
+          <div style="min-width:0;">
+            <div class="det-name">Jane Smith</div>
+            <div class="det-sub">
+              jsmith@clinic.edu
+              <span style="color:#e2d8d0;">·</span>
+              +1 (312) 555-0142
+              <span style="color:#e2d8d0;">·</span>
+              <span class="badge badge-submitted">submitted</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="det-actions">
+          <button class="btn btn-accept"><span class="msym">check_circle</span> Accept</button>
+          <button class="btn btn-waitlist"><span class="msym">schedule</span> Waitlist</button>
+          <button class="btn btn-more"><span class="msym">help</span> More Info</button>
+          <button class="btn btn-reject"><span class="msym">cancel</span> Reject</button>
+        </div>
+      </div>
+
+      <div class="det-tabs">
+        <div class="det-tab active">Application</div>
+        <div class="det-tab">CV</div>
+        <div class="det-tab">Admin Notes</div>
+        <div class="det-tab">Timeline</div>
+      </div>
+    </div>
+
+    <!-- Application tab body -->
+    <div class="det-body">
+      <div class="section-heading">Applicant</div>
+      <div class="info-grid">
+        <div class="info-field"><label>First name</label><div class="val locked">Jane <span style="font-family:'Material Symbols Outlined';font-size:12px;vertical-align:middle;">lock</span></div></div>
+        <div class="info-field"><label>Last name</label><div class="val locked">Smith <span style="font-family:'Material Symbols Outlined';font-size:12px;vertical-align:middle;">lock</span></div></div>
+        <div class="info-field"><label>Email</label><div class="val">jsmith@clinic.edu</div></div>
+        <div class="info-field"><label>Phone</label><div class="val">+1 (312) 555-0142</div></div>
+        <div class="info-field"><label>Program</label><div class="val locked">Advanced Surgeons Course (ASC) <span style="font-family:'Material Symbols Outlined';font-size:12px;vertical-align:middle;">lock</span></div></div>
+        <div class="info-field"><label>Submitted</label><div class="val">April 28, 2026 — 9:14 AM</div></div>
+      </div>
+
+      <div class="section-heading">Program questions</div>
+      <div class="answer-block">
+        <div class="answer-q">Years of clinical experience in CI surgery</div>
+        <div class="answer-a">5+</div>
+      </div>
+      <div class="answer-block">
+        <div class="answer-q">What do you hope to gain from this program?</div>
+        <div class="answer-a">I am looking to deepen my understanding of electrode insertion techniques and hands-on temporal bone practicum.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ann-box">
+  <strong>Nav arrows <span class="change-tag">added</span></strong> — <code>‹ 2 / 4 ›</code> sits between a thin vertical divider and the applicant identity. Arrows step through the current filtered list in order. Count shows position within the active filter (e.g. "2 / 4 new applicants"). Left arrow is disabled on the first record; right arrow is disabled on the last. The list panel highlights the corresponding row as you arrow through — no need to click back into the list. Keyboard shortcuts <code>←</code> / <code>→</code> will also trigger navigation (wired in React).
+</div>
+
+<p style="font-size:12px;color:#64748b;margin-top:16px;">Detail panel approved? Ready to move to Section 4 — confirmation dialogs (Accept, Reject, Waitlist, Request More Info)?</p>
+
+</body>
+</html>
