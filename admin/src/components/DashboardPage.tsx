@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 import type { Application } from '../lib/types';
 import { useApplications } from '../hooks/useApplications';
-
-const COURSES = ['ASC', 'ISC', 'AAC', 'FAC', 'IFAC', 'CITEC'];
+import { COURSES } from '../lib/constants';
 
 interface CourseRow {
   course: string;
