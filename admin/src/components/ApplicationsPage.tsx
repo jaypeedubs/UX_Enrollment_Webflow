@@ -6,6 +6,7 @@ import { ApplicationDetail } from './ApplicationDetail';
 import { ConfirmDialog } from './ConfirmDialog';
 import { supabase } from '../lib/supabase';
 import { COURSES, STATUSES } from '../lib/constants';
+import { updateAdminNotes } from '../lib/api';
 
 type DialogVariant = 'accept' | 'waitlist' | 'request_more_info' | 'reject';
 
@@ -83,10 +84,16 @@ export function ApplicationsPage() {
     }
   }, [dialog, refresh]);
 
-  // Stubbed: requires admin-write Edge Function (not yet implemented)
-  const handleSaveNotes = useCallback((_notes: string) => {
-    console.warn('admin_notes save requires admin-write Edge Function — not yet implemented');
-  }, []);
+  const handleSaveNotes = useCallback(async (notes: string) => {
+    if (!selectedId) return;
+    setActionError(null);
+    try {
+      await updateAdminNotes(selectedId, notes);
+      refresh();
+    } catch (err: any) {
+      setActionError(`Failed to save notes: ${err.message}`);
+    }
+  }, [selectedId, refresh]);
 
   return (
     <div className="flex flex-col h-screen">
