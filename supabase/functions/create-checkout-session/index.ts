@@ -60,7 +60,7 @@ Deno.serve(async (req) => {
       return new Response('Forbidden', { status: 403 })
     }
 
-    if (app.status !== 'accepted' && app.status !== 'enrollment_confirmed') {
+    if (app.status !== 'accepted') {
       return new Response(
         JSON.stringify({ error: `Cannot initiate payment from status: ${app.status}` }),
         { status: 400 }
@@ -68,20 +68,6 @@ Deno.serve(async (req) => {
     }
 
     const program = app.programs as { name: string; price_cents: number }
-
-    // Advance to enrollment_confirmed on first call (idempotent on second call)
-    if (app.status === 'accepted') {
-      await admin
-        .from('applications')
-        .update({ status: 'enrollment_confirmed' })
-        .eq('id', application_id)
-
-      await admin.from('application_events').insert({
-        application_id,
-        event_type: 'enrollment_confirmed',
-        triggered_by: user.id,
-      })
-    }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],

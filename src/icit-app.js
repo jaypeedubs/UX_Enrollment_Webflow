@@ -697,7 +697,6 @@
     accepted:             { msg: 'Congratulations! Please confirm your enrollment.',   href: '/enrollment-confirmation' },
     waitlisted:           { msg: "You're on the waitlist. We'll notify you of any change.", href: '/application-status' },
     rejected:             { msg: 'We appreciate your interest in ICIT.',               href: '/application-status' },
-    enrollment_confirmed: { msg: 'Your enrollment is confirmed. Complete payment to finalize.', href: '/enrollment-confirmation' },
     enrolled:             { msg: 'Welcome to ICIT! Check your email for platform access.', href: '/application-status' },
     withdrawn:            { msg: 'Your application has been withdrawn.',               href: '/application-status' },
   };
@@ -785,7 +784,7 @@
 
       // Payment success: poll for enrolled status after Stripe redirects back
       const params = new URLSearchParams(window.location.search);
-      if (params.get('payment') === 'success' && application.status === 'enrollment_confirmed') {
+      if (params.get('payment') === 'success' && application.status === 'accepted') {
         const banner = document.createElement('p');
         banner.id = 'payment-banner';
         banner.textContent = 'Processing your enrollment…';
@@ -1231,7 +1230,6 @@
     accepted: 3,
     rejected: 3,
     waitlisted: 3,
-    enrollment_confirmed: 3,
     enrolled: 4,
     withdrawn: -1,
   };
@@ -1366,7 +1364,7 @@
     const application = await loadApplication(session);
 
     // Redirect if no application or wrong status
-    if (!application || !['accepted', 'enrollment_confirmed'].includes(application.status)) {
+    if (!application || application.status !== 'accepted') {
       window.location.href = '/dashboard';
       return;
     }
@@ -1378,7 +1376,7 @@
     setText(q('[wized="enroll-tuition"]'), formatCurrency(application.programs?.price_cents ?? 0));
     setText(
       q('[wized="enroll-status-badge"]'),
-      application.status === 'enrollment_confirmed' ? 'Enrollment Confirmed' : 'Accepted',
+      'Accepted',
     );
 
     hide(q('[wized="enroll-error-msg"]'));

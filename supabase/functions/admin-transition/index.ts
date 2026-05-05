@@ -17,7 +17,7 @@ const EVENT_STATUS_MAP: Record<string, string | null> = {
 }
 
 // Which admin events are allowed from each current application status.
-// Statuses not listed here are terminal (enrolled, enrollment_confirmed, draft).
+// Statuses not listed here are terminal (enrolled, draft).
 const ALLOWED_EVENTS: Record<string, string[]> = {
   submitted:   ['in_review', 'accepted', 'rejected', 'waitlisted', 'more_info_requested', 'withdrawn'],
   in_review:   ['accepted', 'rejected', 'waitlisted', 'more_info_requested', 'withdrawn'],
