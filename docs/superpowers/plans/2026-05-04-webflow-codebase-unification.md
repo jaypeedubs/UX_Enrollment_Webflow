@@ -11,11 +11,11 @@
 **Last updated:** 2026-05-05
 
 **Current status:**
-- Phases 1–7 complete (build toolchain, modules extracted, admin logic migrated, constants aligned, legacy monolith deleted)
+- Phases 1–8 complete (build toolchain, modules extracted, admin logic migrated, constants aligned, legacy monolith deleted, Moodle integration live)
 - Admin panel fully replaces Retool for all operations (applications, review, programs CRUD)
-- All privileged operations moved to Edge Functions (admin-read, admin-write, admin-transition)
+- All privileged operations moved to Edge Functions (admin-read, admin-write, admin-transition, moodle-handoff)
 - Applicant code hosted as `dist/icit-app.bundle.js` via esbuild
-- Moodle integration pending final API credentials (Phase 8 placeholder)
+- Moodle integration live — automatically enrolls students post-payment via `programs.moodle_course_id` mapping.
 
 ---
 
