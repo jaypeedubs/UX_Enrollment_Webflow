@@ -23,7 +23,7 @@ node_modules/
 !.yarn/versions
 
 # --- Build output ---
-dist/
+# dist/ is committed — bundle is served from GitHub Pages for Webflow
 build/
 out/
 .next/
