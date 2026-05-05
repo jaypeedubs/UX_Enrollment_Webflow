@@ -64,3 +64,4 @@ desktop.ini
 .cache/
 coverage/
 *.tsbuildinfo
+docs/operations/

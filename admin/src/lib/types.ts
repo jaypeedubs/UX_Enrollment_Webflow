@@ -30,7 +30,12 @@ export interface ApplicationEvent {
 export interface Program {
   id: string;
   name: string;
+  deadline: string | null;
+  status: 'active' | 'archived';
+  price_cents: number;
+  program_questions: unknown[];
   course_code: string;
+  created_at: string;
 }
 
 export interface AdminUser {

@@ -2,7 +2,7 @@ const assert = require('assert');
 const fs = require('fs');
 const vm = require('vm');
 
-const source = fs.readFileSync('src/icit-app.js', 'utf8');
+const source = fs.readFileSync('dist/icit-app.bundle.js', 'utf8');
 
 function createElement() {
   const listeners = {};

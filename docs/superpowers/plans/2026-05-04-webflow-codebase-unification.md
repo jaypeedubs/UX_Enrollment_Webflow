@@ -11,10 +11,11 @@
 **Last updated:** 2026-05-05
 
 **Current status:**
-- Phases 1–2 complete (build toolchain + all four core modules extracted)
-- Phase 3 in progress: Tasks 3.1 (login.js) and 3.2 (dashboard.js) done; Tasks 3.3–3.6 blocked on schema migration
-- Schema migration 009 inserted as prerequisite before Task 3.3 (see Tasks S.1–S.2)
-- Admin panel build complete (all admin-panel-next-steps.md tasks done)
+- Phases 1–7 complete (build toolchain, modules extracted, admin logic migrated, constants aligned, legacy monolith deleted)
+- Admin panel fully replaces Retool for all operations (applications, review, programs CRUD)
+- All privileged operations moved to Edge Functions (admin-read, admin-write, admin-transition)
+- Applicant code hosted as `dist/icit-app.bundle.js` via esbuild
+- Moodle integration pending final API credentials (Phase 8 placeholder)
 
 ---
 

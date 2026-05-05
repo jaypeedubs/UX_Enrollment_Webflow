@@ -2,16 +2,21 @@
 
 ## Scope
 This repo contains:
-- `src/icit-app.js` — custom vanilla JS app embedded in Webflow (replaces Wized)
+- `src/` — modular applicant-facing JS source (bundled to `dist/icit-app.bundle.js`)
 - `admin/` — Astro + React admin UI (standalone app, run from `admin/` directory)
-- `supabase/` — migrations (001–008), 6 Edge Functions, backend config
-- `wized/` — Wized config guide (reference only, superseded by icit-app.js)
+- `supabase/` — migrations (001–010), 7 Edge Functions, backend config
+- `docs/` — project documentation and plans
 
 ## Commands
 All admin commands must be run from the `admin/` directory:
 ```bash
 cd admin && npm run dev      # Start admin dev server
 cd admin && npm run build    # Build admin for production
+```
+Applicant bundle (root):
+```bash
+npm run build                # Bundle src/main.js -> dist/icit-app.bundle.js
+npm run watch                # Watch and bundle
 ```
 Supabase:
 ```bash
@@ -24,7 +29,7 @@ supabase functions deploy <name>  # Deploy a single Edge Function
 Copy `.env.example` → `.env` and fill in all vars before local dev.
 Required: SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY,
 STRIPE_PUBLISHABLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, SITE_URL.
-Note: `src/icit-app.js` has SUPABASE_URL and SUPABASE_ANON_KEY hardcoded — Webflow
+Note: `src/core/constants.js` has SUPABASE_URL and SUPABASE_ANON_KEY hardcoded — Webflow
 cannot read .env. Update those literals manually if the Supabase project changes.
 
 ## Working rules
