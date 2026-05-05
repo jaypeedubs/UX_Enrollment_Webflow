@@ -1,7 +1,6 @@
 ---
 name: next-file
-description: Determine the next single file or command in strict plan order
-allowed-tools: Read,Grep,Glob
+description: Determine the next single file or command in strict plan order.
 ---
 
 Your job is to identify the next single file or command only.
