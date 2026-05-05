@@ -10,6 +10,7 @@ const BLANK_PROGRAM: Omit<Program, 'id' | 'created_at'> = {
   price_cents: 0,
   program_questions: [],
   course_code: COURSES[0],
+  moodle_course_id: '',
 };
 
 export function ProgramsPage() {
@@ -68,6 +69,7 @@ export function ProgramsPage() {
           <tr className="border-b border-gray-200 text-left text-gray-500">
             <th className="py-2 pr-4">Name</th>
             <th className="py-2 pr-4">Course</th>
+            <th className="py-2 pr-4">Moodle ID</th>
             <th className="py-2 pr-4">Deadline</th>
             <th className="py-2 pr-4">Price</th>
             <th className="py-2 pr-4">Status</th>
@@ -79,6 +81,7 @@ export function ProgramsPage() {
             <tr key={p.id} className="border-b border-gray-100 hover:bg-gray-50">
               <td className="py-2 pr-4 font-medium">{p.name}</td>
               <td className="py-2 pr-4 text-gray-500">{p.course_code}</td>
+              <td className="py-2 pr-4 text-gray-500">{p.moodle_course_id || '—'}</td>
               <td className="py-2 pr-4 text-gray-500">{p.deadline ? new Date(p.deadline).toLocaleDateString() : '—'}</td>
               <td className="py-2 pr-4 text-gray-500">{(p.price_cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
               <td className="py-2 pr-4">
@@ -134,6 +137,11 @@ export function ProgramsPage() {
                   <option value="active">active</option>
                   <option value="archived">archived</option>
                 </select>
+              </label>
+              <label className="block text-sm">
+                <span className="text-gray-600">Moodle Course ID</span>
+                <input value={editing.moodle_course_id ?? ''} onChange={e => setEditing(ed => ({ ...ed!, moodle_course_id: e.target.value }))}
+                  className="mt-1 block w-full border border-gray-300 rounded px-2 py-1.5 text-sm" />
               </label>
             </div>
             <div className="flex justify-end gap-2 mt-5">

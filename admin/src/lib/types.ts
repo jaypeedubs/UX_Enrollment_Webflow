@@ -36,6 +36,7 @@ export interface Program {
   program_questions: unknown[];
   course_code: string;
   created_at: string;
+  moodle_course_id: string | null;
 }
 
 export interface AdminUser {
