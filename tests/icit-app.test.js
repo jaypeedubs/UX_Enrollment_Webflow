@@ -360,6 +360,38 @@ async function testDashboardCourseSelectionWritesSessionStorage() {
     'sessionStorage must remain empty when no course selected');
 }
 
+async function testApplyRedirectsToDashboardWhenNoCourseSelected() {
+  const { context, redirects } = createContext({
+    pathname: '/apply',
+    session: { user: { id: 'user-1', user_metadata: {} } },
+    from(table) {
+      if (table === 'applications') {
+        return {
+          select() { return this; },
+          eq() { return this; },
+          order() { return this; },
+          limit() { return this; },
+          async maybeSingle() { return { data: null, error: null }; },
+        };
+      }
+      if (table === 'programs') {
+        const chain = {
+          select() { return this; },
+          in() { return this; },
+          then(resolve, reject) { return Promise.resolve({ data: [], error: null }).then(resolve, reject); },
+        };
+        return chain;
+      }
+      throw new Error('Unexpected table: ' + table);
+    },
+  });
+  // sessionStorage is empty (no icit-selected-course) and no draft
+  vm.runInNewContext(source, context);
+  await tick();
+
+  assert.ok(redirects.includes('/dashboard'), 'must redirect to /dashboard when no course in sessionStorage and no draft');
+}
+
 (async () => {
   await testLoginRevealsWhenMarkersAreMissing();
   await testSignUpSendsConfirmationBackToLogin();
@@ -368,6 +400,7 @@ async function testDashboardCourseSelectionWritesSessionStorage() {
   await testDashboardRendersWhenNotificationsFail();
   await testSignUpRejectsPasswordMismatch();
   await testDashboardCourseSelectionWritesSessionStorage();
+  await testApplyRedirectsToDashboardWhenNoCourseSelected();
   process.stdout.write('icit-app tests passed\n');
 })().catch((error) => {
   console.error(error);

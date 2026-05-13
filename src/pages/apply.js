@@ -236,6 +236,32 @@ export async function initApply() {
     return;
   }
 
+  // ── Determine programId (three-branch) ──────────────────────────────────────
+  // Branch 1: sessionStorage present (new application from dashboard course select)
+  // Branch 2: sessionStorage absent but draft has program_id (returning to existing draft)
+  // Branch 3: neither → redirect to dashboard
+  let programId = null;
+  let programName = '';
+
+  const cachedCourse = sessionStorage.getItem('icit-selected-course');
+  if (cachedCourse) {
+    try {
+      const parsed = JSON.parse(cachedCourse);
+      programId = parsed.programId || null;
+      programName = parsed.programName || '';
+    } catch (_) {}
+  }
+
+  if (!programId && draft && draft.program_id) {
+    programId = draft.program_id;
+    programName = draft.programs?.name || '';
+  }
+
+  if (!programId) {
+    window.location.href = '/dashboard';
+    return;
+  }
+
   revealPage();
   applyDesignSystemClasses();
 
@@ -243,6 +269,18 @@ export async function initApply() {
   let cvUploaded = !!(draft && draft.cv_url);
   let currentSection = 1;
   let programAnswers = {};
+
+  // Section 1: pre-fill course name and description
+  setText(q('[wized="confirm-course-name"]'), programName);
+  const prog = programs.find((p) => p.id === programId);
+  setText(q('[wized="confirm-course-desc"]'), prog ? (prog.description || '') : '');
+
+  const changeCourseBtn = q('[wized="change-course-btn"]');
+  if (changeCourseBtn) changeCourseBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem('icit-selected-course');
+    window.location.href = '/dashboard';
+  });
 
   function goToSection(n) {
     for (let i = 1; i <= 5; i++) {
@@ -252,6 +290,7 @@ export async function initApply() {
     currentSection = n;
     updateApplyStepper(n);
   }
+
   goToSection(1);
 
   const sec1 = q('[wized="form-section-1"]');
@@ -265,22 +304,6 @@ export async function initApply() {
     sec1.insertBefore(back, sec1.firstChild);
   }
 
-  const programSelect = q('[wized="program-select"]');
-  if (programSelect) {
-    if (programSelect.options && programSelect.options.length === 0) {
-      const placeholder = document.createElement('option');
-      placeholder.value = '';
-      placeholder.textContent = 'Select a program';
-      programSelect.appendChild(placeholder);
-    }
-    programs.forEach((prog) => {
-      const opt = document.createElement('option');
-      opt.value = prog.id;
-      opt.textContent = prog.name;
-      programSelect.appendChild(opt);
-    });
-  }
-
   if (programs.length === 0) {
     hide(q('[wized="questions-loading"]'));
     show(q('[wized="questions-empty"]'));
@@ -291,12 +314,6 @@ export async function initApply() {
   if (draft) {
     applicationId = draft.id;
     cvUploaded = !!draft.cv_url;
-
-    if (programSelect && draft.program_id) programSelect.value = draft.program_id;
-    if (programSelect && draft.locked_fields?.program) {
-      programSelect.disabled = true;
-      show(q('[wized="program-locked"]'));
-    }
 
     const meta = session.user.user_metadata || {};
     if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || '';
@@ -431,15 +448,10 @@ export async function initApply() {
     }
   }
 
-  if (programSelect) {
-    programSelect.addEventListener('change', () => { renderQuestions(programSelect.value); });
-    if (!draft && programSelect.value) renderQuestions(programSelect.value);
-  }
-
   function collectFields() {
     return {
       id: applicationId,
-      programId: programSelect ? programSelect.value : '',
+      programId: programId,
       firstName: (q('[wized="applicant-first-name"]') || {}).value || '',
       lastName: (q('[wized="applicant-last-name"]') || {}).value || '',
       programAnswers: Object.keys(programAnswers).length ? programAnswers : undefined,
