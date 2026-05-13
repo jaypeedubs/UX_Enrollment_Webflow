@@ -223,6 +223,8 @@ function cloneRow(template) {
 
 // ─── PAGE ENTRY POINT ────────────────────────────────────────────────────────
 
+function populateReview() {}
+
 export async function initApply() {
   const session = await requireAuth();
 
@@ -315,34 +317,12 @@ export async function initApply() {
     applicationId = draft.id;
     cvUploaded = !!draft.cv_url;
 
-    const meta = session.user.user_metadata || {};
-    if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || '';
-    if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || '';
-    if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || '';
-
     if (draft.locked_fields?.first_name) {
       if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').disabled = true;
       if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').disabled = true;
       show(q('[wized="first-name-locked"]'));
       show(q('[wized="last-name-locked"]'));
     }
-
-    // Pre-fill contact fields (elements may not exist in Webflow yet — null-safe)
-    if (q('[wized="applicant-email-consent"]')) q('[wized="applicant-email-consent"]').checked = !!draft.email_consent;
-    if (q('[wized="applicant-phone"]')) q('[wized="applicant-phone"]').value = draft.phone || '';
-    if (q('[wized="applicant-address"]')) q('[wized="applicant-address"]').value = draft.address || '';
-    if (q('[wized="applicant-city"]')) q('[wized="applicant-city"]').value = draft.city || '';
-    if (q('[wized="applicant-state"]')) q('[wized="applicant-state"]').value = draft.state || '';
-    if (q('[wized="applicant-zip-code"]')) q('[wized="applicant-zip-code"]').value = draft.zip_code || '';
-    if (q('[wized="applicant-country"]')) q('[wized="applicant-country"]').value = draft.country || '';
-    if (q('[wized="applicant-credentials"]')) q('[wized="applicant-credentials"]').value = draft.credentials || '';
-    if (q('[wized="applicant-current-role"]')) q('[wized="applicant-current-role"]').value = draft.current_role || '';
-    if (q('[wized="applicant-institution"]')) q('[wized="applicant-institution"]').value = draft.institution || '';
-  }
-
-  if (q('[wized="applicant-email"]')) {
-    q('[wized="applicant-email"]').value = session.user.email || '';
-    q('[wized="applicant-email"]').disabled = true;
   }
 
   function syncCvUi() {
@@ -360,8 +340,6 @@ export async function initApply() {
       setCvProgress(0);
     }
   }
-  syncCvUi();
-
   function renderQuestions(programId, existingAnswers) {
     programAnswers = Object.assign({}, existingAnswers || {});
     const prog = programs.find((p) => p.id === programId);
@@ -437,17 +415,6 @@ export async function initApply() {
     });
   }
 
-  if (draft && draft.program_id) {
-    renderQuestions(draft.program_id, draft.program_answers);
-    if (draft.program_answers && typeof draft.program_answers === 'object') {
-      programAnswers = Object.assign({}, draft.program_answers);
-      Object.entries(draft.program_answers).forEach(([id, val]) => {
-        const input = q('[data-question-id="' + id + '"]');
-        if (input) input.value = val;
-      });
-    }
-  }
-
   function collectFields() {
     return {
       id: applicationId,
@@ -481,35 +448,34 @@ export async function initApply() {
     return saved;
   }
 
-  const saveDraftBtn = q('[wized="save-draft-btn"]');
-  if (saveDraftBtn) saveDraftBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    try { await doSaveDraft(); } catch (err) {
-      console.error(err);
-      setText(q('[wized="form-error-msg"]'), err.message || 'Failed to save draft. Please try again.');
-      show(q('[wized="form-error-msg"]'));
-    }
-  });
-
+  // ── Section 2: Personal Info ────────────────────────────────────────────────
   const nextSection1Btn = q('[wized="next-section-1-btn"]');
-  if (nextSection1Btn) nextSection1Btn.addEventListener('click', async (e) => {
+  if (nextSection1Btn) nextSection1Btn.addEventListener('click', (e) => {
     e.preventDefault();
-    try { await doSaveDraft(); goToSection(2); } catch (err) {
-      console.error(err);
-      setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
-      show(q('[wized="form-error-msg"]'));
-    }
+    goToSection(2);
   });
 
-  const saveDraft2Btn = q('[wized="save-draft-2-btn"]');
-  if (saveDraft2Btn) saveDraft2Btn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    try { await doSaveDraft(); } catch (err) {
-      console.error(err);
-      setText(q('[wized="form-error-msg"]'), err.message || 'Failed to save draft. Please try again.');
-      show(q('[wized="form-error-msg"]'));
-    }
-  });
+  // Pre-fill personal info from draft
+  if (draft) {
+    const meta = session.user.user_metadata || {};
+    if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || '';
+    if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || '';
+    if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || '';
+    if (q('[wized="applicant-email-consent"]')) q('[wized="applicant-email-consent"]').checked = !!draft.email_consent;
+    if (q('[wized="applicant-phone"]')) q('[wized="applicant-phone"]').value = draft.phone || '';
+    if (q('[wized="applicant-address"]')) q('[wized="applicant-address"]').value = draft.address || '';
+    if (q('[wized="applicant-city"]')) q('[wized="applicant-city"]').value = draft.city || '';
+    if (q('[wized="applicant-state"]')) q('[wized="applicant-state"]').value = draft.state || '';
+    if (q('[wized="applicant-zip-code"]')) q('[wized="applicant-zip-code"]').value = draft.zip_code || '';
+    if (q('[wized="applicant-country"]')) q('[wized="applicant-country"]').value = draft.country || '';
+    if (q('[wized="applicant-credentials"]')) q('[wized="applicant-credentials"]').value = draft.credentials || '';
+    if (q('[wized="applicant-current-role"]')) q('[wized="applicant-current-role"]').value = draft.current_role || '';
+    if (q('[wized="applicant-institution"]')) q('[wized="applicant-institution"]').value = draft.institution || '';
+  }
+  if (q('[wized="applicant-email"]')) {
+    q('[wized="applicant-email"]').value = session.user.email || '';
+    q('[wized="applicant-email"]').disabled = true;
+  }
 
   const backSection2Btn = q('[wized="back-section-2-btn"]');
   if (backSection2Btn) backSection2Btn.addEventListener('click', (e) => {
@@ -520,11 +486,26 @@ export async function initApply() {
   const nextSection2Btn = q('[wized="next-section-2-btn"]');
   if (nextSection2Btn) nextSection2Btn.addEventListener('click', async (e) => {
     e.preventDefault();
+    hide(q('[wized="form-error-msg"]'));
     try { await doSaveDraft(); goToSection(3); } catch (err) {
-      console.error(err);
       setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
       show(q('[wized="form-error-msg"]'));
     }
+  });
+
+  // ── Section 3: CV Upload ─────────────────────────────────────────────────────
+  syncCvUi();
+
+  const backSection3Btn = q('[wized="back-section-3-btn"]');
+  if (backSection3Btn) backSection3Btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSection(2);
+  });
+
+  const nextSection3Btn = q('[wized="next-section-3-btn"]');
+  if (nextSection3Btn) nextSection3Btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSection(4);
   });
 
   const cvFileInput = q('[wized="cv-file-input"]');
@@ -543,8 +524,7 @@ export async function initApply() {
       hide(q('[wized="cv-upload-zone"]'));
       show(q('[wized="cv-upload-success"]'));
       show(q('[wized="cv-remove-btn"]'));
-      const display = q('[wized="cv-filename"]');
-      if (display) setText(display, file.name);
+      setText(q('[wized="cv-filename"]'), file.name);
       setCvProgress(100);
     } catch (err) { console.error('CV upload failed:', err); }
   });
@@ -560,42 +540,41 @@ export async function initApply() {
       hide(q('[wized="cv-upload-success"]'));
       hide(q('[wized="cv-remove-btn"]'));
       if (q('[wized="cv-file-input"]')) q('[wized="cv-file-input"]').value = '';
-      const display = q('[wized="cv-filename"]');
-      if (display) setText(display, '');
+      setText(q('[wized="cv-filename"]'), '');
       setCvProgress(0);
     } catch (err) { console.error(err); }
   });
 
-  const saveDraft3Btn = q('[wized="save-draft-3-btn"]');
-  if (saveDraft3Btn) saveDraft3Btn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    try { await doSaveDraft(); } catch (err) {
-      console.error(err);
-      setText(q('[wized="form-error-msg"]'), err.message || 'Failed to save draft. Please try again.');
-      show(q('[wized="form-error-msg"]'));
+  // ── Section 4: Program Questions ─────────────────────────────────────────────
+  if (draft && draft.program_id) {
+    renderQuestions(draft.program_id, draft.program_answers);
+    if (draft.program_answers && typeof draft.program_answers === 'object') {
+      programAnswers = Object.assign({}, draft.program_answers);
+      Object.entries(draft.program_answers).forEach(([id, val]) => {
+        const input = q('[data-question-id="' + id + '"]');
+        if (input) input.value = val;
+      });
     }
+  } else {
+    renderQuestions(programId, {});
+  }
+
+  const backSection4Btn = q('[wized="back-section-4-btn"]');
+  if (backSection4Btn) backSection4Btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSection(3);
   });
 
-  const backSection3Btn = q('[wized="back-section-3-btn"]');
-  if (backSection3Btn) backSection3Btn.addEventListener('click', (e) => {
+  const nextSection4Btn = q('[wized="next-section-4-btn"]');
+  if (nextSection4Btn) nextSection4Btn.addEventListener('click', async (e) => {
     e.preventDefault();
-    goToSection(2);
-  });
-
-  const submitAppBtn = q('[wized="submit-application-btn"]');
-  if (submitAppBtn) submitAppBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!cvUploaded) {
-      alert('Please upload your CV before submitting.');
-      return;
-    }
+    hide(q('[wized="form-error-msg"]'));
     try {
       await doSaveDraft();
-      await submitApplication(session, applicationId);
-      window.location.href = '/dashboard';
+      populateReview(session, programId, programName, programAnswers, programs);
+      goToSection(5);
     } catch (err) {
-      console.error('Submit failed:', err);
-      setText(q('[wized="form-error-msg"]'), err.message || 'Submission failed. Please try again.');
+      setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
       show(q('[wized="form-error-msg"]'));
     }
   });
