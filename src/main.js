@@ -3,6 +3,7 @@ import { initDashboard } from './pages/dashboard.js';
 import { initApply } from './pages/apply.js';
 import { initStatus } from './pages/status.js';
 import { initEnrollment } from './pages/enrollment.js';
+import { initSubmitted } from './pages/submitted.js';
 import { initPage } from './core/ui.js';
 
 // ─── STYLE FIXES ────────────────────────────────────────────────────────────
@@ -45,3 +46,4 @@ else if (path === '/dashboard')               initPage('dashboard', initDashboar
 else if (path === '/apply')                   initPage('apply', initApply);
 else if (path === '/application-status')      initPage('application-status', initStatus);
 else if (path === '/enrollment-confirmation') initPage('enrollment-confirmation', initEnrollment);
+else if (path === '/application-submitted') initPage('application-submitted', initSubmitted);

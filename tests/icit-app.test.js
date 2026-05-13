@@ -392,6 +392,45 @@ async function testApplyRedirectsToDashboardWhenNoCourseSelected() {
   assert.ok(redirects.includes('/dashboard'), 'must redirect to /dashboard when no course in sessionStorage and no draft');
 }
 
+async function testSubmittedPagePopulatesProgramName() {
+  const programNameEl = createElement();
+  const elements = {
+    '[wized="submitted-program-name"]': programNameEl,
+  };
+
+  const { context } = createContext({
+    pathname: '/application-submitted',
+    session: { user: { id: 'user-1' } },
+    from(table) {
+      if (table === 'applications') {
+        return {
+          select() { return this; },
+          eq() { return this; },
+          order() { return this; },
+          limit() { return this; },
+          async maybeSingle() { return { data: null, error: null }; },
+        };
+      }
+      throw new Error('Unexpected table: ' + table);
+    },
+    elements,
+  });
+  context.sessionStorage.setItem(
+    'icit-selected-course',
+    JSON.stringify({ programId: 'prog-1', programName: 'Advanced Surgeons Course' }),
+  );
+
+  vm.runInNewContext(source, context);
+  await tick();
+
+  assert.strictEqual(programNameEl.textContent, 'Advanced Surgeons Course');
+  assert.strictEqual(
+    context.sessionStorage.getItem('icit-selected-course'),
+    null,
+    'sessionStorage must be cleared after reading program name',
+  );
+}
+
 (async () => {
   await testLoginRevealsWhenMarkersAreMissing();
   await testSignUpSendsConfirmationBackToLogin();
@@ -401,6 +440,7 @@ async function testApplyRedirectsToDashboardWhenNoCourseSelected() {
   await testSignUpRejectsPasswordMismatch();
   await testDashboardCourseSelectionWritesSessionStorage();
   await testApplyRedirectsToDashboardWhenNoCourseSelected();
+  await testSubmittedPagePopulatesProgramName();
   process.stdout.write('icit-app tests passed\n');
 })().catch((error) => {
   console.error(error);
