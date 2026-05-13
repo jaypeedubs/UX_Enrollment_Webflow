@@ -99,7 +99,7 @@
     return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100);
   }
   function applyDesignSystemClasses() {
-    [1, 2, 3].forEach((n) => {
+    [1, 2, 3, 4, 5].forEach((n) => {
       const sec = q('[wized="form-section-' + n + '"]');
       if (!sec) return;
       sec.classList.add("form-section");
@@ -111,32 +111,24 @@
         if (spans[1]) spans[1].classList.add("section-title");
       }
     });
-    const lb = q('[wized="section-1-lock"]');
-    if (lb) lb.classList.add("lock-badge");
     document.querySelectorAll(
-      '[wized="form-section-1"] .w-input:not([type="file"]),[wized="form-section-2"] .w-input:not([type="file"]),[wized="form-section-3"] .w-input:not([type="file"]),[wized="form-section-1"] select,[wized="form-section-2"] select'
+      '[wized="form-section-2"] .w-input:not([type="file"]),[wized="form-section-4"] .w-input:not([type="file"]),[wized="form-section-2"] select,[wized="form-section-4"] select'
     ).forEach((el) => el.classList.add("form-input-1"));
     document.querySelectorAll(
-      '[wized="form-section-1"] label,[wized="form-section-2"] label,[wized="form-section-3"] label'
+      '[wized="form-section-2"] label,[wized="form-section-4"] label'
     ).forEach((el) => {
       if (!el.classList.contains("form-label")) el.classList.add("form-label");
     });
-    [
-      q('[wized="save-draft-btn"]'),
-      q('[wized="save-draft-2-btn"]'),
-      q('[wized="back-section-3-btn"]')
-    ].forEach((btn) => {
-      const parent = btn && btn.parentElement;
-      if (parent && !parent.classList.contains("section-actions")) parent.classList.add("section-actions");
-    });
     const btnMap = {
-      "save-draft-btn": "btn-ghost-1",
-      "save-draft-2-btn": "btn-ghost-1",
-      "save-draft-3-btn": "btn-ghost-1",
+      "change-course-btn": "btn-ghost-1",
       "next-section-1-btn": "btn-primary-1-2",
-      "next-section-2-btn": "btn-primary-1-2",
       "back-section-2-btn": "btn-ghost-1",
+      "next-section-2-btn": "btn-primary-1-2",
       "back-section-3-btn": "btn-ghost-1",
+      "next-section-3-btn": "btn-primary-1-2",
+      "back-section-4-btn": "btn-ghost-1",
+      "next-section-4-btn": "btn-primary-1-2",
+      "back-section-5-btn": "btn-ghost-1",
       "submit-application-btn": "btn-submit"
     };
     Object.keys(btnMap).forEach((wid) => {
@@ -207,11 +199,6 @@
   async function initLogin() {
     const completedAuthReturn = await completeLoginAuthReturn();
     if (!completedAuthReturn) await requireGuest();
-    if (!q('[wized="tab-signin"]') || !q('[wized="signin-submit"]') || !q('[wized="signup-submit"]')) {
-      console.warn("ICIT login page is missing one or more required wized attributes.");
-      revealPage();
-      return;
-    }
     const signinSection = q('[wized="signin-section"]');
     const signupSection = q('[wized="signup-section"]');
     if (!signinSection || !signupSection) {
@@ -219,10 +206,10 @@
       revealPage();
       return;
     }
-    signinSection.classList.remove("auth-form-hidden");
     show(signinSection);
-    signupSection.classList.add("auth-form-hidden");
+    signinSection.classList.remove("auth-form-hidden");
     hide(signupSection);
+    signupSection.classList.add("auth-form-hidden");
     hide(q('[wized="signin-error-msg"]'));
     hide(q('[wized="signin-loading"]'));
     hide(q('[wized="signup-error-msg"]'));
@@ -232,25 +219,24 @@
       show(q('[wized="signin-error-msg"]'));
     }
     revealPage();
-    q('[wized="tab-signin"]').addEventListener("click", (e) => {
+    const gotoSignup = q('[wized="goto-signup"]');
+    if (gotoSignup) gotoSignup.addEventListener("click", (e) => {
       e.preventDefault();
-      signinSection.classList.remove("auth-form-hidden");
-      show(signinSection);
-      signupSection.classList.add("auth-form-hidden");
-      hide(signupSection);
-      q('[wized="tab-signin"]').classList.add("auth-tab-active");
-      q('[wized="tab-signup"]').classList.remove("auth-tab-active");
-    });
-    q('[wized="tab-signup"]').addEventListener("click", (e) => {
-      e.preventDefault();
-      signinSection.classList.add("auth-form-hidden");
       hide(signinSection);
-      signupSection.classList.remove("auth-form-hidden");
+      signinSection.classList.add("auth-form-hidden");
       show(signupSection);
-      q('[wized="tab-signin"]').classList.remove("auth-tab-active");
-      q('[wized="tab-signup"]').classList.add("auth-tab-active");
+      signupSection.classList.remove("auth-form-hidden");
     });
-    q('[wized="signin-submit"]').addEventListener("click", async (e) => {
+    const gotoSignin = q('[wized="goto-signin"]');
+    if (gotoSignin) gotoSignin.addEventListener("click", (e) => {
+      e.preventDefault();
+      hide(signupSection);
+      signupSection.classList.add("auth-form-hidden");
+      show(signinSection);
+      signinSection.classList.remove("auth-form-hidden");
+    });
+    const signinSubmitEl = q('[wized="signin-submit"]');
+    if (signinSubmitEl) signinSubmitEl.addEventListener("click", async (e) => {
       e.preventDefault();
       hide(q('[wized="signin-error-msg"]'));
       show(q('[wized="signin-loading"]'));
@@ -266,14 +252,22 @@
         show(q('[wized="signin-error-msg"]'));
       }
     });
-    q('[wized="signup-submit"]').addEventListener("click", async (e) => {
+    const signupSubmitEl = q('[wized="signup-submit"]');
+    if (signupSubmitEl) signupSubmitEl.addEventListener("click", async (e) => {
       e.preventDefault();
       hide(q('[wized="signup-error-msg"]'));
+      const password = q('[wized="signup-password"]').value;
+      const confirmEl = q('[wized="signup-confirm-password"]');
+      if (confirmEl && confirmEl.value !== password) {
+        setText(q('[wized="signup-error-msg"]'), "Passwords do not match. Please try again.");
+        show(q('[wized="signup-error-msg"]'));
+        return;
+      }
       show(q('[wized="signup-loading"]'));
       try {
         const session = await signUp(
           q('[wized="signup-email"]').value.trim(),
-          q('[wized="signup-password"]').value,
+          password,
           q('[wized="signup-first-name"]').value.trim(),
           q('[wized="signup-last-name"]').value.trim()
         );
@@ -303,14 +297,14 @@
     enrolled: { msg: "Welcome to ICIT! Check your email for platform access.", href: "/application-status" },
     withdrawn: { msg: "Your application has been withdrawn.", href: "/application-status" }
   };
-  async function loadApplication(session) {
+  async function loadApplications(session) {
     const { data, error } = await db.from("applications").select(`
       id, program_id, status, submitted_at, updated_at,
       cv_url, admin_notes, notes_response, locked_fields, program_answers,
       programs ( id, name, price_cents, program_questions )
-    `).eq("applicant_id", session.user.id).order("created_at", { ascending: false }).limit(1).maybeSingle();
+    `).eq("applicant_id", session.user.id).order("created_at", { ascending: false });
     if (error) throw error;
-    return data;
+    return data != null ? data : [];
   }
   async function loadNotifications(session) {
     const { data, error } = await db.from("notifications").select("id, message, read, created_at").eq("applicant_id", session.user.id).order("created_at", { ascending: false });
@@ -330,20 +324,81 @@
     const { error: evErr } = await db.from("application_events").insert({ application_id: applicationId, event_type: "withdrawn" });
     if (evErr) throw evErr;
   }
+  async function loadPrograms() {
+    const { data, error } = await db.from("programs").select("id, name, price_cents").in("status", ["active", "upcoming"]).order("name");
+    if (error) throw error;
+    return data != null ? data : [];
+  }
+  function getCourseColor(name) {
+    const n = (name || "").toLowerCase();
+    if (n.includes("international") && n.includes("surgeon")) return "#d9883d";
+    if (n.includes("surgeon")) return "#c5543b";
+    if (n.includes("international")) return "#5d8591";
+    if (n.includes("foundational")) return "#3d7a7a";
+    if (n.includes("efficiency") || n.includes("team")) return "#5d6b9e";
+    return "#5b6b82";
+  }
   function cloneRow(template) {
     const clone = template.cloneNode(true);
     clone.style.display = "";
     [...clone.classList].filter((c) => c.endsWith("-tpl")).forEach((c) => clone.classList.remove(c));
     return clone;
   }
+  function renderEnrolledList(enrolled) {
+    const listEl = q('[wized="enrolled-list"]');
+    const itemTpl = q('[wized="enrolled-item"]');
+    if (listEl && itemTpl) {
+      listEl.querySelectorAll("[data-icit-clone]").forEach((el) => el.remove());
+      hide(itemTpl);
+      if (enrolled.length === 0) {
+        hide(listEl);
+        return;
+      }
+      show(listEl);
+      enrolled.forEach((app) => {
+        var _a;
+        const row = cloneRow(itemTpl);
+        row.dataset.icitClone = "1";
+        setText(row.querySelector('[wized="enrolled-program-name"]'), ((_a = app.programs) == null ? void 0 : _a.name) || "");
+        setText(row.querySelector('[wized="enrolled-date"]'), app.updated_at ? formatDate(app.updated_at) : "\u2014");
+        itemTpl.parentElement.appendChild(row);
+      });
+      return;
+    }
+    if (enrolled.length === 0) return;
+    const section = ensureFallback("icit-enrolled-courses", `
+    <section style="max-width:860px;margin:32px auto;padding:0 24px;font-family:inherit;">
+      <h2 style="margin:0 0 16px;font-size:18px;font-weight:600;color:#111827;">Enrolled Courses</h2>
+      <div id="icit-enrolled-items"></div>
+    </section>
+  `);
+    const items = section.querySelector("#icit-enrolled-items") || section;
+    items.innerHTML = enrolled.map((app) => {
+      var _a;
+      return `
+    <div style="border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:12px;background:#fff;">
+      <div style="font-weight:600;color:#111827;">${escapeHtml(((_a = app.programs) == null ? void 0 : _a.name) || "Unknown Program")}</div>
+      <div style="font-size:14px;color:#6b7280;margin-top:4px;">Enrolled ${app.updated_at ? formatDate(app.updated_at) : "\u2014"}</div>
+    </div>
+  `;
+    }).join("");
+  }
   async function initDashboard() {
-    var _a, _b;
+    var _a, _b, _c;
     const session = await requireAuth();
-    const application = await loadApplication(session);
-    const notifications = await loadNotifications(session).catch((err) => {
-      console.warn("ICIT notifications failed to load:", err);
-      return [];
-    });
+    const [applications, notifications, programs] = await Promise.all([
+      loadApplications(session),
+      loadNotifications(session).catch((err) => {
+        console.warn("ICIT notifications failed to load:", err);
+        return [];
+      }),
+      loadPrograms().catch((err) => {
+        console.warn("ICIT programs failed to load:", err);
+        return [];
+      })
+    ]);
+    const enrolled = applications.filter((a) => a.status === "enrolled");
+    const active = (_a = applications.find((a) => a.status !== "enrolled")) != null ? _a : null;
     hide(q('[wized="dash-loading"]'));
     const meta = session.user.user_metadata || {};
     setText(q('[wized="dash-user-name"]'), ((meta.first_name || "") + " " + (meta.last_name || "")).trim());
@@ -353,40 +408,75 @@
       await signOut();
       window.location.href = "/login";
     });
-    if (!application) {
+    if (!active) {
       show(q('[wized="dash-no-application"]'));
       hide(q('[wized="dash-application"]'));
       show(q('[wized="start-application-link"]'));
       hide(q('[wized="withdraw-btn"]'));
       if (!q('[wized="dash-no-application"]') && !q('[wized="start-application-link"]')) {
         ensureFallback("icit-dashboard-fallback", `
-        <main style="max-width: 860px; margin: 48px auto; padding: 0 24px; font-family: inherit;">
-          <h1 style="margin: 0 0 12px; color: #111827;">Application Dashboard</h1>
-          <p style="margin: 0 0 24px; color: #374151;">No application is saved yet.</p>
-          <a href="/apply" style="display: inline-block; background: #2563eb; color: white; padding: 12px 16px; border-radius: 6px; text-decoration: none;">Start application</a>
+        <main style="max-width:860px;margin:48px auto;padding:0 24px;font-family:inherit;">
+          <h1 style="margin:0 0 12px;color:#111827;">Application Dashboard</h1>
+          <p style="margin:0 0 24px;color:#374151;">No application is saved yet.</p>
+          <a href="/apply" style="display:inline-block;background:#2563eb;color:white;padding:12px 16px;border-radius:6px;text-decoration:none;">Start application</a>
         </main>
       `);
       }
       revealPage();
+      const cardList = q('[wized="course-card-list"]');
+      const cardTpl = q('[wized="course-card-item"]');
+      if (cardList && cardTpl && programs.length > 0) {
+        hide(cardTpl);
+        let selectedProgramId = null;
+        programs.forEach((prog) => {
+          const card = cloneRow(cardTpl);
+          card.dataset.icitClone = "1";
+          card.style.setProperty("--course-color", getCourseColor(prog.name));
+          setText(card.querySelector('[wized="course-card-name"]'), prog.name);
+          const descEl = card.querySelector('[wized="course-card-desc"]');
+          if (descEl) setText(descEl, "");
+          cardList.appendChild(card);
+          card.addEventListener("click", () => {
+            selectedProgramId = prog.id;
+            cardList.querySelectorAll("[data-icit-clone]").forEach((c) => c.classList.remove("selected"));
+            card.classList.add("selected");
+            hide(q('[wized="course-select-error"]'));
+          });
+        });
+        const startBtn = q('[wized="start-application-btn"]');
+        if (startBtn) startBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (!selectedProgramId) {
+            show(q('[wized="course-select-error"]'));
+            return;
+          }
+          const prog = programs.find((p) => p.id === selectedProgramId);
+          sessionStorage.setItem("icit-selected-course", JSON.stringify({
+            programId: selectedProgramId,
+            programName: prog ? prog.name : ""
+          }));
+          window.location.href = "/apply";
+        });
+      }
     } else {
       hide(q('[wized="dash-no-application"]'));
       show(q('[wized="dash-application"]'));
       hide(q('[wized="start-application-link"]'));
-      const programName = ((_a = application.programs) == null ? void 0 : _a.name) || "Selected program";
+      const programName = ((_b = active.programs) == null ? void 0 : _b.name) || "Selected program";
       setText(q('[wized="app-program-name"]'), programName);
-      const info = STATUS_MESSAGES[application.status] || { msg: "", href: "/application-status" };
+      const info = STATUS_MESSAGES[active.status] || { msg: "", href: "/application-status" };
       setText(q('[wized="app-next-action-msg"]'), info.msg);
       setHref(q('[wized="app-next-action-link"]'), info.href);
-      setText(q('[wized="app-submitted-date"]'), application.submitted_at ? formatDate(application.submitted_at) : "\u2014");
-      setText(q('[wized="app-updated-date"]'), application.updated_at ? formatDate(application.updated_at) : "\u2014");
+      setText(q('[wized="app-submitted-date"]'), active.submitted_at ? formatDate(active.submitted_at) : "\u2014");
+      setText(q('[wized="app-updated-date"]'), active.updated_at ? formatDate(active.updated_at) : "\u2014");
       show(q('[wized="view-status-link"]'));
-      if (WITHDRAW_ALLOWED.includes(application.status)) {
+      if (WITHDRAW_ALLOWED.includes(active.status)) {
         show(q('[wized="withdraw-btn"]'));
         q('[wized="withdraw-btn"]').addEventListener("click", async (e) => {
           e.preventDefault();
           if (!confirm("Withdraw your application? This cannot be undone.")) return;
           try {
-            await withdrawApplication(session, application.id, application.status);
+            await withdrawApplication(session, active.id, active.status);
             location.reload();
           } catch (err) {
             console.error("Withdraw error:", err);
@@ -397,16 +487,16 @@
       }
       if (!q('[wized="dash-application"]') && !q('[wized="app-program-name"]')) {
         ensureFallback("icit-dashboard-fallback", `
-        <main style="max-width: 860px; margin: 48px auto; padding: 0 24px; font-family: inherit;">
-          <h1 style="margin: 0 0 12px; color: #111827;">Application Dashboard</h1>
-          <p style="margin: 0 0 8px; color: #374151;"><strong>Program:</strong> ${escapeHtml(programName)}</p>
-          <p style="margin: 0 0 24px; color: #374151;"><strong>Status:</strong> ${escapeHtml(application.status.replace(/_/g, " "))}</p>
-          <a href="${escapeHtml(info.href)}" style="display: inline-block; background: #2563eb; color: white; padding: 12px 16px; border-radius: 6px; text-decoration: none;">Continue</a>
+        <main style="max-width:860px;margin:48px auto;padding:0 24px;font-family:inherit;">
+          <h1 style="margin:0 0 12px;color:#111827;">Application Dashboard</h1>
+          <p style="margin:0 0 8px;color:#374151;"><strong>Program:</strong> ${escapeHtml(programName)}</p>
+          <p style="margin:0 0 24px;color:#374151;"><strong>Status:</strong> ${escapeHtml(active.status.replace(/_/g, " "))}</p>
+          <a href="${escapeHtml(info.href)}" style="display:inline-block;background:#2563eb;color:white;padding:12px 16px;border-radius:6px;text-decoration:none;">Continue</a>
         </main>
       `);
       }
       const params = new URLSearchParams(window.location.search);
-      if (params.get("payment") === "success" && application.status === "accepted") {
+      if (params.get("payment") === "success" && active.status === "accepted") {
         const banner = document.createElement("p");
         banner.id = "payment-banner";
         banner.textContent = "Processing your enrollment\u2026";
@@ -415,7 +505,7 @@
         const poll = setInterval(async () => {
           elapsed += 3;
           try {
-            const fresh = await loadApplication(session);
+            const fresh = (await loadApplications(session)).find((a) => a.id === active.id);
             if (fresh && fresh.status === "enrolled") {
               clearInterval(poll);
               location.reload();
@@ -431,23 +521,24 @@
       }
       revealPage();
     }
+    renderEnrolledList(enrolled);
     const unread = notifications.filter((n) => !n.read).length;
     setText(q('[wized="notif-unread-count"]'), unread > 0 ? String(unread) : "");
     const drawer = q('[wized="notif-drawer"]');
-    const notifTemplate = (_b = q('[wized="notif-item-msg"]')) == null ? void 0 : _b.parentElement;
+    const notifTemplate = (_c = q('[wized="notif-item-msg"]')) == null ? void 0 : _c.parentElement;
     const notifBellEl = q('[wized="notif-bell"]');
     if (notifBellEl) notifBellEl.addEventListener("click", async (e) => {
       e.preventDefault();
       if (!drawer) {
         const fallback = ensureFallback("icit-notification-fallback", `
-        <aside style="position: fixed; top: 72px; right: 24px; width: min(360px, calc(100vw - 48px)); background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 16px 40px rgba(15,23,42,.18); padding: 16px; z-index: 9999;">
-          <button type="button" data-icit-close style="float: right; border: 0; background: transparent; font-size: 20px; cursor: pointer;">x</button>
-          <h2 style="margin: 0 0 12px; font-size: 18px; color: #111827;">Notifications</h2>
+        <aside style="position:fixed;top:72px;right:24px;width:min(360px,calc(100vw - 48px));background:white;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 16px 40px rgba(15,23,42,.18);padding:16px;z-index:9999;">
+          <button type="button" data-icit-close style="float:right;border:0;background:transparent;font-size:20px;cursor:pointer;">x</button>
+          <h2 style="margin:0 0 12px;font-size:18px;color:#111827;">Notifications</h2>
           <div data-icit-notifications></div>
         </aside>
       `);
         const list = fallback.querySelector("[data-icit-notifications]");
-        list.innerHTML = notifications.length ? notifications.map((notif) => `<p style="margin: 0 0 12px; color: #374151;">${escapeHtml(notif.message)}</p>`).join("") : '<p style="margin: 0; color: #6b7280;">No notifications yet.</p>';
+        list.innerHTML = notifications.length ? notifications.map((notif) => `<p style="margin:0 0 12px;color:#374151;">${escapeHtml(notif.message)}</p>`).join("") : '<p style="margin:0;color:#6b7280;">No notifications yet.</p>';
         fallback.querySelector("[data-icit-close]").onclick = () => fallback.remove();
       } else {
         show(drawer);
@@ -479,7 +570,7 @@
   }
 
   // src/pages/apply.js
-  async function loadApplication2(session) {
+  async function loadApplication(session) {
     const { data, error } = await db.from("applications").select(`
       id, program_id, status, submitted_at, updated_at,
       cv_url, locked_fields, program_answers,
@@ -490,7 +581,7 @@
     if (error) throw error;
     return data;
   }
-  async function loadPrograms() {
+  async function loadPrograms2() {
     const { data, error } = await db.from("programs").select("id, name, deadline, price_cents, program_questions").in("status", ["active", "upcoming"]);
     if (error) throw error;
     return data;
@@ -561,17 +652,12 @@
     return [];
   }
   function updateApplyStepper(sectionNumber) {
-    var _a;
-    const percent = String(Math.round(sectionNumber * 33.3333)) + "%";
-    (_a = q('[wized="form-progress-fill"]')) == null ? void 0 : _a.style.setProperty("width", percent, "important");
-    for (let n = 1; n <= 3; n++) {
-      const label = q('[wized="step-label-' + n + '"]');
-      if (!label) continue;
-      if (n === sectionNumber) {
-        label.classList.add("progress-step-active");
-      } else {
-        label.classList.remove("progress-step-active");
-      }
+    for (let i = 1; i <= 5; i++) {
+      const step = q('[wized="progress-step-' + i + '"]');
+      if (!step) continue;
+      step.classList.remove("completed", "current");
+      if (i < sectionNumber) step.classList.add("completed");
+      else if (i === sectionNumber) step.classList.add("current");
     }
   }
   function clearGeneratedQuestions() {
@@ -641,14 +727,67 @@
     [...clone.classList].filter((c) => c.endsWith("-tpl")).forEach((c) => clone.classList.remove(c));
     return clone;
   }
+  function populateReview(session, programId, programName, programAnswers, programs) {
+    var _a, _b, _c, _d, _e, _f, _g, _h;
+    const meta = session.user.user_metadata || {};
+    const firstName = meta.first_name || "";
+    const lastName = meta.last_name || "";
+    setText(q('[wized="review-name"]'), [firstName, lastName].filter(Boolean).join(" "));
+    setText(q('[wized="review-contact"]'), [
+      (_a = q('[wized="applicant-phone"]')) == null ? void 0 : _a.value,
+      session.user.email
+    ].filter(Boolean).join(" \u2022 "));
+    setText(q('[wized="review-location"]'), [
+      (_b = q('[wized="applicant-city"]')) == null ? void 0 : _b.value,
+      (_c = q('[wized="applicant-state"]')) == null ? void 0 : _c.value,
+      (_d = q('[wized="applicant-zip-code"]')) == null ? void 0 : _d.value,
+      (_e = q('[wized="applicant-country"]')) == null ? void 0 : _e.value
+    ].filter(Boolean).join(", "));
+    setText(q('[wized="review-role"]'), ((_f = q('[wized="applicant-current-role"]')) == null ? void 0 : _f.value) || "");
+    setText(q('[wized="review-institution"]'), ((_g = q('[wized="applicant-institution"]')) == null ? void 0 : _g.value) || "");
+    setText(q('[wized="review-credentials"]'), ((_h = q('[wized="applicant-credentials"]')) == null ? void 0 : _h.value) || "");
+    setText(q('[wized="review-program-name"]'), programName);
+    const host = q('[wized="review-questions-host"]');
+    if (host) {
+      host.innerHTML = "";
+      const prog = programs.find((p) => p.id === programId);
+      const questions = normalizeQuestions(prog && prog.program_questions);
+      questions.forEach((question) => {
+        const answer = programAnswers[question.id] || "\u2014";
+        const entry = document.createElement("div");
+        entry.className = "cv-entry";
+        entry.innerHTML = '<p class="cv-question">' + escapeHtml(question.label || question.id) + '</p><p class="cv-answer">' + escapeHtml(answer) + "</p>";
+        host.appendChild(entry);
+      });
+    }
+  }
   async function initApply() {
     var _a, _b;
     const session = await requireAuth();
     const [programs, draft] = await Promise.all([
-      loadPrograms(),
-      loadApplication2(session)
+      loadPrograms2(),
+      loadApplication(session)
     ]);
     if (draft && draft.status !== "draft") {
+      window.location.href = "/dashboard";
+      return;
+    }
+    let programId = null;
+    let programName = "";
+    const cachedCourse = sessionStorage.getItem("icit-selected-course");
+    if (cachedCourse) {
+      try {
+        const parsed = JSON.parse(cachedCourse);
+        programId = parsed.programId || null;
+        programName = parsed.programName || "";
+      } catch (_) {
+      }
+    }
+    if (!programId && draft && draft.program_id) {
+      programId = draft.program_id;
+      programName = ((_a = draft.programs) == null ? void 0 : _a.name) || "";
+    }
+    if (!programId) {
       window.location.href = "/dashboard";
       return;
     }
@@ -658,10 +797,19 @@
     let cvUploaded = !!(draft && draft.cv_url);
     let currentSection = 1;
     let programAnswers = {};
+    setText(q('[wized="confirm-course-name"]'), programName);
+    const prog = programs.find((p) => p.id === programId);
+    setText(q('[wized="confirm-course-desc"]'), prog ? prog.description || "" : "");
+    const changeCourseBtn = q('[wized="change-course-btn"]');
+    if (changeCourseBtn) changeCourseBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      sessionStorage.removeItem("icit-selected-course");
+      window.location.href = "/dashboard";
+    });
     function goToSection(n) {
-      ["form-section-1", "form-section-2", "form-section-3"].forEach((wid) => {
-        hide(q('[wized="' + wid + '"]'));
-      });
+      for (let i = 1; i <= 5; i++) {
+        hide(q('[wized="form-section-' + i + '"]'));
+      }
       show(q('[wized="form-section-' + n + '"]'));
       currentSection = n;
       updateApplyStepper(n);
@@ -677,21 +825,6 @@
       back.style.cssText = "display:inline-block;margin-bottom:20px;";
       sec1.insertBefore(back, sec1.firstChild);
     }
-    const programSelect = q('[wized="program-select"]');
-    if (programSelect) {
-      if (programSelect.options && programSelect.options.length === 0) {
-        const placeholder = document.createElement("option");
-        placeholder.value = "";
-        placeholder.textContent = "Select a program";
-        programSelect.appendChild(placeholder);
-      }
-      programs.forEach((prog) => {
-        const opt = document.createElement("option");
-        opt.value = prog.id;
-        opt.textContent = prog.name;
-        programSelect.appendChild(opt);
-      });
-    }
     if (programs.length === 0) {
       hide(q('[wized="questions-loading"]'));
       show(q('[wized="questions-empty"]'));
@@ -701,35 +834,12 @@
     if (draft) {
       applicationId = draft.id;
       cvUploaded = !!draft.cv_url;
-      if (programSelect && draft.program_id) programSelect.value = draft.program_id;
-      if (programSelect && ((_a = draft.locked_fields) == null ? void 0 : _a.program)) {
-        programSelect.disabled = true;
-        show(q('[wized="program-locked"]'));
-      }
-      const meta = session.user.user_metadata || {};
-      if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || "";
-      if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || "";
-      if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || "";
       if ((_b = draft.locked_fields) == null ? void 0 : _b.first_name) {
         if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').disabled = true;
         if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').disabled = true;
         show(q('[wized="first-name-locked"]'));
         show(q('[wized="last-name-locked"]'));
       }
-      if (q('[wized="applicant-email-consent"]')) q('[wized="applicant-email-consent"]').checked = !!draft.email_consent;
-      if (q('[wized="applicant-phone"]')) q('[wized="applicant-phone"]').value = draft.phone || "";
-      if (q('[wized="applicant-address"]')) q('[wized="applicant-address"]').value = draft.address || "";
-      if (q('[wized="applicant-city"]')) q('[wized="applicant-city"]').value = draft.city || "";
-      if (q('[wized="applicant-state"]')) q('[wized="applicant-state"]').value = draft.state || "";
-      if (q('[wized="applicant-zip-code"]')) q('[wized="applicant-zip-code"]').value = draft.zip_code || "";
-      if (q('[wized="applicant-country"]')) q('[wized="applicant-country"]').value = draft.country || "";
-      if (q('[wized="applicant-credentials"]')) q('[wized="applicant-credentials"]').value = draft.credentials || "";
-      if (q('[wized="applicant-current-role"]')) q('[wized="applicant-current-role"]').value = draft.current_role || "";
-      if (q('[wized="applicant-institution"]')) q('[wized="applicant-institution"]').value = draft.institution || "";
-    }
-    if (q('[wized="applicant-email"]')) {
-      q('[wized="applicant-email"]').value = session.user.email || "";
-      q('[wized="applicant-email"]').disabled = true;
     }
     function syncCvUi() {
       if (cvUploaded) {
@@ -746,11 +856,10 @@
         setCvProgress(0);
       }
     }
-    syncCvUi();
-    function renderQuestions(programId, existingAnswers) {
+    function renderQuestions(programId2, existingAnswers) {
       programAnswers = Object.assign({}, existingAnswers || {});
-      const prog = programs.find((p) => p.id === programId);
-      const questions = normalizeQuestions(prog && prog.program_questions);
+      const prog2 = programs.find((p) => p.id === programId2);
+      const questions = normalizeQuestions(prog2 && prog2.program_questions);
       const template = q('[wized="question-item"]');
       clearGeneratedQuestions();
       if (template) {
@@ -821,26 +930,10 @@
         host.appendChild(row);
       });
     }
-    if (draft && draft.program_id) {
-      renderQuestions(draft.program_id, draft.program_answers);
-      if (draft.program_answers && typeof draft.program_answers === "object") {
-        programAnswers = Object.assign({}, draft.program_answers);
-        Object.entries(draft.program_answers).forEach(([id, val]) => {
-          const input = q('[data-question-id="' + id + '"]');
-          if (input) input.value = val;
-        });
-      }
-    }
-    if (programSelect) {
-      programSelect.addEventListener("change", () => {
-        renderQuestions(programSelect.value);
-      });
-      if (!draft && programSelect.value) renderQuestions(programSelect.value);
-    }
     function collectFields() {
       return {
         id: applicationId,
-        programId: programSelect ? programSelect.value : "",
+        programId,
         firstName: (q('[wized="applicant-first-name"]') || {}).value || "",
         lastName: (q('[wized="applicant-last-name"]') || {}).value || "",
         programAnswers: Object.keys(programAnswers).length ? programAnswers : void 0,
@@ -868,40 +961,31 @@
       setTimeout(() => hide(indicator), 3e3);
       return saved;
     }
-    const saveDraftBtn = q('[wized="save-draft-btn"]');
-    if (saveDraftBtn) saveDraftBtn.addEventListener("click", async (e) => {
-      e.preventDefault();
-      try {
-        await doSaveDraft();
-      } catch (err) {
-        console.error(err);
-        setText(q('[wized="form-error-msg"]'), err.message || "Failed to save draft. Please try again.");
-        show(q('[wized="form-error-msg"]'));
-      }
-    });
     const nextSection1Btn = q('[wized="next-section-1-btn"]');
-    if (nextSection1Btn) nextSection1Btn.addEventListener("click", async (e) => {
+    if (nextSection1Btn) nextSection1Btn.addEventListener("click", (e) => {
       e.preventDefault();
-      try {
-        await doSaveDraft();
-        goToSection(2);
-      } catch (err) {
-        console.error(err);
-        setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
-        show(q('[wized="form-error-msg"]'));
-      }
+      goToSection(2);
     });
-    const saveDraft2Btn = q('[wized="save-draft-2-btn"]');
-    if (saveDraft2Btn) saveDraft2Btn.addEventListener("click", async (e) => {
-      e.preventDefault();
-      try {
-        await doSaveDraft();
-      } catch (err) {
-        console.error(err);
-        setText(q('[wized="form-error-msg"]'), err.message || "Failed to save draft. Please try again.");
-        show(q('[wized="form-error-msg"]'));
-      }
-    });
+    if (draft) {
+      const meta = session.user.user_metadata || {};
+      if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || "";
+      if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || "";
+      if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || "";
+      if (q('[wized="applicant-email-consent"]')) q('[wized="applicant-email-consent"]').checked = !!draft.email_consent;
+      if (q('[wized="applicant-phone"]')) q('[wized="applicant-phone"]').value = draft.phone || "";
+      if (q('[wized="applicant-address"]')) q('[wized="applicant-address"]').value = draft.address || "";
+      if (q('[wized="applicant-city"]')) q('[wized="applicant-city"]').value = draft.city || "";
+      if (q('[wized="applicant-state"]')) q('[wized="applicant-state"]').value = draft.state || "";
+      if (q('[wized="applicant-zip-code"]')) q('[wized="applicant-zip-code"]').value = draft.zip_code || "";
+      if (q('[wized="applicant-country"]')) q('[wized="applicant-country"]').value = draft.country || "";
+      if (q('[wized="applicant-credentials"]')) q('[wized="applicant-credentials"]').value = draft.credentials || "";
+      if (q('[wized="applicant-current-role"]')) q('[wized="applicant-current-role"]').value = draft.current_role || "";
+      if (q('[wized="applicant-institution"]')) q('[wized="applicant-institution"]').value = draft.institution || "";
+    }
+    if (q('[wized="applicant-email"]')) {
+      q('[wized="applicant-email"]').value = session.user.email || "";
+      q('[wized="applicant-email"]').disabled = true;
+    }
     const backSection2Btn = q('[wized="back-section-2-btn"]');
     if (backSection2Btn) backSection2Btn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -910,14 +994,25 @@
     const nextSection2Btn = q('[wized="next-section-2-btn"]');
     if (nextSection2Btn) nextSection2Btn.addEventListener("click", async (e) => {
       e.preventDefault();
+      hide(q('[wized="form-error-msg"]'));
       try {
         await doSaveDraft();
         goToSection(3);
       } catch (err) {
-        console.error(err);
         setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
         show(q('[wized="form-error-msg"]'));
       }
+    });
+    syncCvUi();
+    const backSection3Btn = q('[wized="back-section-3-btn"]');
+    if (backSection3Btn) backSection3Btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToSection(2);
+    });
+    const nextSection3Btn = q('[wized="next-section-3-btn"]');
+    if (nextSection3Btn) nextSection3Btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToSection(4);
     });
     const cvFileInput = q('[wized="cv-file-input"]');
     if (cvFileInput) cvFileInput.addEventListener("change", async (e) => {
@@ -935,8 +1030,7 @@
         hide(q('[wized="cv-upload-zone"]'));
         show(q('[wized="cv-upload-success"]'));
         show(q('[wized="cv-remove-btn"]'));
-        const display = q('[wized="cv-filename"]');
-        if (display) setText(display, file.name);
+        setText(q('[wized="cv-filename"]'), file.name);
         setCvProgress(100);
       } catch (err) {
         console.error("CV upload failed:", err);
@@ -953,40 +1047,62 @@
         hide(q('[wized="cv-upload-success"]'));
         hide(q('[wized="cv-remove-btn"]'));
         if (q('[wized="cv-file-input"]')) q('[wized="cv-file-input"]').value = "";
-        const display = q('[wized="cv-filename"]');
-        if (display) setText(display, "");
+        setText(q('[wized="cv-filename"]'), "");
         setCvProgress(0);
       } catch (err) {
         console.error(err);
       }
     });
-    const saveDraft3Btn = q('[wized="save-draft-3-btn"]');
-    if (saveDraft3Btn) saveDraft3Btn.addEventListener("click", async (e) => {
+    if (draft && draft.program_id) {
+      renderQuestions(draft.program_id, draft.program_answers);
+      if (draft.program_answers && typeof draft.program_answers === "object") {
+        programAnswers = Object.assign({}, draft.program_answers);
+        Object.entries(draft.program_answers).forEach(([id, val]) => {
+          const input = q('[data-question-id="' + id + '"]');
+          if (input) input.value = val;
+        });
+      }
+    } else {
+      renderQuestions(programId, {});
+    }
+    const backSection4Btn = q('[wized="back-section-4-btn"]');
+    if (backSection4Btn) backSection4Btn.addEventListener("click", (e) => {
       e.preventDefault();
+      goToSection(3);
+    });
+    const nextSection4Btn = q('[wized="next-section-4-btn"]');
+    if (nextSection4Btn) nextSection4Btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      hide(q('[wized="form-error-msg"]'));
       try {
         await doSaveDraft();
+        populateReview(session, programId, programName, programAnswers, programs);
+        goToSection(5);
       } catch (err) {
-        console.error(err);
-        setText(q('[wized="form-error-msg"]'), err.message || "Failed to save draft. Please try again.");
+        setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
         show(q('[wized="form-error-msg"]'));
       }
     });
-    const backSection3Btn = q('[wized="back-section-3-btn"]');
-    if (backSection3Btn) backSection3Btn.addEventListener("click", (e) => {
+    const backSection5Btn = q('[wized="back-section-5-btn"]');
+    if (backSection5Btn) backSection5Btn.addEventListener("click", (e) => {
       e.preventDefault();
-      goToSection(2);
+      goToSection(4);
     });
     const submitAppBtn = q('[wized="submit-application-btn"]');
     if (submitAppBtn) submitAppBtn.addEventListener("click", async (e) => {
       e.preventDefault();
+      hide(q('[wized="form-error-msg"]'));
       if (!cvUploaded) {
-        alert("Please upload your CV before submitting.");
+        goToSection(3);
+        setText(q('[wized="form-error-msg"]'), "Please upload your CV before submitting.");
+        show(q('[wized="form-error-msg"]'));
         return;
       }
       try {
         await doSaveDraft();
         await submitApplication(session, applicationId);
-        window.location.href = "/dashboard";
+        sessionStorage.removeItem("icit-selected-course");
+        window.location.href = "/application-submitted";
       } catch (err) {
         console.error("Submit failed:", err);
         setText(q('[wized="form-error-msg"]'), err.message || "Submission failed. Please try again.");
@@ -1014,7 +1130,7 @@
     "tl-decision",
     "tl-enrolled"
   ];
-  async function loadApplication3(session) {
+  async function loadApplication2(session) {
     const { data, error } = await db.from("applications").select(`
       id, program_id, status, submitted_at, updated_at,
       cv_url, admin_notes, notes_response, locked_fields, program_answers,
@@ -1050,7 +1166,7 @@
   async function initStatus() {
     var _a, _b, _c, _d;
     const session = await requireAuth();
-    const application = await loadApplication3(session);
+    const application = await loadApplication2(session);
     if (!application) {
       window.location.href = "/dashboard";
       return;
@@ -1159,7 +1275,7 @@
   }
 
   // src/pages/enrollment.js
-  async function loadApplication4(session) {
+  async function loadApplication3(session) {
     const { data, error } = await db.from("applications").select(`
       id, program_id, status, submitted_at, updated_at,
       cv_url, admin_notes, notes_response, locked_fields, program_answers,
@@ -1191,7 +1307,7 @@
   async function initEnrollment() {
     var _a, _b, _c;
     const session = await requireAuth();
-    const application = await loadApplication4(session);
+    const application = await loadApplication3(session);
     if (!application || application.status !== "accepted") {
       window.location.href = "/dashboard";
       return;

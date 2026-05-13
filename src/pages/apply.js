@@ -1,6 +1,6 @@
 import { db } from '../core/supabase.js';
 import { requireAuth } from '../core/auth.js';
-import { q, show, hide, setText, setCvProgress, revealPage, applyDesignSystemClasses } from '../core/ui.js';
+import { q, show, hide, setText, setCvProgress, revealPage, applyDesignSystemClasses, escapeHtml } from '../core/ui.js';
 
 // ─── PAGE-PRIVATE DATA ───────────────────────────────────────────────────────
 
@@ -223,7 +223,44 @@ function cloneRow(template) {
 
 // ─── PAGE ENTRY POINT ────────────────────────────────────────────────────────
 
-function populateReview() {}
+function populateReview(session, programId, programName, programAnswers, programs) {
+  const meta = session.user.user_metadata || {};
+  const firstName = meta.first_name || '';
+  const lastName  = meta.last_name  || '';
+
+  setText(q('[wized="review-name"]'),        [firstName, lastName].filter(Boolean).join(' '));
+  setText(q('[wized="review-contact"]'),      [
+    q('[wized="applicant-phone"]')?.value,
+    session.user.email,
+  ].filter(Boolean).join(' • '));
+  setText(q('[wized="review-location"]'),     [
+    q('[wized="applicant-city"]')?.value,
+    q('[wized="applicant-state"]')?.value,
+    q('[wized="applicant-zip-code"]')?.value,
+    q('[wized="applicant-country"]')?.value,
+  ].filter(Boolean).join(', '));
+  setText(q('[wized="review-role"]'),         q('[wized="applicant-current-role"]')?.value || '');
+  setText(q('[wized="review-institution"]'),  q('[wized="applicant-institution"]')?.value || '');
+  setText(q('[wized="review-credentials"]'),  q('[wized="applicant-credentials"]')?.value || '');
+  setText(q('[wized="review-program-name"]'), programName);
+
+  // Dynamic program Q&A
+  const host = q('[wized="review-questions-host"]');
+  if (host) {
+    host.innerHTML = '';
+    const prog = programs.find((p) => p.id === programId);
+    const questions = normalizeQuestions(prog && prog.program_questions);
+    questions.forEach((question) => {
+      const answer = programAnswers[question.id] || '—';
+      const entry = document.createElement('div');
+      entry.className = 'cv-entry';
+      entry.innerHTML =
+        '<p class="cv-question">' + escapeHtml(question.label || question.id) + '</p>' +
+        '<p class="cv-answer">' + escapeHtml(answer) + '</p>';
+      host.appendChild(entry);
+    });
+  }
+}
 
 export async function initApply() {
   const session = await requireAuth();
@@ -575,6 +612,35 @@ export async function initApply() {
       goToSection(5);
     } catch (err) {
       setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
+      show(q('[wized="form-error-msg"]'));
+    }
+  });
+
+  // ── Section 5: Review & Submit ───────────────────────────────────────────────
+  const backSection5Btn = q('[wized="back-section-5-btn"]');
+  if (backSection5Btn) backSection5Btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToSection(4);
+  });
+
+  const submitAppBtn = q('[wized="submit-application-btn"]');
+  if (submitAppBtn) submitAppBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    hide(q('[wized="form-error-msg"]'));
+    if (!cvUploaded) {
+      goToSection(3);
+      setText(q('[wized="form-error-msg"]'), 'Please upload your CV before submitting.');
+      show(q('[wized="form-error-msg"]'));
+      return;
+    }
+    try {
+      await doSaveDraft();
+      await submitApplication(session, applicationId);
+      sessionStorage.removeItem('icit-selected-course');
+      window.location.href = '/application-submitted';
+    } catch (err) {
+      console.error('Submit failed:', err);
+      setText(q('[wized="form-error-msg"]'), err.message || 'Submission failed. Please try again.');
       show(q('[wized="form-error-msg"]'));
     }
   });
