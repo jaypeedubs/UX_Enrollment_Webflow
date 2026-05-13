@@ -137,16 +137,12 @@ function normalizeQuestions(value) {
 }
 
 function updateApplyStepper(sectionNumber) {
-  const percent = String(Math.round(sectionNumber * 33.3333)) + '%';
-  q('[wized="form-progress-fill"]')?.style.setProperty('width', percent, 'important');
-  for (let n = 1; n <= 3; n++) {
-    const label = q('[wized="step-label-' + n + '"]');
-    if (!label) continue;
-    if (n === sectionNumber) {
-      label.classList.add('progress-step-active');
-    } else {
-      label.classList.remove('progress-step-active');
-    }
+  for (let i = 1; i <= 5; i++) {
+    const step = q('[wized="progress-step-' + i + '"]');
+    if (!step) continue;
+    step.classList.remove('completed', 'current');
+    if (i < sectionNumber) step.classList.add('completed');
+    else if (i === sectionNumber) step.classList.add('current');
   }
 }
 
@@ -249,9 +245,9 @@ export async function initApply() {
   let programAnswers = {};
 
   function goToSection(n) {
-    ['form-section-1', 'form-section-2', 'form-section-3'].forEach((wid) => {
-      hide(q('[wized="' + wid + '"]'));
-    });
+    for (let i = 1; i <= 5; i++) {
+      hide(q('[wized="form-section-' + i + '"]'));
+    }
     show(q('[wized="form-section-' + n + '"]'));
     currentSection = n;
     updateApplyStepper(n);

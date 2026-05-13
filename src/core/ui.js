@@ -54,13 +54,11 @@ export function formatCurrency(cents) {
 // Webflow-generated elements (w-input, w-button, w-select, unlabelled divs).
 // All classes used here exist in the site stylesheet — no new styles invented.
 export function applyDesignSystemClasses() {
-  // Form section wrappers → card
-  [1, 2, 3].forEach((n) => {
+  // Section wrappers 1–5 → card style
+  [1, 2, 3, 4, 5].forEach((n) => {
     const sec = q('[wized="form-section-' + n + '"]');
     if (!sec) return;
     sec.classList.add('form-section');
-
-    // Section header: first child div → section-header-1
     const header = sec.firstElementChild;
     if (header && header.tagName === 'DIV') {
       header.classList.add('section-header-1');
@@ -70,45 +68,31 @@ export function applyDesignSystemClasses() {
     }
   });
 
-  // Lock badge
-  const lb = q('[wized="section-1-lock"]');
-  if (lb) lb.classList.add('lock-badge');
-
-  // Form inputs / selects → form-input-1
+  // Form inputs in sections 2 and 4 (personal info + program questions)
   document.querySelectorAll(
-    '[wized="form-section-1"] .w-input:not([type="file"]),' +
     '[wized="form-section-2"] .w-input:not([type="file"]),' +
-    '[wized="form-section-3"] .w-input:not([type="file"]),' +
-    '[wized="form-section-1"] select,' +
-    '[wized="form-section-2"] select'
+    '[wized="form-section-4"] .w-input:not([type="file"]),' +
+    '[wized="form-section-2"] select,' +
+    '[wized="form-section-4"] select'
   ).forEach((el) => el.classList.add('form-input-1'));
 
-  // Labels → form-label
+  // Labels in sections 2 and 4
   document.querySelectorAll(
-    '[wized="form-section-1"] label,' +
     '[wized="form-section-2"] label,' +
-    '[wized="form-section-3"] label'
+    '[wized="form-section-4"] label'
   ).forEach((el) => { if (!el.classList.contains('form-label')) el.classList.add('form-label'); });
 
-  // Action rows → section-actions (identify by the save-draft button's parent)
-  [
-    q('[wized="save-draft-btn"]'),
-    q('[wized="save-draft-2-btn"]'),
-    q('[wized="back-section-3-btn"]'),
-  ].forEach((btn) => {
-    const parent = btn && btn.parentElement;
-    if (parent && !parent.classList.contains('section-actions')) parent.classList.add('section-actions');
-  });
-
-  // Buttons → design-system classes
+  // Button → design-system class map
   const btnMap = {
-    'save-draft-btn': 'btn-ghost-1',
-    'save-draft-2-btn': 'btn-ghost-1',
-    'save-draft-3-btn': 'btn-ghost-1',
-    'next-section-1-btn': 'btn-primary-1-2',
-    'next-section-2-btn': 'btn-primary-1-2',
-    'back-section-2-btn': 'btn-ghost-1',
-    'back-section-3-btn': 'btn-ghost-1',
+    'change-course-btn':    'btn-ghost-1',
+    'next-section-1-btn':   'btn-primary-1-2',
+    'back-section-2-btn':   'btn-ghost-1',
+    'next-section-2-btn':   'btn-primary-1-2',
+    'back-section-3-btn':   'btn-ghost-1',
+    'next-section-3-btn':   'btn-primary-1-2',
+    'back-section-4-btn':   'btn-ghost-1',
+    'next-section-4-btn':   'btn-primary-1-2',
+    'back-section-5-btn':   'btn-ghost-1',
     'submit-application-btn': 'btn-submit',
   };
   Object.keys(btnMap).forEach((wid) => {
@@ -116,7 +100,7 @@ export function applyDesignSystemClasses() {
     if (el) el.classList.add(btnMap[wid]);
   });
 
-  // CV upload zone → design-system classes
+  // CV upload zone (section 3)
   const zone = q('[wized="cv-upload-zone"]');
   if (zone) {
     zone.classList.add('upload-zone');
@@ -139,7 +123,6 @@ export function applyDesignSystemClasses() {
     const pct = progressWrap.querySelector('[wized="cv-upload-pct"]');
     if (pct) pct.classList.add('upload-progress-pct');
   }
-  // Remove CV uses the same outlined danger style as the Withdraw button
   const removeBtn = q('[wized="cv-remove-btn"]');
   if (removeBtn) removeBtn.classList.add('btn-danger-1');
 }
