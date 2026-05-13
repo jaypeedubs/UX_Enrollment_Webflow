@@ -3,28 +3,23 @@ import { q, show, hide, setText, revealPage } from '../core/ui.js';
 
 export async function initLogin() {
   const completedAuthReturn = await completeLoginAuthReturn();
-  if (!completedAuthReturn) await requireGuest(); // redirect to /dashboard if already signed in
-
-  if (!q('[wized="tab-signin"]') || !q('[wized="signin-submit"]') || !q('[wized="signup-submit"]')) {
-    console.warn('ICIT login page is missing one or more required wized attributes.');
-    revealPage();
-    return;
-  }
+  if (!completedAuthReturn) await requireGuest();
 
   const signinSection = q('[wized="signin-section"]');
   const signupSection = q('[wized="signup-section"]');
+
   if (!signinSection || !signupSection) {
     console.warn('ICIT login page is missing signin/signup section wized attributes.');
     revealPage();
     return;
   }
 
-  // Default state: show sign-in form, hide sign-up form.
-  // Must also toggle the Webflow CSS class since show/hide only manage inline styles.
-  signinSection.classList.remove('auth-form-hidden');
+  // Default: show sign-in, hide sign-up
   show(signinSection);
-  signupSection.classList.add('auth-form-hidden');
+  signinSection.classList.remove('auth-form-hidden');
   hide(signupSection);
+  signupSection.classList.add('auth-form-hidden');
+
   hide(q('[wized="signin-error-msg"]'));
   hide(q('[wized="signin-loading"]'));
   hide(q('[wized="signup-error-msg"]'));
@@ -37,27 +32,26 @@ export async function initLogin() {
 
   revealPage();
 
-  q('[wized="tab-signin"]').addEventListener('click', (e) => {
+  const gotoSignup = q('[wized="goto-signup"]');
+  if (gotoSignup) gotoSignup.addEventListener('click', (e) => {
     e.preventDefault();
-    signinSection.classList.remove('auth-form-hidden');
-    show(signinSection);
-    signupSection.classList.add('auth-form-hidden');
-    hide(signupSection);
-    q('[wized="tab-signin"]').classList.add('auth-tab-active');
-    q('[wized="tab-signup"]').classList.remove('auth-tab-active');
-  });
-
-  q('[wized="tab-signup"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    signinSection.classList.add('auth-form-hidden');
     hide(signinSection);
-    signupSection.classList.remove('auth-form-hidden');
+    signinSection.classList.add('auth-form-hidden');
     show(signupSection);
-    q('[wized="tab-signin"]').classList.remove('auth-tab-active');
-    q('[wized="tab-signup"]').classList.add('auth-tab-active');
+    signupSection.classList.remove('auth-form-hidden');
   });
 
-  q('[wized="signin-submit"]').addEventListener('click', async (e) => {
+  const gotoSignin = q('[wized="goto-signin"]');
+  if (gotoSignin) gotoSignin.addEventListener('click', (e) => {
+    e.preventDefault();
+    hide(signupSection);
+    signupSection.classList.add('auth-form-hidden');
+    show(signinSection);
+    signinSection.classList.remove('auth-form-hidden');
+  });
+
+  const signinSubmitEl = q('[wized="signin-submit"]');
+  if (signinSubmitEl) signinSubmitEl.addEventListener('click', async (e) => {
     e.preventDefault();
     hide(q('[wized="signin-error-msg"]'));
     show(q('[wized="signin-loading"]'));
@@ -74,21 +68,28 @@ export async function initLogin() {
     }
   });
 
-  q('[wized="signup-submit"]').addEventListener('click', async (e) => {
+  const signupSubmitEl = q('[wized="signup-submit"]');
+  if (signupSubmitEl) signupSubmitEl.addEventListener('click', async (e) => {
     e.preventDefault();
     hide(q('[wized="signup-error-msg"]'));
+    const password = q('[wized="signup-password"]').value;
+    const confirmEl = q('[wized="signup-confirm-password"]');
+    if (confirmEl && confirmEl.value !== password) {
+      setText(q('[wized="signup-error-msg"]'), 'Passwords do not match. Please try again.');
+      show(q('[wized="signup-error-msg"]'));
+      return;
+    }
     show(q('[wized="signup-loading"]'));
     try {
       const session = await signUp(
         q('[wized="signup-email"]').value.trim(),
-        q('[wized="signup-password"]').value,
+        password,
         q('[wized="signup-first-name"]').value.trim(),
         q('[wized="signup-last-name"]').value.trim(),
       );
       if (session) {
         window.location.href = '/dashboard';
       } else {
-        // Supabase requires email confirmation before issuing a session
         hide(q('[wized="signup-loading"]'));
         setText(q('[wized="signup-error-msg"]'), 'Account created! Check your email to confirm your account, then sign in.');
         show(q('[wized="signup-error-msg"]'));
