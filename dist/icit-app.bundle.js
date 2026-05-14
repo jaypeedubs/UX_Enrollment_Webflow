@@ -341,7 +341,7 @@
   function cloneRow(template) {
     const clone = template.cloneNode(true);
     clone.style.display = "";
-    [...clone.classList].filter((c) => c.endsWith("-tpl")).forEach((c) => clone.classList.remove(c));
+    [...clone.classList].filter((c) => c.endsWith("-tpl") || /^inline-(div|p)-\d/.test(c)).forEach((c) => clone.classList.remove(c));
     return clone;
   }
   function renderEnrolledList(enrolled) {
@@ -724,7 +724,7 @@
   function cloneRow2(template) {
     const clone = template.cloneNode(true);
     clone.style.display = "";
-    [...clone.classList].filter((c) => c.endsWith("-tpl")).forEach((c) => clone.classList.remove(c));
+    [...clone.classList].filter((c) => c.endsWith("-tpl") || /^inline-(div|p)-\d/.test(c)).forEach((c) => clone.classList.remove(c));
     return clone;
   }
   function populateReview(session, programId, programName, programAnswers, programs) {
