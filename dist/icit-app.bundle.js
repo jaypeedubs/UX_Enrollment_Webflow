@@ -1340,6 +1340,27 @@
     }
   }
 
+  // src/pages/submitted.js
+  async function initSubmitted() {
+    var _a;
+    const session = await requireAuth();
+    let programName = "";
+    const cached = sessionStorage.getItem("icit-selected-course");
+    if (cached) {
+      try {
+        programName = JSON.parse(cached).programName || "";
+      } catch (_) {
+      }
+      sessionStorage.removeItem("icit-selected-course");
+    }
+    if (!programName) {
+      const { data } = await db.from("applications").select("programs ( name )").eq("applicant_id", session.user.id).eq("status", "submitted").order("submitted_at", { ascending: false }).limit(1).maybeSingle();
+      programName = ((_a = data == null ? void 0 : data.programs) == null ? void 0 : _a.name) || "";
+    }
+    setText(q('[wized="submitted-program-name"]'), programName);
+    revealPage();
+  }
+
   // src/main.js
   (function injectStyles() {
     const s = document.createElement("style");
@@ -1353,4 +1374,5 @@
   else if (path === "/apply") initPage("apply", initApply);
   else if (path === "/application-status") initPage("application-status", initStatus);
   else if (path === "/enrollment-confirmation") initPage("enrollment-confirmation", initEnrollment);
+  else if (path === "/application-submitted") initPage("application-submitted", initSubmitted);
 })();
