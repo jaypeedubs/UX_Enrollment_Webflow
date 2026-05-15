@@ -137,12 +137,14 @@ function normalizeQuestions(value) {
 }
 
 function updateApplyStepper(sectionNumber) {
-  for (let i = 1; i <= 5; i++) {
+  const stepMap = { 1: 1, 2: 1, 3: 3, 4: 2, 5: 3 };
+  const stepperStep = stepMap[sectionNumber] || 1;
+  for (let i = 1; i <= 3; i++) {
     const step = q('[wized="progress-step-' + i + '"]');
     if (!step) continue;
     step.classList.remove('completed', 'current');
-    if (i < sectionNumber) step.classList.add('completed');
-    else if (i === sectionNumber) step.classList.add('current');
+    if (i < stepperStep) step.classList.add('completed');
+    else if (i === stepperStep) step.classList.add('current');
   }
 }
 
