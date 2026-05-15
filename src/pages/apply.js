@@ -489,6 +489,7 @@ export async function initApply() {
 
   let applicationId = draft ? draft.id : null;
   let cvUploaded = !!(draft && draft.cv_url);
+  let cvFilename = draft?.cv_url || null;
   let currentSection = 1;
   let programAnswers = {};
 
@@ -550,7 +551,7 @@ export async function initApply() {
       hide(q('[wized="cv-upload-zone"]'));
       show(q('[wized="cv-upload-success"]'));
       show(q('[wized="cv-remove-btn"]'));
-      setText(q('[wized="cv-filename"]'), filenameFromPath(draft?.cv_url) || 'CV uploaded');
+      setText(q('[wized="cv-filename"]'), filenameFromPath(cvFilename) || 'CV uploaded');
       setCvProgress(100);
     } else {
       show(q('[wized="cv-upload-zone"]'));
@@ -740,7 +741,7 @@ export async function initApply() {
       }
       try {
         setCvProgress(0);
-        await uploadCV(session, applicationId, file);
+        cvFilename = await uploadCV(session, applicationId, file);
         cvUploaded = true;
         syncCvUi();
       } catch (err) { console.error('CV upload failed:', err); }
@@ -754,6 +755,7 @@ export async function initApply() {
     try {
       await removeCV(session, applicationId);
       cvUploaded = false;
+      cvFilename = null;
       if (builtFileInput) builtFileInput.value = '';
       syncCvUi();
     } catch (err) { console.error(err); }
