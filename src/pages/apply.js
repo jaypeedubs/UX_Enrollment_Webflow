@@ -1,6 +1,6 @@
 import { db } from '../core/supabase.js';
 import { requireAuth } from '../core/auth.js';
-import { q, show, hide, setText, setCvProgress, revealPage, applyDesignSystemClasses, escapeHtml } from '../core/ui.js';
+import { q, show, hide, setText, setCvProgress, revealPage, applyDesignSystemClasses } from '../core/ui.js';
 
 // ─── PAGE-PRIVATE DATA ───────────────────────────────────────────────────────
 
