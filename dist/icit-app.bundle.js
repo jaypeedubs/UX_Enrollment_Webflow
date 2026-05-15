@@ -427,6 +427,9 @@
       const cardTpl = q('[wized="course-card-item"]');
       if (cardList && cardTpl && programs.length > 0) {
         hide(cardTpl);
+        cardList.querySelectorAll(".empty-state-icon, .empty-state-heading, .empty-state-body").forEach((el) => hide(el));
+        hide(q('[wized="start-application-link"]'));
+        show(q('[wized="start-application-btn"]'));
         let selectedProgramId = null;
         programs.forEach((prog) => {
           const card = cloneRow(cardTpl);
@@ -652,12 +655,14 @@
     return [];
   }
   function updateApplyStepper(sectionNumber) {
-    for (let i = 1; i <= 5; i++) {
+    const stepMap = { 1: 1, 2: 1, 3: 3, 4: 2, 5: 3 };
+    const stepperStep = stepMap[sectionNumber] || 1;
+    for (let i = 1; i <= 3; i++) {
       const step = q('[wized="progress-step-' + i + '"]');
       if (!step) continue;
       step.classList.remove("completed", "current");
-      if (i < sectionNumber) step.classList.add("completed");
-      else if (i === sectionNumber) step.classList.add("current");
+      if (i < stepperStep) step.classList.add("completed");
+      else if (i === stepperStep) step.classList.add("current");
     }
   }
   function clearGeneratedQuestions() {
@@ -729,36 +734,78 @@
   }
   function populateReview(session, programId, programName, programAnswers, programs) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
+    const container = q('[wized="review-content"]');
+    if (!container) return;
     const meta = session.user.user_metadata || {};
     const firstName = ((_a = q('[wized="applicant-first-name"]')) == null ? void 0 : _a.value) || meta.first_name || "";
     const lastName = ((_b = q('[wized="applicant-last-name"]')) == null ? void 0 : _b.value) || meta.last_name || "";
-    setText(q('[wized="review-name"]'), [firstName, lastName].filter(Boolean).join(" "));
-    setText(q('[wized="review-contact"]'), [
-      (_c = q('[wized="applicant-phone"]')) == null ? void 0 : _c.value,
-      session.user.email
-    ].filter(Boolean).join(" \u2022 "));
-    setText(q('[wized="review-location"]'), [
-      (_d = q('[wized="applicant-city"]')) == null ? void 0 : _d.value,
-      (_e = q('[wized="applicant-state"]')) == null ? void 0 : _e.value,
-      (_f = q('[wized="applicant-zip-code"]')) == null ? void 0 : _f.value,
-      (_g = q('[wized="applicant-country"]')) == null ? void 0 : _g.value
-    ].filter(Boolean).join(", "));
-    setText(q('[wized="review-role"]'), ((_h = q('[wized="applicant-current-role"]')) == null ? void 0 : _h.value) || "");
-    setText(q('[wized="review-institution"]'), ((_i = q('[wized="applicant-institution"]')) == null ? void 0 : _i.value) || "");
-    setText(q('[wized="review-credentials"]'), ((_j = q('[wized="applicant-credentials"]')) == null ? void 0 : _j.value) || "");
-    setText(q('[wized="review-program-name"]'), programName);
-    const host = q('[wized="review-questions-host"]');
-    if (host) {
-      host.innerHTML = "";
-      const prog = programs.find((p) => p.id === programId);
-      const questions = normalizeQuestions(prog && prog.program_questions);
+    const phone = ((_c = q('[wized="applicant-phone"]')) == null ? void 0 : _c.value) || "";
+    const role = ((_d = q('[wized="applicant-current-role"]')) == null ? void 0 : _d.value) || "";
+    const institution = ((_e = q('[wized="applicant-institution"]')) == null ? void 0 : _e.value) || "";
+    const credentials = ((_f = q('[wized="applicant-credentials"]')) == null ? void 0 : _f.value) || "";
+    const city = ((_g = q('[wized="applicant-city"]')) == null ? void 0 : _g.value) || "";
+    const state = ((_h = q('[wized="applicant-state"]')) == null ? void 0 : _h.value) || "";
+    const zip = ((_i = q('[wized="applicant-zip-code"]')) == null ? void 0 : _i.value) || "";
+    const country = ((_j = q('[wized="applicant-country"]')) == null ? void 0 : _j.value) || "";
+    const location2 = [city, state, zip, country].filter(Boolean).join(", ");
+    function makeRow(label, value) {
+      const row = document.createElement("div");
+      row.className = "review-row";
+      const lbl = document.createElement("span");
+      lbl.className = "review-label";
+      lbl.textContent = label;
+      const val = document.createElement("span");
+      val.className = "review-value";
+      val.textContent = value;
+      row.appendChild(lbl);
+      row.appendChild(val);
+      return row;
+    }
+    function makeSection(header, rows) {
+      const visible = rows.filter(([, v]) => v);
+      if (visible.length === 0) return null;
+      const section = document.createElement("div");
+      section.className = "review-section";
+      const hdr = document.createElement("div");
+      hdr.className = "review-section-header";
+      hdr.textContent = header;
+      section.appendChild(hdr);
+      visible.forEach(([label, value]) => section.appendChild(makeRow(label, value)));
+      return section;
+    }
+    container.replaceChildren();
+    [
+      makeSection("PERSONAL INFORMATION", [
+        ["First name", firstName],
+        ["Last name", lastName],
+        ["Email", session.user.email || ""],
+        ["Phone", phone]
+      ]),
+      makeSection("PROFESSIONAL BACKGROUND", [
+        ["Current role", role],
+        ["Institution", institution],
+        ["Credentials", credentials],
+        ["Location", location2]
+      ]),
+      makeSection("PROGRAM SELECTION", [
+        ["Program", programName]
+      ])
+    ].forEach((s) => {
+      if (s) container.appendChild(s);
+    });
+    const prog = programs.find((p) => p.id === programId);
+    const questions = normalizeQuestions(prog && prog.program_questions);
+    if (questions.length > 0) {
+      const qSection = document.createElement("div");
+      qSection.className = "review-section";
+      const qHdr = document.createElement("div");
+      qHdr.className = "review-section-header";
+      qHdr.textContent = "PROGRAM QUESTIONS";
+      qSection.appendChild(qHdr);
       questions.forEach((question) => {
-        const answer = programAnswers[question.id] || "\u2014";
-        const entry = document.createElement("div");
-        entry.className = "cv-entry";
-        entry.innerHTML = '<p class="cv-question">' + escapeHtml(question.label || question.id) + '</p><p class="cv-answer">' + escapeHtml(answer) + "</p>";
-        host.appendChild(entry);
+        qSection.appendChild(makeRow(question.label || question.id, programAnswers[question.id] || "\u2014"));
       });
+      container.appendChild(qSection);
     }
   }
   async function initApply() {
@@ -966,11 +1013,10 @@
       e.preventDefault();
       goToSection(2);
     });
+    const meta = session.user.user_metadata || {};
+    if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || "";
+    if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || "";
     if (draft) {
-      const meta = session.user.user_metadata || {};
-      if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || "";
-      if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || "";
-      if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || "";
       if (q('[wized="applicant-email-consent"]')) q('[wized="applicant-email-consent"]').checked = !!draft.email_consent;
       if (q('[wized="applicant-phone"]')) q('[wized="applicant-phone"]').value = draft.phone || "";
       if (q('[wized="applicant-address"]')) q('[wized="applicant-address"]').value = draft.address || "";
@@ -997,7 +1043,7 @@
       hide(q('[wized="form-error"]'));
       try {
         await doSaveDraft();
-        goToSection(3);
+        goToSection(4);
       } catch (err) {
         setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
         show(q('[wized="form-error"]'));
@@ -1007,12 +1053,13 @@
     const backSection3Btn = q('[wized="back-section-3-btn"]');
     if (backSection3Btn) backSection3Btn.addEventListener("click", (e) => {
       e.preventDefault();
-      goToSection(2);
+      goToSection(4);
     });
     const nextSection3Btn = q('[wized="next-section-3-btn"]');
     if (nextSection3Btn) nextSection3Btn.addEventListener("click", (e) => {
       e.preventDefault();
-      goToSection(4);
+      populateReview(session, programId, programName, programAnswers, programs);
+      goToSection(5);
     });
     const cvFileInput = q('[wized="cv-file-input"]');
     if (cvFileInput) cvFileInput.addEventListener("change", async (e) => {
@@ -1068,7 +1115,7 @@
     const backSection4Btn = q('[wized="back-section-4-btn"]');
     if (backSection4Btn) backSection4Btn.addEventListener("click", (e) => {
       e.preventDefault();
-      goToSection(3);
+      goToSection(2);
     });
     const nextSection4Btn = q('[wized="next-section-4-btn"]');
     if (nextSection4Btn) nextSection4Btn.addEventListener("click", async (e) => {
@@ -1076,8 +1123,7 @@
       hide(q('[wized="form-error"]'));
       try {
         await doSaveDraft();
-        populateReview(session, programId, programName, programAnswers, programs);
-        goToSection(5);
+        goToSection(3);
       } catch (err) {
         setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
         show(q('[wized="form-error"]'));
@@ -1086,7 +1132,7 @@
     const backSection5Btn = q('[wized="back-section-5-btn"]');
     if (backSection5Btn) backSection5Btn.addEventListener("click", (e) => {
       e.preventDefault();
-      goToSection(4);
+      goToSection(3);
     });
     const submitAppBtn = q('[wized="submit-application-btn"]');
     if (submitAppBtn) submitAppBtn.addEventListener("click", async (e) => {

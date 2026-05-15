@@ -228,41 +228,82 @@ function cloneRow(template) {
 // ─── PAGE ENTRY POINT ────────────────────────────────────────────────────────
 
 function populateReview(session, programId, programName, programAnswers, programs) {
+  const container = q('[wized="review-content"]');
+  if (!container) return;
+
   const meta = session.user.user_metadata || {};
-  const firstName = q('[wized="applicant-first-name"]')?.value || meta.first_name || '';
-  const lastName  = q('[wized="applicant-last-name"]')?.value  || meta.last_name  || '';
+  const firstName   = q('[wized="applicant-first-name"]')?.value || meta.first_name || '';
+  const lastName    = q('[wized="applicant-last-name"]')?.value  || meta.last_name  || '';
+  const phone       = q('[wized="applicant-phone"]')?.value || '';
+  const role        = q('[wized="applicant-current-role"]')?.value || '';
+  const institution = q('[wized="applicant-institution"]')?.value || '';
+  const credentials = q('[wized="applicant-credentials"]')?.value || '';
+  const city        = q('[wized="applicant-city"]')?.value || '';
+  const state       = q('[wized="applicant-state"]')?.value || '';
+  const zip         = q('[wized="applicant-zip-code"]')?.value || '';
+  const country     = q('[wized="applicant-country"]')?.value || '';
+  const location    = [city, state, zip, country].filter(Boolean).join(', ');
 
-  setText(q('[wized="review-name"]'),        [firstName, lastName].filter(Boolean).join(' '));
-  setText(q('[wized="review-contact"]'),      [
-    q('[wized="applicant-phone"]')?.value,
-    session.user.email,
-  ].filter(Boolean).join(' • '));
-  setText(q('[wized="review-location"]'),     [
-    q('[wized="applicant-city"]')?.value,
-    q('[wized="applicant-state"]')?.value,
-    q('[wized="applicant-zip-code"]')?.value,
-    q('[wized="applicant-country"]')?.value,
-  ].filter(Boolean).join(', '));
-  setText(q('[wized="review-role"]'),         q('[wized="applicant-current-role"]')?.value || '');
-  setText(q('[wized="review-institution"]'),  q('[wized="applicant-institution"]')?.value || '');
-  setText(q('[wized="review-credentials"]'),  q('[wized="applicant-credentials"]')?.value || '');
-  setText(q('[wized="review-program-name"]'), programName);
+  function makeRow(label, value) {
+    const row = document.createElement('div');
+    row.className = 'review-row';
+    const lbl = document.createElement('span');
+    lbl.className = 'review-label';
+    lbl.textContent = label;
+    const val = document.createElement('span');
+    val.className = 'review-value';
+    val.textContent = value;
+    row.appendChild(lbl);
+    row.appendChild(val);
+    return row;
+  }
 
-  // Dynamic program Q&A
-  const host = q('[wized="review-questions-host"]');
-  if (host) {
-    host.innerHTML = '';
-    const prog = programs.find((p) => p.id === programId);
-    const questions = normalizeQuestions(prog && prog.program_questions);
+  function makeSection(header, rows) {
+    const visible = rows.filter(([, v]) => v);
+    if (visible.length === 0) return null;
+    const section = document.createElement('div');
+    section.className = 'review-section';
+    const hdr = document.createElement('div');
+    hdr.className = 'review-section-header';
+    hdr.textContent = header;
+    section.appendChild(hdr);
+    visible.forEach(([label, value]) => section.appendChild(makeRow(label, value)));
+    return section;
+  }
+
+  container.replaceChildren();
+
+  [
+    makeSection('PERSONAL INFORMATION', [
+      ['First name', firstName],
+      ['Last name',  lastName],
+      ['Email',      session.user.email || ''],
+      ['Phone',      phone],
+    ]),
+    makeSection('PROFESSIONAL BACKGROUND', [
+      ['Current role', role],
+      ['Institution',  institution],
+      ['Credentials',  credentials],
+      ['Location',     location],
+    ]),
+    makeSection('PROGRAM SELECTION', [
+      ['Program', programName],
+    ]),
+  ].forEach((s) => { if (s) container.appendChild(s); });
+
+  const prog = programs.find((p) => p.id === programId);
+  const questions = normalizeQuestions(prog && prog.program_questions);
+  if (questions.length > 0) {
+    const qSection = document.createElement('div');
+    qSection.className = 'review-section';
+    const qHdr = document.createElement('div');
+    qHdr.className = 'review-section-header';
+    qHdr.textContent = 'PROGRAM QUESTIONS';
+    qSection.appendChild(qHdr);
     questions.forEach((question) => {
-      const answer = programAnswers[question.id] || '—';
-      const entry = document.createElement('div');
-      entry.className = 'cv-entry';
-      entry.innerHTML =
-        '<p class="cv-question">' + escapeHtml(question.label || question.id) + '</p>' +
-        '<p class="cv-answer">' + escapeHtml(answer) + '</p>';
-      host.appendChild(entry);
+      qSection.appendChild(makeRow(question.label || question.id, programAnswers[question.id] || '—'));
     });
+    container.appendChild(qSection);
   }
 }
 
