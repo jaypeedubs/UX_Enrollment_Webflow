@@ -227,6 +227,138 @@ function cloneRow(template) {
 
 // ─── PAGE ENTRY POINT ────────────────────────────────────────────────────────
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function makeSvgBase(size) {
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('width', size);
+  svg.setAttribute('height', size);
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', 'currentColor');
+  svg.setAttribute('stroke-width', '2');
+  svg.setAttribute('stroke-linecap', 'round');
+  svg.setAttribute('stroke-linejoin', 'round');
+  return svg;
+}
+
+function makePath(d) {
+  const p = document.createElementNS(SVG_NS, 'path');
+  p.setAttribute('d', d);
+  return p;
+}
+
+function makeLine(x1, y1, x2, y2) {
+  const l = document.createElementNS(SVG_NS, 'line');
+  l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+  l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+  return l;
+}
+
+function makePolyline(points) {
+  const pl = document.createElementNS(SVG_NS, 'polyline');
+  pl.setAttribute('points', points);
+  return pl;
+}
+
+function makeUploadArrowSvg() {
+  const svg = makeSvgBase('32');
+  svg.appendChild(makePath('M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'));
+  svg.appendChild(makePolyline('17 8 12 3 7 8'));
+  svg.appendChild(makeLine('12', '3', '12', '15'));
+  return svg;
+}
+
+function makeDropArrowSvg() {
+  const svg = makeSvgBase('32');
+  svg.appendChild(makePath('M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'));
+  svg.appendChild(makePolyline('7 10 12 15 17 10'));
+  svg.appendChild(makeLine('12', '15', '12', '3'));
+  return svg;
+}
+
+function makeWarnSvg() {
+  const svg = makeSvgBase('32');
+  svg.appendChild(makePath('M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'));
+  svg.appendChild(makeLine('12', '9', '12', '13'));
+  svg.appendChild(makeLine('12', '17', '12.01', '17'));
+  return svg;
+}
+
+const UPLOAD_ALLOWED_EXTS = ['.pdf', '.doc', '.docx'];
+const UPLOAD_MAX_BYTES = 10 * 1024 * 1024;
+const UPLOAD_HINT_DEFAULT = 'PDF or DOC — max 10 MB';
+
+function buildUploadZone(zone, onFile) {
+  const iconEl  = document.createElement('span');
+  const labelEl = document.createElement('span');
+  const hintEl  = document.createElement('span');
+  iconEl.className  = 'upload-icon';
+  labelEl.className = 'upload-label';
+  hintEl.className  = 'upload-hint';
+  labelEl.textContent = 'Drag & drop your CV or click to browse';
+  hintEl.textContent  = UPLOAD_HINT_DEFAULT;
+  iconEl.appendChild(makeUploadArrowSvg());
+
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.pdf,.doc,.docx';
+  input.style.display = 'none';
+
+  zone.replaceChildren(iconEl, labelEl, hintEl, input);
+
+  function resetDefault() {
+    zone.classList.remove('upload-zone--active', 'upload-zone--error');
+    iconEl.replaceChildren(makeUploadArrowSvg());
+    hintEl.textContent = UPLOAD_HINT_DEFAULT;
+  }
+
+  function setError(msg) {
+    zone.classList.remove('upload-zone--active');
+    zone.classList.add('upload-zone--error');
+    iconEl.replaceChildren(makeWarnSvg());
+    hintEl.textContent = msg;
+  }
+
+  function validate(file) {
+    const ext = '.' + file.name.split('.').pop().toLowerCase();
+    if (!UPLOAD_ALLOWED_EXTS.includes(ext)) {
+      setError('Invalid file type. Upload a PDF or DOC file.');
+      return false;
+    }
+    if (file.size > UPLOAD_MAX_BYTES) {
+      setError('File too large. Maximum size is 10 MB.');
+      return false;
+    }
+    return true;
+  }
+
+  zone.addEventListener('click', () => input.click());
+
+  zone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    zone.classList.add('upload-zone--active');
+    iconEl.replaceChildren(makeDropArrowSvg());
+    hintEl.textContent = 'Drop to upload';
+  });
+
+  zone.addEventListener('dragleave', resetDefault);
+
+  zone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    resetDefault();
+    const file = e.dataTransfer?.files[0];
+    if (file && validate(file)) onFile(file);
+  });
+
+  input.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file && validate(file)) onFile(file);
+  });
+
+  return input;
+}
+
 function populateReview(session, programId, programName, programAnswers, programs) {
   const container = q('[wized="review-content"]');
   if (!container) return;
@@ -591,26 +723,23 @@ export async function initApply() {
     goToSection(5);
   });
 
-  const cvFileInput = q('[wized="cv-file-input"]');
-  if (cvFileInput) cvFileInput.addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (!applicationId) {
-      setText(q('[wized="form-error-msg"]'), 'Please save your draft before uploading a CV.');
-      show(q('[wized="form-error"]'));
-      return;
-    }
-    try {
-      setCvProgress(0);
-      await uploadCV(session, applicationId, file);
-      cvUploaded = true;
-      hide(q('[wized="cv-upload-zone"]'));
-      show(q('[wized="cv-upload-success"]'));
-      show(q('[wized="cv-remove-btn"]'));
-      setText(q('[wized="cv-filename"]'), file.name);
-      setCvProgress(100);
-    } catch (err) { console.error('CV upload failed:', err); }
-  });
+  const cvZone = q('[wized="cv-upload-zone"]');
+  let builtFileInput = null;
+  if (cvZone) {
+    builtFileInput = buildUploadZone(cvZone, async (file) => {
+      if (!applicationId) {
+        setText(q('[wized="form-error-msg"]'), 'Please save your draft before uploading a CV.');
+        show(q('[wized="form-error"]'));
+        return;
+      }
+      try {
+        setCvProgress(0);
+        await uploadCV(session, applicationId, file);
+        cvUploaded = true;
+        syncCvUi();
+      } catch (err) { console.error('CV upload failed:', err); }
+    });
+  }
 
   const cvRemoveBtn = q('[wized="cv-remove-btn"]');
   if (cvRemoveBtn) cvRemoveBtn.addEventListener('click', async (e) => {
@@ -619,12 +748,8 @@ export async function initApply() {
     try {
       await removeCV(session, applicationId);
       cvUploaded = false;
-      show(q('[wized="cv-upload-zone"]'));
-      hide(q('[wized="cv-upload-success"]'));
-      hide(q('[wized="cv-remove-btn"]'));
-      if (q('[wized="cv-file-input"]')) q('[wized="cv-file-input"]').value = '';
-      setText(q('[wized="cv-filename"]'), '');
-      setCvProgress(0);
+      if (builtFileInput) builtFileInput.value = '';
+      syncCvUi();
     } catch (err) { console.error(err); }
   });
 

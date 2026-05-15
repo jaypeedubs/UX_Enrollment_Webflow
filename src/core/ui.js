@@ -100,15 +100,9 @@ export function applyDesignSystemClasses() {
     if (el) el.classList.add(btnMap[wid]);
   });
 
-  // CV upload zone (section 3)
+  // CV upload zone — base class only; inner markup and state classes managed by buildUploadZone
   const zone = q('[wized="cv-upload-zone"]');
-  if (zone) {
-    zone.classList.add('upload-zone');
-    const children = Array.from(zone.children);
-    if (children[0]) children[0].classList.add('upload-icon');
-    if (children[1]) children[1].classList.add('upload-label');
-    if (children[2]) children[2].classList.add('upload-hint');
-  }
+  if (zone) zone.classList.add('upload-zone');
   const uploadSuccess = q('[wized="cv-upload-success"]');
   if (uploadSuccess) uploadSuccess.classList.add('upload-success');
   const progressWrap = q('[wized="cv-upload-progress"]');
