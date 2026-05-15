@@ -333,7 +333,10 @@ function buildUploadZone(zone, onFile) {
     return true;
   }
 
-  zone.addEventListener('click', () => input.click());
+  zone.addEventListener('click', (e) => {
+    if (e.target === input) return;
+    input.click();
+  });
 
   zone.addEventListener('dragover', (e) => {
     e.preventDefault();
@@ -342,7 +345,10 @@ function buildUploadZone(zone, onFile) {
     hintEl.textContent = 'Drop to upload';
   });
 
-  zone.addEventListener('dragleave', resetDefault);
+  zone.addEventListener('dragleave', (e) => {
+    if (zone.contains(e.relatedTarget)) return;
+    resetDefault();
+  });
 
   zone.addEventListener('drop', (e) => {
     e.preventDefault();
