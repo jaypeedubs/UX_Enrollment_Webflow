@@ -496,12 +496,12 @@ export async function initApply() {
     goToSection(2);
   });
 
-  // Pre-fill personal info from draft
+  // Pre-fill name from user_metadata — always, even for first-time applicants
+  const meta = session.user.user_metadata || {};
+  if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || '';
+  if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || '';
+
   if (draft) {
-    const meta = session.user.user_metadata || {};
-    if (q('[wized="applicant-first-name"]')) q('[wized="applicant-first-name"]').value = meta.first_name || '';
-    if (q('[wized="applicant-last-name"]')) q('[wized="applicant-last-name"]').value = meta.last_name || '';
-    if (q('[wized="applicant-email"]')) q('[wized="applicant-email"]').value = session.user.email || '';
     if (q('[wized="applicant-email-consent"]')) q('[wized="applicant-email-consent"]').checked = !!draft.email_consent;
     if (q('[wized="applicant-phone"]')) q('[wized="applicant-phone"]').value = draft.phone || '';
     if (q('[wized="applicant-address"]')) q('[wized="applicant-address"]').value = draft.address || '';
