@@ -528,7 +528,7 @@ export async function initApply() {
   if (nextSection2Btn) nextSection2Btn.addEventListener('click', async (e) => {
     e.preventDefault();
     hide(q('[wized="form-error"]'));
-    try { await doSaveDraft(); goToSection(3); } catch (err) {
+    try { await doSaveDraft(); goToSection(4); } catch (err) {
       setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
       show(q('[wized="form-error"]'));
     }
@@ -540,13 +540,14 @@ export async function initApply() {
   const backSection3Btn = q('[wized="back-section-3-btn"]');
   if (backSection3Btn) backSection3Btn.addEventListener('click', (e) => {
     e.preventDefault();
-    goToSection(2);
+    goToSection(4);
   });
 
   const nextSection3Btn = q('[wized="next-section-3-btn"]');
   if (nextSection3Btn) nextSection3Btn.addEventListener('click', (e) => {
     e.preventDefault();
-    goToSection(4);
+    populateReview(session, programId, programName, programAnswers, programs);
+    goToSection(5);
   });
 
   const cvFileInput = q('[wized="cv-file-input"]');
@@ -603,7 +604,7 @@ export async function initApply() {
   const backSection4Btn = q('[wized="back-section-4-btn"]');
   if (backSection4Btn) backSection4Btn.addEventListener('click', (e) => {
     e.preventDefault();
-    goToSection(3);
+    goToSection(2);
   });
 
   const nextSection4Btn = q('[wized="next-section-4-btn"]');
@@ -612,8 +613,7 @@ export async function initApply() {
     hide(q('[wized="form-error"]'));
     try {
       await doSaveDraft();
-      populateReview(session, programId, programName, programAnswers, programs);
-      goToSection(5);
+      goToSection(3);
     } catch (err) {
       setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
       show(q('[wized="form-error"]'));
@@ -624,7 +624,7 @@ export async function initApply() {
   const backSection5Btn = q('[wized="back-section-5-btn"]');
   if (backSection5Btn) backSection5Btn.addEventListener('click', (e) => {
     e.preventDefault();
-    goToSection(4);
+    goToSection(3);
   });
 
   const submitAppBtn = q('[wized="submit-application-btn"]');
