@@ -728,24 +728,24 @@
     return clone;
   }
   function populateReview(session, programId, programName, programAnswers, programs) {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
     const meta = session.user.user_metadata || {};
-    const firstName = meta.first_name || "";
-    const lastName = meta.last_name || "";
+    const firstName = ((_a = q('[wized="applicant-first-name"]')) == null ? void 0 : _a.value) || meta.first_name || "";
+    const lastName = ((_b = q('[wized="applicant-last-name"]')) == null ? void 0 : _b.value) || meta.last_name || "";
     setText(q('[wized="review-name"]'), [firstName, lastName].filter(Boolean).join(" "));
     setText(q('[wized="review-contact"]'), [
-      (_a = q('[wized="applicant-phone"]')) == null ? void 0 : _a.value,
+      (_c = q('[wized="applicant-phone"]')) == null ? void 0 : _c.value,
       session.user.email
     ].filter(Boolean).join(" \u2022 "));
     setText(q('[wized="review-location"]'), [
-      (_b = q('[wized="applicant-city"]')) == null ? void 0 : _b.value,
-      (_c = q('[wized="applicant-state"]')) == null ? void 0 : _c.value,
-      (_d = q('[wized="applicant-zip-code"]')) == null ? void 0 : _d.value,
-      (_e = q('[wized="applicant-country"]')) == null ? void 0 : _e.value
+      (_d = q('[wized="applicant-city"]')) == null ? void 0 : _d.value,
+      (_e = q('[wized="applicant-state"]')) == null ? void 0 : _e.value,
+      (_f = q('[wized="applicant-zip-code"]')) == null ? void 0 : _f.value,
+      (_g = q('[wized="applicant-country"]')) == null ? void 0 : _g.value
     ].filter(Boolean).join(", "));
-    setText(q('[wized="review-role"]'), ((_f = q('[wized="applicant-current-role"]')) == null ? void 0 : _f.value) || "");
-    setText(q('[wized="review-institution"]'), ((_g = q('[wized="applicant-institution"]')) == null ? void 0 : _g.value) || "");
-    setText(q('[wized="review-credentials"]'), ((_h = q('[wized="applicant-credentials"]')) == null ? void 0 : _h.value) || "");
+    setText(q('[wized="review-role"]'), ((_h = q('[wized="applicant-current-role"]')) == null ? void 0 : _h.value) || "");
+    setText(q('[wized="review-institution"]'), ((_i = q('[wized="applicant-institution"]')) == null ? void 0 : _i.value) || "");
+    setText(q('[wized="review-credentials"]'), ((_j = q('[wized="applicant-credentials"]')) == null ? void 0 : _j.value) || "");
     setText(q('[wized="review-program-name"]'), programName);
     const host = q('[wized="review-questions-host"]');
     if (host) {
@@ -829,7 +829,7 @@
       hide(q('[wized="questions-loading"]'));
       show(q('[wized="questions-empty"]'));
       setText(q('[wized="form-error-msg"]'), "No active programs are available yet. Add a program in Supabase to continue testing.");
-      show(q('[wized="form-error-msg"]'));
+      show(q('[wized="form-error"]'));
     }
     if (draft) {
       applicationId = draft.id;
@@ -994,13 +994,13 @@
     const nextSection2Btn = q('[wized="next-section-2-btn"]');
     if (nextSection2Btn) nextSection2Btn.addEventListener("click", async (e) => {
       e.preventDefault();
-      hide(q('[wized="form-error-msg"]'));
+      hide(q('[wized="form-error"]'));
       try {
         await doSaveDraft();
         goToSection(3);
       } catch (err) {
         setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
-        show(q('[wized="form-error-msg"]'));
+        show(q('[wized="form-error"]'));
       }
     });
     syncCvUi();
@@ -1020,7 +1020,7 @@
       if (!file) return;
       if (!applicationId) {
         setText(q('[wized="form-error-msg"]'), "Please save your draft before uploading a CV.");
-        show(q('[wized="form-error-msg"]'));
+        show(q('[wized="form-error"]'));
         return;
       }
       try {
@@ -1073,14 +1073,14 @@
     const nextSection4Btn = q('[wized="next-section-4-btn"]');
     if (nextSection4Btn) nextSection4Btn.addEventListener("click", async (e) => {
       e.preventDefault();
-      hide(q('[wized="form-error-msg"]'));
+      hide(q('[wized="form-error"]'));
       try {
         await doSaveDraft();
         populateReview(session, programId, programName, programAnswers, programs);
         goToSection(5);
       } catch (err) {
         setText(q('[wized="form-error-msg"]'), err.message || "Please complete this section before continuing.");
-        show(q('[wized="form-error-msg"]'));
+        show(q('[wized="form-error"]'));
       }
     });
     const backSection5Btn = q('[wized="back-section-5-btn"]');
@@ -1091,11 +1091,11 @@
     const submitAppBtn = q('[wized="submit-application-btn"]');
     if (submitAppBtn) submitAppBtn.addEventListener("click", async (e) => {
       e.preventDefault();
-      hide(q('[wized="form-error-msg"]'));
+      hide(q('[wized="form-error"]'));
       if (!cvUploaded) {
         goToSection(3);
         setText(q('[wized="form-error-msg"]'), "Please upload your CV before submitting.");
-        show(q('[wized="form-error-msg"]'));
+        show(q('[wized="form-error"]'));
         return;
       }
       try {
@@ -1106,7 +1106,7 @@
       } catch (err) {
         console.error("Submit failed:", err);
         setText(q('[wized="form-error-msg"]'), err.message || "Submission failed. Please try again.");
-        show(q('[wized="form-error-msg"]'));
+        show(q('[wized="form-error"]'));
       }
     });
   }

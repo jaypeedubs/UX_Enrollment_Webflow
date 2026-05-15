@@ -227,8 +227,8 @@ function cloneRow(template) {
 
 function populateReview(session, programId, programName, programAnswers, programs) {
   const meta = session.user.user_metadata || {};
-  const firstName = meta.first_name || '';
-  const lastName  = meta.last_name  || '';
+  const firstName = q('[wized="applicant-first-name"]')?.value || meta.first_name || '';
+  const lastName  = q('[wized="applicant-last-name"]')?.value  || meta.last_name  || '';
 
   setText(q('[wized="review-name"]'),        [firstName, lastName].filter(Boolean).join(' '));
   setText(q('[wized="review-contact"]'),      [
@@ -349,7 +349,7 @@ export async function initApply() {
     hide(q('[wized="questions-loading"]'));
     show(q('[wized="questions-empty"]'));
     setText(q('[wized="form-error-msg"]'), 'No active programs are available yet. Add a program in Supabase to continue testing.');
-    show(q('[wized="form-error-msg"]'));
+    show(q('[wized="form-error"]'));
   }
 
   if (draft) {
@@ -525,10 +525,10 @@ export async function initApply() {
   const nextSection2Btn = q('[wized="next-section-2-btn"]');
   if (nextSection2Btn) nextSection2Btn.addEventListener('click', async (e) => {
     e.preventDefault();
-    hide(q('[wized="form-error-msg"]'));
+    hide(q('[wized="form-error"]'));
     try { await doSaveDraft(); goToSection(3); } catch (err) {
       setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
-      show(q('[wized="form-error-msg"]'));
+      show(q('[wized="form-error"]'));
     }
   });
 
@@ -553,7 +553,7 @@ export async function initApply() {
     if (!file) return;
     if (!applicationId) {
       setText(q('[wized="form-error-msg"]'), 'Please save your draft before uploading a CV.');
-      show(q('[wized="form-error-msg"]'));
+      show(q('[wized="form-error"]'));
       return;
     }
     try {
@@ -607,14 +607,14 @@ export async function initApply() {
   const nextSection4Btn = q('[wized="next-section-4-btn"]');
   if (nextSection4Btn) nextSection4Btn.addEventListener('click', async (e) => {
     e.preventDefault();
-    hide(q('[wized="form-error-msg"]'));
+    hide(q('[wized="form-error"]'));
     try {
       await doSaveDraft();
       populateReview(session, programId, programName, programAnswers, programs);
       goToSection(5);
     } catch (err) {
       setText(q('[wized="form-error-msg"]'), err.message || 'Please complete this section before continuing.');
-      show(q('[wized="form-error-msg"]'));
+      show(q('[wized="form-error"]'));
     }
   });
 
@@ -628,11 +628,11 @@ export async function initApply() {
   const submitAppBtn = q('[wized="submit-application-btn"]');
   if (submitAppBtn) submitAppBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    hide(q('[wized="form-error-msg"]'));
+    hide(q('[wized="form-error"]'));
     if (!cvUploaded) {
       goToSection(3);
       setText(q('[wized="form-error-msg"]'), 'Please upload your CV before submitting.');
-      show(q('[wized="form-error-msg"]'));
+      show(q('[wized="form-error"]'));
       return;
     }
     try {
@@ -643,7 +643,7 @@ export async function initApply() {
     } catch (err) {
       console.error('Submit failed:', err);
       setText(q('[wized="form-error-msg"]'), err.message || 'Submission failed. Please try again.');
-      show(q('[wized="form-error-msg"]'));
+      show(q('[wized="form-error"]'));
     }
   });
 }
