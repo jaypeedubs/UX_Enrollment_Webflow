@@ -421,9 +421,6 @@
       const cardTpl = q('[wized="course-card-item"]');
       if (cardList && cardTpl && programs.length > 0) {
         hide(cardTpl);
-        cardList.querySelectorAll(".empty-state-icon, .empty-state-heading, .empty-state-body").forEach((el) => hide(el));
-        hide(q('[wized="start-application-link"]'));
-        show(q('[wized="start-application-btn"]'));
         let selectedProgramId = null;
         programs.forEach((prog) => {
           const card = cloneRow(cardTpl);
@@ -819,14 +816,20 @@
       }
       return true;
     }
-    zone.addEventListener("click", () => input.click());
+    zone.addEventListener("click", (e) => {
+      if (e.target === input) return;
+      input.click();
+    });
     zone.addEventListener("dragover", (e) => {
       e.preventDefault();
       zone.classList.add("upload-zone--active");
       iconEl.replaceChildren(makeDropArrowSvg());
       hintEl.textContent = "Drop to upload";
     });
-    zone.addEventListener("dragleave", resetDefault);
+    zone.addEventListener("dragleave", (e) => {
+      if (zone.contains(e.relatedTarget)) return;
+      resetDefault();
+    });
     zone.addEventListener("drop", (e) => {
       var _a;
       e.preventDefault();
@@ -950,6 +953,7 @@
     applyDesignSystemClasses();
     let applicationId = draft ? draft.id : null;
     let cvUploaded = !!(draft && draft.cv_url);
+    let cvFilename = (draft == null ? void 0 : draft.cv_url) || null;
     let currentSection = 1;
     let programAnswers = {};
     setText(q('[wized="confirm-course-name"]'), programName);
@@ -1001,7 +1005,7 @@
         hide(q('[wized="cv-upload-zone"]'));
         show(q('[wized="cv-upload-success"]'));
         show(q('[wized="cv-remove-btn"]'));
-        setText(q('[wized="cv-filename"]'), filenameFromPath(draft == null ? void 0 : draft.cv_url) || "CV uploaded");
+        setText(q('[wized="cv-filename"]'), filenameFromPath(cvFilename) || "CV uploaded");
         setCvProgress(100);
       } else {
         show(q('[wized="cv-upload-zone"]'));
@@ -1180,7 +1184,7 @@
         }
         try {
           setCvProgress(0);
-          await uploadCV(session, applicationId, file);
+          cvFilename = await uploadCV(session, applicationId, file);
           cvUploaded = true;
           syncCvUi();
         } catch (err) {
@@ -1195,6 +1199,7 @@
       try {
         await removeCV(session, applicationId);
         cvUploaded = false;
+        cvFilename = null;
         if (builtFileInput) builtFileInput.value = "";
         syncCvUi();
       } catch (err) {
