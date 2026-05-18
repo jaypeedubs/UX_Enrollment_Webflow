@@ -2,9 +2,35 @@
 
 ## Scope
 This repo contains:
-- `admin/` — Astro + React admin UI
-- `supabase/` — migrations, Edge Functions, backend config
-- Webflow enrollment app integration work
+- `src/` — modular applicant-facing JS source (bundled to `dist/icit-app.bundle.js`)
+- `admin/` — Astro + React admin UI (standalone app, run from `admin/` directory)
+- `supabase/` — migrations (001–010), 7 Edge Functions, backend config
+- `docs/` — project documentation and plans
+
+## Commands
+All admin commands must be run from the `admin/` directory:
+```bash
+cd admin && npm run dev      # Start admin dev server
+cd admin && npm run build    # Build admin for production
+```
+Applicant bundle (root):
+```bash
+npm run build                # Bundle src/main.js -> dist/icit-app.bundle.js
+npm run watch                # Watch and bundle
+```
+Supabase:
+```bash
+supabase start               # Start local Supabase stack
+supabase db push             # Push migrations to remote
+supabase functions deploy <name>  # Deploy a single Edge Function
+```
+
+## Environment setup
+Copy `.env.example` → `.env` and fill in all vars before local dev.
+Required: SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY,
+STRIPE_PUBLISHABLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, SITE_URL.
+Note: `src/core/constants.js` has SUPABASE_URL and SUPABASE_ANON_KEY hardcoded — Webflow
+cannot read .env. Update those literals manually if the Supabase project changes.
 
 ## Working rules
 - Follow plan order strictly.

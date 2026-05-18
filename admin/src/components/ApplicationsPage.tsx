@@ -5,6 +5,8 @@ import { ApplicationList } from './ApplicationList';
 import { ApplicationDetail } from './ApplicationDetail';
 import { ConfirmDialog } from './ConfirmDialog';
 import { supabase } from '../lib/supabase';
+import { COURSES, STATUSES } from '../lib/constants';
+import { updateAdminNotes } from '../lib/api';
 
 type DialogVariant = 'accept' | 'waitlist' | 'request_more_info' | 'reject';
 
@@ -21,22 +23,18 @@ const ACTION_EVENT: Record<DialogVariant, string> = {
 };
 
 const COURSE_TABS = [
-  { value: '',      label: 'All Courses' },
-  { value: 'ASC',   label: 'ASC' },
-  { value: 'ISC',   label: 'ISC' },
-  { value: 'AAC',   label: 'AAC' },
-  { value: 'FAC',   label: 'FAC' },
-  { value: 'IFAC',  label: 'IFAC' },
-  { value: 'CITEC', label: 'CITEC' },
+  { value: '', label: 'All Courses' },
+  ...COURSES.map(c => ({ value: c, label: c }))
 ];
 
 const STATUS_PILLS = [
-  { value: '',           label: 'All' },
-  { value: 'submitted',  label: 'New' },
-  { value: 'in_review',  label: 'In Review' },
-  { value: 'waitlisted', label: 'Waitlisted' },
-  { value: 'accepted',   label: 'Accepted' },
-  { value: 'enrolled',   label: 'Enrolled' },
+  { value: '', label: 'All' },
+  ...STATUSES.filter(s => s !== 'withdrawn' && s !== 'rejected').map(s => {
+    if (s === 'submitted') return { value: s, label: 'New' };
+    if (s === 'in_review') return { value: s, label: 'In Review' };
+    const label = s.charAt(0).toUpperCase() + s.slice(1);
+    return { value: s, label };
+  })
 ];
 
 export function ApplicationsPage() {
@@ -86,10 +84,16 @@ export function ApplicationsPage() {
     }
   }, [dialog, refresh]);
 
-  // Stubbed: requires admin-write Edge Function (not yet implemented)
-  const handleSaveNotes = useCallback((_notes: string) => {
-    console.warn('admin_notes save requires admin-write Edge Function — not yet implemented');
-  }, []);
+  const handleSaveNotes = useCallback(async (notes: string) => {
+    if (!selectedId) return;
+    setActionError(null);
+    try {
+      await updateAdminNotes(selectedId, notes);
+      refresh();
+    } catch (err: any) {
+      setActionError(`Failed to save notes: ${err.message}`);
+    }
+  }, [selectedId, refresh]);
 
   return (
     <div className="flex flex-col h-screen">

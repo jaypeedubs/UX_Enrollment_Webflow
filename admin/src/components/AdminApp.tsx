@@ -4,13 +4,15 @@ import { LoginPage } from './LoginPage';
 import { Header } from './Header';
 import { ApplicationsPage } from './ApplicationsPage';
 import { DashboardPage } from './DashboardPage';
+import { ProgramsPage } from './ProgramsPage';
 
-type Route = 'dashboard' | 'applications';
+type Route = 'dashboard' | 'applications' | 'programs';
 
 function getRoute(): Route {
   if (typeof window === 'undefined') return 'dashboard';
   const path = window.location.pathname;
   if (path.includes('/applications')) return 'applications';
+  if (path.includes('/programs')) return 'programs';
   return 'dashboard';
 }
 
@@ -28,7 +30,9 @@ export function AdminApp() {
 
   function navigate(e: React.MouseEvent<HTMLAnchorElement>, to: Route) {
     e.preventDefault();
-    const path = to === 'applications' ? '/admin/applications' : '/admin';
+    const path = to === 'applications' ? '/admin/applications'
+               : to === 'programs'      ? '/admin/programs'
+               : '/admin';
     history.pushState(null, '', path);
     setRoute(to);
   }
@@ -73,12 +77,15 @@ export function AdminApp() {
             Applications
           </a>
           <a
-            href="https://retool.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="py-3 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition-colors"
+            href="/admin/programs"
+            onClick={(e) => navigate(e, 'programs')}
+            className={`py-3 text-sm font-medium border-b-2 transition-colors ${
+              route === 'programs'
+                ? 'border-[#123161] text-[#123161]'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
+            }`}
           >
-            Programs ↗
+            Programs
           </a>
         </div>
       </nav>
@@ -86,6 +93,7 @@ export function AdminApp() {
       <main className="flex-1 min-h-0 overflow-hidden">
         {route === 'dashboard'    && <DashboardPage />}
         {route === 'applications' && <ApplicationsPage />}
+        {route === 'programs'     && <ProgramsPage />}
       </main>
     </div>
   );

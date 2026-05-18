@@ -43,13 +43,13 @@ Deno.serve(async (req) => {
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
   )
 
-  // Update status → enrolled. .eq('status', 'enrollment_confirmed') guards against
-  // Stripe delivering the same event twice.
+  // Update status → enrolled. .eq('status', 'accepted') guards against
+  // Stripe delivering the same event twice (a no-op if already enrolled).
   const { error: updateErr } = await admin
     .from('applications')
     .update({ status: 'enrolled' })
     .eq('id', applicationId)
-    .eq('status', 'enrollment_confirmed')
+    .eq('status', 'accepted')
 
   if (updateErr) {
     console.error('Failed to update application status:', updateErr)

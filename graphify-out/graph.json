@@ -4,12 +4,66 @@
   "graph": {},
   "nodes": [
     {
+      "label": "build.js",
+      "file_type": "code",
+      "source_file": "build.js",
+      "source_location": "L1",
+      "id": "build_js",
+      "community": 23,
+      "norm_label": "build.js"
+    },
+    {
+      "label": "admin-api.test.js",
+      "file_type": "code",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L1",
+      "id": "tests_admin_api_test_js",
+      "community": 8,
+      "norm_label": "admin-api.test.js"
+    },
+    {
+      "label": "pass()",
+      "file_type": "code",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L7",
+      "id": "tests_admin_api_test_pass",
+      "community": 8,
+      "norm_label": "pass()"
+    },
+    {
+      "label": "fail()",
+      "file_type": "code",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L8",
+      "id": "tests_admin_api_test_fail",
+      "community": 8,
+      "norm_label": "fail()"
+    },
+    {
+      "label": "post()",
+      "file_type": "code",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L12",
+      "id": "tests_admin_api_test_post",
+      "community": 8,
+      "norm_label": "post()"
+    },
+    {
+      "label": "rest()",
+      "file_type": "code",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L22",
+      "id": "tests_admin_api_test_rest",
+      "community": 8,
+      "norm_label": "rest()"
+    },
+    {
       "label": "icit-app.test.js",
       "file_type": "code",
       "source_file": "tests/icit-app.test.js",
       "source_location": "L1",
       "id": "tests_icit_app_test_js",
-      "community": 3,
+      "community": 6,
       "norm_label": "icit-app.test.js"
     },
     {
@@ -18,7 +72,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L7",
       "id": "tests_icit_app_test_createelement",
-      "community": 3,
+      "community": 6,
       "norm_label": "createelement()"
     },
     {
@@ -27,7 +81,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L27",
       "id": "tests_icit_app_test_createcontext",
-      "community": 3,
+      "community": 6,
       "norm_label": "createcontext()"
     },
     {
@@ -36,7 +90,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L103",
       "id": "tests_icit_app_test_tick",
-      "community": 3,
+      "community": 6,
       "norm_label": "tick()"
     },
     {
@@ -45,7 +99,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L109",
       "id": "tests_icit_app_test_testloginrevealswhenmarkersaremissing",
-      "community": 3,
+      "community": 6,
       "norm_label": "testloginrevealswhenmarkersaremissing()"
     },
     {
@@ -54,7 +108,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L117",
       "id": "tests_icit_app_test_testsignupsendsconfirmationbacktologin",
-      "community": 3,
+      "community": 6,
       "norm_label": "testsignupsendsconfirmationbacktologin()"
     },
     {
@@ -63,7 +117,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L151",
       "id": "tests_icit_app_test_testloginauthreturnshowslogininsteadofdashboardredirect",
-      "community": 3,
+      "community": 6,
       "norm_label": "testloginauthreturnshowslogininsteadofdashboardredirect()"
     },
     {
@@ -72,7 +126,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L181",
       "id": "tests_icit_app_test_testapplyrevealswhendataloadfails",
-      "community": 3,
+      "community": 6,
       "norm_label": "testapplyrevealswhendataloadfails()"
     },
     {
@@ -81,7 +135,7 @@
       "source_file": "tests/icit-app.test.js",
       "source_location": "L195",
       "id": "tests_icit_app_test_testdashboardrenderswhennotificationsfail",
-      "community": 3,
+      "community": 6,
       "norm_label": "testdashboardrenderswhennotificationsfail()"
     },
     {
@@ -90,7 +144,7 @@
       "source_file": "admin/astro.config.mjs",
       "source_location": "L1",
       "id": "admin_astro_config_mjs",
-      "community": 23,
+      "community": 24,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -126,7 +180,7 @@
       "source_file": "admin/src/components/LoginPage.tsx",
       "source_location": "L1",
       "id": "admin_src_components_loginpage_tsx",
-      "community": 14,
+      "community": 13,
       "norm_label": "loginpage.tsx"
     },
     {
@@ -135,7 +189,7 @@
       "source_file": "admin/src/components/LoginPage.tsx",
       "source_location": "L4",
       "id": "components_loginpage_loginpage",
-      "community": 14,
+      "community": 13,
       "norm_label": "loginpage()"
     },
     {
@@ -144,34 +198,34 @@
       "source_file": "admin/src/components/AdminApp.tsx",
       "source_location": "L1",
       "id": "admin_src_components_adminapp_tsx",
-      "community": 9,
+      "community": 10,
       "norm_label": "adminapp.tsx"
     },
     {
       "label": "getRoute()",
       "file_type": "code",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "id": "components_adminapp_getroute",
-      "community": 9,
+      "community": 10,
       "norm_label": "getroute()"
     },
     {
       "label": "handlePopState()",
       "file_type": "code",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L22",
+      "source_location": "L24",
       "id": "components_adminapp_handlepopstate",
-      "community": 9,
+      "community": 10,
       "norm_label": "handlepopstate()"
     },
     {
       "label": "navigate()",
       "file_type": "code",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L29",
+      "source_location": "L31",
       "id": "components_adminapp_navigate",
-      "community": 9,
+      "community": 10,
       "norm_label": "navigate()"
     },
     {
@@ -207,7 +261,7 @@
       "source_file": "admin/src/components/StatusBadge.tsx",
       "source_location": "L1",
       "id": "admin_src_components_statusbadge_tsx",
-      "community": 15,
+      "community": 14,
       "norm_label": "statusbadge.tsx"
     },
     {
@@ -216,7 +270,7 @@
       "source_file": "admin/src/components/StatusBadge.tsx",
       "source_location": "L17",
       "id": "components_statusbadge_statusbadge",
-      "community": 15,
+      "community": 14,
       "norm_label": "statusbadge()"
     },
     {
@@ -225,16 +279,16 @@
       "source_file": "admin/src/components/ApplicationDetail.tsx",
       "source_location": "L1",
       "id": "admin_src_components_applicationdetail_tsx",
-      "community": 16,
+      "community": 15,
       "norm_label": "applicationdetail.tsx"
     },
     {
       "label": "isLocked()",
       "file_type": "code",
       "source_file": "admin/src/components/ApplicationDetail.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "id": "components_applicationdetail_islocked",
-      "community": 16,
+      "community": 15,
       "norm_label": "islocked()"
     },
     {
@@ -243,7 +297,7 @@
       "source_file": "admin/src/components/Header.tsx",
       "source_location": "L1",
       "id": "admin_src_components_header_tsx",
-      "community": 17,
+      "community": 16,
       "norm_label": "header.tsx"
     },
     {
@@ -252,7 +306,7 @@
       "source_file": "admin/src/components/Header.tsx",
       "source_location": "L7",
       "id": "components_header_handlesignout",
-      "community": 17,
+      "community": 16,
       "norm_label": "handlesignout()"
     },
     {
@@ -261,7 +315,7 @@
       "source_file": "admin/src/components/ApplicationsPage.tsx",
       "source_location": "L1",
       "id": "admin_src_components_applicationspage_tsx",
-      "community": 24,
+      "community": 25,
       "norm_label": "applicationspage.tsx"
     },
     {
@@ -270,7 +324,7 @@
       "source_file": "admin/src/components/ApplicationList.tsx",
       "source_location": "L1",
       "id": "admin_src_components_applicationlist_tsx",
-      "community": 25,
+      "community": 26,
       "norm_label": "applicationlist.tsx"
     },
     {
@@ -279,7 +333,7 @@
       "source_file": "admin/src/components/CircleBadge.tsx",
       "source_location": "L1",
       "id": "admin_src_components_circlebadge_tsx",
-      "community": 18,
+      "community": 17,
       "norm_label": "circlebadge.tsx"
     },
     {
@@ -288,8 +342,35 @@
       "source_file": "admin/src/components/CircleBadge.tsx",
       "source_location": "L15",
       "id": "components_circlebadge_circlebadge",
-      "community": 18,
+      "community": 17,
       "norm_label": "circlebadge()"
+    },
+    {
+      "label": "ProgramsPage.tsx",
+      "file_type": "code",
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L1",
+      "id": "admin_src_components_programspage_tsx",
+      "community": 4,
+      "norm_label": "programspage.tsx"
+    },
+    {
+      "label": "handleSave()",
+      "file_type": "code",
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L26",
+      "id": "components_programspage_handlesave",
+      "community": 4,
+      "norm_label": "handlesave()"
+    },
+    {
+      "label": "handleArchive()",
+      "file_type": "code",
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L46",
+      "id": "components_programspage_handlearchive",
+      "community": 4,
+      "norm_label": "handlearchive()"
     },
     {
       "label": "DashboardPage.tsx",
@@ -297,16 +378,16 @@
       "source_file": "admin/src/components/DashboardPage.tsx",
       "source_location": "L1",
       "id": "admin_src_components_dashboardpage_tsx",
-      "community": 19,
+      "community": 18,
       "norm_label": "dashboardpage.tsx"
     },
     {
       "label": "buildCourseBreakdown()",
       "file_type": "code",
       "source_file": "admin/src/components/DashboardPage.tsx",
-      "source_location": "L15",
+      "source_location": "L14",
       "id": "components_dashboardpage_buildcoursebreakdown",
-      "community": 19,
+      "community": 18,
       "norm_label": "buildcoursebreakdown()"
     },
     {
@@ -315,7 +396,7 @@
       "source_file": "admin/src/hooks/useApplications.ts",
       "source_location": "L1",
       "id": "admin_src_hooks_useapplications_ts",
-      "community": 7,
+      "community": 9,
       "norm_label": "useapplications.ts"
     },
     {
@@ -324,7 +405,7 @@
       "source_file": "admin/src/hooks/useApplications.ts",
       "source_location": "L26",
       "id": "hooks_useapplications_readurlfilters",
-      "community": 7,
+      "community": 9,
       "norm_label": "readurlfilters()"
     },
     {
@@ -333,7 +414,7 @@
       "source_file": "admin/src/hooks/useApplications.ts",
       "source_location": "L39",
       "id": "hooks_useapplications_writeurl",
-      "community": 7,
+      "community": 9,
       "norm_label": "writeurl()"
     },
     {
@@ -342,7 +423,7 @@
       "source_file": "admin/src/hooks/useApplications.ts",
       "source_location": "L50",
       "id": "hooks_useapplications_applyfilters",
-      "community": 7,
+      "community": 9,
       "norm_label": "applyfilters()"
     },
     {
@@ -351,7 +432,7 @@
       "source_file": "admin/src/hooks/useApplications.ts",
       "source_location": "L63",
       "id": "hooks_useapplications_useapplications",
-      "community": 7,
+      "community": 9,
       "norm_label": "useapplications()"
     },
     {
@@ -360,7 +441,7 @@
       "source_file": "admin/src/hooks/useAuth.ts",
       "source_location": "L1",
       "id": "admin_src_hooks_useauth_ts",
-      "community": 20,
+      "community": 19,
       "norm_label": "useauth.ts"
     },
     {
@@ -369,7 +450,7 @@
       "source_file": "admin/src/hooks/useAuth.ts",
       "source_location": "L10",
       "id": "hooks_useauth_useauth",
-      "community": 20,
+      "community": 19,
       "norm_label": "useauth()"
     },
     {
@@ -378,26 +459,98 @@
       "source_file": "admin/src/lib/api.ts",
       "source_location": "L1",
       "id": "admin_src_lib_api_ts",
-      "community": 13,
+      "community": 4,
       "norm_label": "api.ts"
+    },
+    {
+      "label": "invokeAdminRead()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L4",
+      "id": "lib_api_invokeadminread",
+      "community": 4,
+      "norm_label": "invokeadminread()"
+    },
+    {
+      "label": "invokeAdminWrite()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L20",
+      "id": "lib_api_invokeadminwrite",
+      "community": 4,
+      "norm_label": "invokeadminwrite()"
     },
     {
       "label": "getApplications()",
       "file_type": "code",
       "source_file": "admin/src/lib/api.ts",
-      "source_location": "L4",
+      "source_location": "L48",
       "id": "lib_api_getapplications",
-      "community": 13,
+      "community": 4,
       "norm_label": "getapplications()"
     },
     {
       "label": "getPrograms()",
       "file_type": "code",
       "source_file": "admin/src/lib/api.ts",
-      "source_location": "L31",
+      "source_location": "L52",
       "id": "lib_api_getprograms",
-      "community": 13,
+      "community": 4,
       "norm_label": "getprograms()"
+    },
+    {
+      "label": "createProgram()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L56",
+      "id": "lib_api_createprogram",
+      "community": 4,
+      "norm_label": "createprogram()"
+    },
+    {
+      "label": "updateProgram()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L72",
+      "id": "lib_api_updateprogram",
+      "community": 4,
+      "norm_label": "updateprogram()"
+    },
+    {
+      "label": "archiveProgram()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L88",
+      "id": "lib_api_archiveprogram",
+      "community": 4,
+      "norm_label": "archiveprogram()"
+    },
+    {
+      "label": "updateAdminNotes()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L101",
+      "id": "lib_api_updateadminnotes",
+      "community": 4,
+      "norm_label": "updateadminnotes()"
+    },
+    {
+      "label": "getCvSignedUrl()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L105",
+      "id": "lib_api_getcvsignedurl",
+      "community": 4,
+      "norm_label": "getcvsignedurl()"
+    },
+    {
+      "label": "getTimeline()",
+      "file_type": "code",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L110",
+      "id": "lib_api_gettimeline",
+      "community": 4,
+      "norm_label": "gettimeline()"
     },
     {
       "label": "types.ts",
@@ -405,7 +558,7 @@
       "source_file": "admin/src/lib/types.ts",
       "source_location": "L1",
       "id": "admin_src_lib_types_ts",
-      "community": 26,
+      "community": 27,
       "norm_label": "types.ts"
     },
     {
@@ -414,7 +567,7 @@
       "source_file": "admin/src/lib/statusUtils.ts",
       "source_location": "L1",
       "id": "admin_src_lib_statusutils_ts",
-      "community": 21,
+      "community": 20,
       "norm_label": "statusutils.ts"
     },
     {
@@ -423,7 +576,7 @@
       "source_file": "admin/src/lib/statusUtils.ts",
       "source_location": "L16",
       "id": "lib_statusutils_statustovariant",
-      "community": 21,
+      "community": 20,
       "norm_label": "statustovariant()"
     },
     {
@@ -432,7 +585,7 @@
       "source_file": "admin/src/lib/constants.ts",
       "source_location": "L1",
       "id": "admin_src_lib_constants_ts",
-      "community": 27,
+      "community": 28,
       "norm_label": "constants.ts"
     },
     {
@@ -441,7 +594,7 @@
       "source_file": "admin/src/lib/supabase.ts",
       "source_location": "L1",
       "id": "admin_src_lib_supabase_ts",
-      "community": 28,
+      "community": 29,
       "norm_label": "supabase.ts"
     },
     {
@@ -450,7 +603,7 @@
       "source_file": "supabase/functions/stripe-webhook/index.ts",
       "source_location": "L1",
       "id": "supabase_functions_stripe_webhook_index_ts",
-      "community": 29,
+      "community": 30,
       "norm_label": "index.ts"
     },
     {
@@ -459,8 +612,17 @@
       "source_file": "supabase/functions/admin-read/index.ts",
       "source_location": "L1",
       "id": "supabase_functions_admin_read_index_ts",
-      "community": 30,
+      "community": 21,
       "norm_label": "index.ts"
+    },
+    {
+      "label": "json()",
+      "file_type": "code",
+      "source_file": "supabase/functions/admin-read/index.ts",
+      "source_location": "L8",
+      "id": "admin_read_index_json",
+      "community": 21,
+      "norm_label": "json()"
     },
     {
       "label": "index.ts",
@@ -469,6 +631,15 @@
       "source_location": "L1",
       "id": "supabase_functions_create_checkout_session_index_ts",
       "community": 31,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/admin-write/index.ts",
+      "source_location": "L1",
+      "id": "supabase_functions_admin_write_index_ts",
+      "community": 32,
       "norm_label": "index.ts"
     },
     {
@@ -495,7 +666,7 @@
       "source_file": "supabase/functions/admin-transition/index.ts",
       "source_location": "L1",
       "id": "supabase_functions_admin_transition_index_ts",
-      "community": 32,
+      "community": 33,
       "norm_label": "index.ts"
     },
     {
@@ -504,332 +675,287 @@
       "source_file": "supabase/functions/moodle-handoff/index.ts",
       "source_location": "L1",
       "id": "supabase_functions_moodle_handoff_index_ts",
-      "community": 33,
+      "community": 34,
       "norm_label": "index.ts"
     },
     {
       "label": "deck-stage.js",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L1",
       "id": "icit_design_system_slides_deck_stage_js",
-      "community": 0,
+      "community": 2,
       "norm_label": "deck-stage.js"
     },
     {
       "label": "pad2()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L58",
       "id": "slides_deck_stage_pad2",
-      "community": 0,
+      "community": 2,
       "norm_label": "pad2()"
     },
     {
       "label": "DeckStage",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L268",
       "id": "slides_deck_stage_deckstage",
-      "community": 0,
+      "community": 2,
       "norm_label": "deckstage"
     },
     {
       "label": ".observedAttributes()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L269",
       "id": "slides_deck_stage_deckstage_observedattributes",
-      "community": 0,
+      "community": 2,
       "norm_label": ".observedattributes()"
     },
     {
       "label": ".constructor()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L271",
       "id": "slides_deck_stage_deckstage_constructor",
-      "community": 0,
+      "community": 2,
       "norm_label": ".constructor()"
     },
     {
       "label": ".designWidth()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L288",
       "id": "slides_deck_stage_deckstage_designwidth",
-      "community": 0,
+      "community": 2,
       "norm_label": ".designwidth()"
     },
     {
       "label": ".designHeight()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L291",
       "id": "slides_deck_stage_deckstage_designheight",
-      "community": 0,
+      "community": 2,
       "norm_label": ".designheight()"
     },
     {
       "label": ".connectedCallback()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L295",
       "id": "slides_deck_stage_deckstage_connectedcallback",
-      "community": 0,
+      "community": 2,
       "norm_label": ".connectedcallback()"
     },
     {
       "label": ".disconnectedCallback()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L305",
       "id": "slides_deck_stage_deckstage_disconnectedcallback",
-      "community": 0,
+      "community": 2,
       "norm_label": ".disconnectedcallback()"
     },
     {
       "label": ".attributeChangedCallback()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L313",
       "id": "slides_deck_stage_deckstage_attributechangedcallback",
-      "community": 0,
+      "community": 2,
       "norm_label": ".attributechangedcallback()"
     },
     {
       "label": "._render()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L324",
       "id": "slides_deck_stage_deckstage_render",
-      "community": 0,
+      "community": 2,
       "norm_label": "._render()"
     },
     {
       "label": "._syncPrintPageRule()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L393",
       "id": "slides_deck_stage_deckstage_syncprintpagerule",
-      "community": 0,
+      "community": 2,
       "norm_label": "._syncprintpagerule()"
     },
     {
       "label": "._onSlotChange()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L407",
       "id": "slides_deck_stage_deckstage_onslotchange",
-      "community": 0,
+      "community": 2,
       "norm_label": "._onslotchange()"
     },
     {
       "label": "._collectSlides()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L414",
       "id": "slides_deck_stage_deckstage_collectslides",
-      "community": 0,
+      "community": 2,
       "norm_label": "._collectslides()"
     },
     {
       "label": "._loadNotes()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L453",
       "id": "slides_deck_stage_deckstage_loadnotes",
-      "community": 0,
+      "community": 2,
       "norm_label": "._loadnotes()"
     },
     {
       "label": "._restoreIndex()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L465",
       "id": "slides_deck_stage_deckstage_restoreindex",
-      "community": 0,
+      "community": 2,
       "norm_label": "._restoreindex()"
     },
     {
       "label": "._applyIndex()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L476",
       "id": "slides_deck_stage_deckstage_applyindex",
-      "community": 0,
+      "community": 2,
       "norm_label": "._applyindex()"
     },
     {
       "label": "._flashOverlay()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L518",
       "id": "slides_deck_stage_deckstage_flashoverlay",
-      "community": 0,
+      "community": 2,
       "norm_label": "._flashoverlay()"
     },
     {
       "label": "._fit()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L527",
       "id": "slides_deck_stage_deckstage_fit",
-      "community": 0,
+      "community": 2,
       "norm_label": "._fit()"
     },
     {
       "label": "._onResize()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L542",
       "id": "slides_deck_stage_deckstage_onresize",
-      "community": 0,
+      "community": 2,
       "norm_label": "._onresize()"
     },
     {
       "label": "._onMouseMove()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L544",
       "id": "slides_deck_stage_deckstage_onmousemove",
-      "community": 0,
+      "community": 2,
       "norm_label": "._onmousemove()"
     },
     {
       "label": "._onTapBack()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L549",
       "id": "slides_deck_stage_deckstage_ontapback",
-      "community": 0,
+      "community": 2,
       "norm_label": "._ontapback()"
     },
     {
       "label": "._onTapForward()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L554",
       "id": "slides_deck_stage_deckstage_ontapforward",
-      "community": 0,
+      "community": 2,
       "norm_label": "._ontapforward()"
     },
     {
       "label": "._onKey()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L559",
       "id": "slides_deck_stage_deckstage_onkey",
-      "community": 0,
+      "community": 2,
       "norm_label": "._onkey()"
     },
     {
       "label": "._go()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L592",
       "id": "slides_deck_stage_deckstage_go",
-      "community": 0,
+      "community": 2,
       "norm_label": "._go()"
     },
     {
       "label": ".index()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L606",
       "id": "slides_deck_stage_deckstage_index",
-      "community": 0,
+      "community": 2,
       "norm_label": ".index()"
     },
     {
       "label": ".length()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L608",
       "id": "slides_deck_stage_deckstage_length",
-      "community": 0,
+      "community": 2,
       "norm_label": ".length()"
     },
     {
       "label": ".goTo()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L610",
       "id": "slides_deck_stage_deckstage_goto",
-      "community": 0,
+      "community": 2,
       "norm_label": ".goto()"
     },
     {
       "label": ".next()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L611",
       "id": "slides_deck_stage_deckstage_next",
-      "community": 0,
+      "community": 2,
       "norm_label": ".next()"
     },
     {
       "label": ".prev()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L612",
       "id": "slides_deck_stage_deckstage_prev",
-      "community": 0,
+      "community": 2,
       "norm_label": ".prev()"
     },
     {
       "label": ".reset()",
       "file_type": "code",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L613",
       "id": "slides_deck_stage_deckstage_reset",
-      "community": 0,
+      "community": 2,
       "norm_label": ".reset()"
-    },
-    {
-      "label": "test-admin-api.js",
-      "file_type": "code",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L1",
-      "id": "retool_test_admin_api_js",
-      "community": 8,
-      "norm_label": "test-admin-api.js"
-    },
-    {
-      "label": "pass()",
-      "file_type": "code",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L7",
-      "id": "retool_test_admin_api_pass",
-      "community": 8,
-      "norm_label": "pass()"
-    },
-    {
-      "label": "fail()",
-      "file_type": "code",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L8",
-      "id": "retool_test_admin_api_fail",
-      "community": 8,
-      "norm_label": "fail()"
-    },
-    {
-      "label": "post()",
-      "file_type": "code",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L12",
-      "id": "retool_test_admin_api_post",
-      "community": 8,
-      "norm_label": "post()"
-    },
-    {
-      "label": "rest()",
-      "file_type": "code",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L22",
-      "id": "retool_test_admin_api_rest",
-      "community": 8,
-      "norm_label": "rest()"
     },
     {
       "label": "icit-app.js",
@@ -837,7 +963,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L1",
       "id": "src_icit_app_js",
-      "community": 2,
+      "community": 0,
       "norm_label": "icit-app.js"
     },
     {
@@ -846,7 +972,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L54",
       "id": "src_icit_app_getsession",
-      "community": 6,
+      "community": 0,
       "norm_label": "getsession()"
     },
     {
@@ -855,7 +981,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L61",
       "id": "src_icit_app_requireauth",
-      "community": 6,
+      "community": 0,
       "norm_label": "requireauth()"
     },
     {
@@ -864,7 +990,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L71",
       "id": "src_icit_app_requireguest",
-      "community": 6,
+      "community": 0,
       "norm_label": "requireguest()"
     },
     {
@@ -873,7 +999,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L79",
       "id": "src_icit_app_isloginauthreturn",
-      "community": 6,
+      "community": 0,
       "norm_label": "isloginauthreturn()"
     },
     {
@@ -882,7 +1008,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L87",
       "id": "src_icit_app_completeloginauthreturn",
-      "community": 6,
+      "community": 0,
       "norm_label": "completeloginauthreturn()"
     },
     {
@@ -891,7 +1017,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L98",
       "id": "src_icit_app_signin",
-      "community": 2,
+      "community": 0,
       "norm_label": "signin()"
     },
     {
@@ -900,7 +1026,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L104",
       "id": "src_icit_app_signup",
-      "community": 2,
+      "community": 0,
       "norm_label": "signup()"
     },
     {
@@ -909,7 +1035,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L117",
       "id": "src_icit_app_signout",
-      "community": 6,
+      "community": 0,
       "norm_label": "signout()"
     },
     {
@@ -918,7 +1044,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L124",
       "id": "src_icit_app_loadapplication",
-      "community": 4,
+      "community": 0,
       "norm_label": "loadapplication()"
     },
     {
@@ -927,7 +1053,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L140",
       "id": "src_icit_app_loadnotifications",
-      "community": 10,
+      "community": 0,
       "norm_label": "loadnotifications()"
     },
     {
@@ -936,7 +1062,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L150",
       "id": "src_icit_app_marknotificationsread",
-      "community": 2,
+      "community": 0,
       "norm_label": "marknotificationsread()"
     },
     {
@@ -945,7 +1071,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L159",
       "id": "src_icit_app_loadprograms",
-      "community": 5,
+      "community": 0,
       "norm_label": "loadprograms()"
     },
     {
@@ -954,7 +1080,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L168",
       "id": "src_icit_app_loadapplicationhistory",
-      "community": 4,
+      "community": 0,
       "norm_label": "loadapplicationhistory()"
     },
     {
@@ -963,7 +1089,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L180",
       "id": "src_icit_app_withdrawapplication",
-      "community": 2,
+      "community": 0,
       "norm_label": "withdrawapplication()"
     },
     {
@@ -972,7 +1098,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L199",
       "id": "src_icit_app_savedraft",
-      "community": 2,
+      "community": 0,
       "norm_label": "savedraft()"
     },
     {
@@ -981,7 +1107,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L230",
       "id": "src_icit_app_uploadcv",
-      "community": 2,
+      "community": 0,
       "norm_label": "uploadcv()"
     },
     {
@@ -990,7 +1116,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L247",
       "id": "src_icit_app_removecv",
-      "community": 2,
+      "community": 0,
       "norm_label": "removecv()"
     },
     {
@@ -999,7 +1125,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L257",
       "id": "src_icit_app_submitapplication",
-      "community": 2,
+      "community": 0,
       "norm_label": "submitapplication()"
     },
     {
@@ -1008,7 +1134,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L279",
       "id": "src_icit_app_submitnotesresponse",
-      "community": 2,
+      "community": 0,
       "norm_label": "submitnotesresponse()"
     },
     {
@@ -1017,7 +1143,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L289",
       "id": "src_icit_app_createcheckout",
-      "community": 2,
+      "community": 0,
       "norm_label": "createcheckout()"
     },
     {
@@ -1026,7 +1152,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L311",
       "id": "src_icit_app_q",
-      "community": 5,
+      "community": 0,
       "norm_label": "q()"
     },
     {
@@ -1035,7 +1161,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L312",
       "id": "src_icit_app_show",
-      "community": 5,
+      "community": 0,
       "norm_label": "show()"
     },
     {
@@ -1044,7 +1170,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L319",
       "id": "src_icit_app_hide",
-      "community": 4,
+      "community": 0,
       "norm_label": "hide()"
     },
     {
@@ -1053,7 +1179,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L320",
       "id": "src_icit_app_settext",
-      "community": 5,
+      "community": 0,
       "norm_label": "settext()"
     },
     {
@@ -1062,7 +1188,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L321",
       "id": "src_icit_app_sethref",
-      "community": 10,
+      "community": 0,
       "norm_label": "sethref()"
     },
     {
@@ -1071,7 +1197,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L323",
       "id": "src_icit_app_revealpage",
-      "community": 4,
+      "community": 0,
       "norm_label": "revealpage()"
     },
     {
@@ -1080,7 +1206,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L328",
       "id": "src_icit_app_pageroot",
-      "community": 2,
+      "community": 0,
       "norm_label": "pageroot()"
     },
     {
@@ -1089,7 +1215,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L332",
       "id": "src_icit_app_showpageerror",
-      "community": 5,
+      "community": 0,
       "norm_label": "showpageerror()"
     },
     {
@@ -1098,7 +1224,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L342",
       "id": "src_icit_app_initpage",
-      "community": 2,
+      "community": 0,
       "norm_label": "initpage()"
     },
     {
@@ -1107,7 +1233,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L352",
       "id": "src_icit_app_ensurefallback",
-      "community": 2,
+      "community": 0,
       "norm_label": "ensurefallback()"
     },
     {
@@ -1116,7 +1242,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L362",
       "id": "src_icit_app_normalizequestions",
-      "community": 2,
+      "community": 0,
       "norm_label": "normalizequestions()"
     },
     {
@@ -1125,7 +1251,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L375",
       "id": "src_icit_app_escapehtml",
-      "community": 10,
+      "community": 0,
       "norm_label": "escapehtml()"
     },
     {
@@ -1134,7 +1260,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L384",
       "id": "src_icit_app_updateapplystepper",
-      "community": 5,
+      "community": 0,
       "norm_label": "updateapplystepper()"
     },
     {
@@ -1143,7 +1269,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L398",
       "id": "src_icit_app_cleargeneratedquestions",
-      "community": 2,
+      "community": 0,
       "norm_label": "cleargeneratedquestions()"
     },
     {
@@ -1152,7 +1278,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L402",
       "id": "src_icit_app_questionhost",
-      "community": 2,
+      "community": 0,
       "norm_label": "questionhost()"
     },
     {
@@ -1161,7 +1287,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L424",
       "id": "src_icit_app_creategeneratedquestion",
-      "community": 2,
+      "community": 0,
       "norm_label": "creategeneratedquestion()"
     },
     {
@@ -1170,7 +1296,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L463",
       "id": "src_icit_app_setcvprogress",
-      "community": 5,
+      "community": 0,
       "norm_label": "setcvprogress()"
     },
     {
@@ -1179,7 +1305,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L469",
       "id": "src_icit_app_filenamefrompath",
-      "community": 2,
+      "community": 0,
       "norm_label": "filenamefrompath()"
     },
     {
@@ -1188,7 +1314,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L477",
       "id": "src_icit_app_applydesignsystemclasses",
-      "community": 5,
+      "community": 0,
       "norm_label": "applydesignsystemclasses()"
     },
     {
@@ -1197,7 +1323,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L571",
       "id": "src_icit_app_clonerow",
-      "community": 2,
+      "community": 0,
       "norm_label": "clonerow()"
     },
     {
@@ -1206,7 +1332,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L580",
       "id": "src_icit_app_formatdate",
-      "community": 4,
+      "community": 0,
       "norm_label": "formatdate()"
     },
     {
@@ -1215,7 +1341,7 @@
       "source_file": "src/icit-app.js",
       "source_location": "L587",
       "id": "src_icit_app_formatcurrency",
-      "community": 4,
+      "community": 0,
       "norm_label": "formatcurrency()"
     },
     {
@@ -1224,44 +1350,53 @@
       "source_file": "src/icit-app.js",
       "source_location": "L593",
       "id": "src_icit_app_initlogin",
-      "community": 4,
+      "community": 0,
       "norm_label": "initlogin()"
     },
     {
       "label": "initDashboard()",
       "file_type": "code",
       "source_file": "src/icit-app.js",
-      "source_location": "L705",
+      "source_location": "L704",
       "id": "src_icit_app_initdashboard",
-      "community": 10,
+      "community": 0,
       "norm_label": "initdashboard()"
     },
     {
       "label": "initApply()",
       "file_type": "code",
       "source_file": "src/icit-app.js",
-      "source_location": "L870",
+      "source_location": "L869",
       "id": "src_icit_app_initapply",
-      "community": 5,
+      "community": 0,
       "norm_label": "initapply()"
     },
     {
       "label": "initStatus()",
       "file_type": "code",
       "source_file": "src/icit-app.js",
-      "source_location": "L1246",
+      "source_location": "L1244",
       "id": "src_icit_app_initstatus",
-      "community": 4,
+      "community": 0,
       "norm_label": "initstatus()"
     },
     {
       "label": "initEnrollment()",
       "file_type": "code",
       "source_file": "src/icit-app.js",
-      "source_location": "L1363",
+      "source_location": "L1361",
       "id": "src_icit_app_initenrollment",
-      "community": 4,
+      "community": 0,
       "norm_label": "initenrollment()"
+    },
+    {
+      "label": "main.js",
+      "file_type": "code",
+      "source_file": "src/main.js",
+      "source_location": "L1",
+      "id": "src_main_js",
+      "community": 35,
+      "norm_label": "main.js"
     },
     {
       "label": "icit-app.min.js",
@@ -1269,7 +1404,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_js",
-      "community": 1,
+      "community": 3,
       "norm_label": "icit-app.min.js"
     },
     {
@@ -1278,7 +1413,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_a",
-      "community": 1,
+      "community": 3,
       "norm_label": "a()"
     },
     {
@@ -1287,7 +1422,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_o",
-      "community": 1,
+      "community": 3,
       "norm_label": "o()"
     },
     {
@@ -1296,7 +1431,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_r",
-      "community": 1,
+      "community": 3,
       "norm_label": "r()"
     },
     {
@@ -1305,7 +1440,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_s",
-      "community": 1,
+      "community": 3,
       "norm_label": "s()"
     },
     {
@@ -1314,7 +1449,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_c",
-      "community": 1,
+      "community": 3,
       "norm_label": "c()"
     },
     {
@@ -1323,7 +1458,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_d",
-      "community": 1,
+      "community": 3,
       "norm_label": "d()"
     },
     {
@@ -1332,7 +1467,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_l",
-      "community": 1,
+      "community": 3,
       "norm_label": "l()"
     },
     {
@@ -1341,7 +1476,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_p",
-      "community": 1,
+      "community": 3,
       "norm_label": "p()"
     },
     {
@@ -1350,7 +1485,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_m",
-      "community": 1,
+      "community": 3,
       "norm_label": "m()"
     },
     {
@@ -1359,7 +1494,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_u",
-      "community": 1,
+      "community": 3,
       "norm_label": "u()"
     },
     {
@@ -1368,7 +1503,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_w",
-      "community": 1,
+      "community": 3,
       "norm_label": "w()"
     },
     {
@@ -1377,7 +1512,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_f",
-      "community": 1,
+      "community": 3,
       "norm_label": "f()"
     },
     {
@@ -1386,7 +1521,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_g",
-      "community": 1,
+      "community": 3,
       "norm_label": "g()"
     },
     {
@@ -1395,7 +1530,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_h",
-      "community": 1,
+      "community": 3,
       "norm_label": "h()"
     },
     {
@@ -1404,7 +1539,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_b",
-      "community": 1,
+      "community": 3,
       "norm_label": "b()"
     },
     {
@@ -1413,7 +1548,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_z",
-      "community": 1,
+      "community": 3,
       "norm_label": "z()"
     },
     {
@@ -1422,7 +1557,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_y",
-      "community": 1,
+      "community": 3,
       "norm_label": "y()"
     },
     {
@@ -1431,7 +1566,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_v",
-      "community": 1,
+      "community": 3,
       "norm_label": "v()"
     },
     {
@@ -1440,7 +1575,7 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min",
-      "community": 1,
+      "community": 3,
       "norm_label": "_()"
     },
     {
@@ -1449,11 +1584,635 @@
       "source_file": "src/icit-app.min.js",
       "source_location": "L1",
       "id": "src_icit_app_min_e",
-      "community": 1,
+      "community": 3,
       "norm_label": "e()"
+    },
+    {
+      "label": "constants.js",
+      "file_type": "code",
+      "source_file": "src/core/constants.js",
+      "source_location": "L1",
+      "id": "src_core_constants_js",
+      "community": 36,
+      "norm_label": "constants.js"
+    },
+    {
+      "label": "ui.js",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L1",
+      "id": "src_core_ui_js",
+      "community": 1,
+      "norm_label": "ui.js"
+    },
+    {
+      "label": "q()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L3",
+      "id": "core_ui_q",
+      "community": 1,
+      "norm_label": "q()"
+    },
+    {
+      "label": "show()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L9",
+      "id": "core_ui_show",
+      "community": 1,
+      "norm_label": "show()"
+    },
+    {
+      "label": "hide()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L17",
+      "id": "core_ui_hide",
+      "community": 1,
+      "norm_label": "hide()"
+    },
+    {
+      "label": "setText()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L23",
+      "id": "core_ui_settext",
+      "community": 1,
+      "norm_label": "settext()"
+    },
+    {
+      "label": "setHref()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L27",
+      "id": "core_ui_sethref",
+      "community": 1,
+      "norm_label": "sethref()"
+    },
+    {
+      "label": "escapeHtml()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L31",
+      "id": "core_ui_escapehtml",
+      "community": 1,
+      "norm_label": "escapehtml()"
+    },
+    {
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L42",
+      "id": "core_ui_formatdate",
+      "community": 1,
+      "norm_label": "formatdate()"
+    },
+    {
+      "label": "formatCurrency()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L47",
+      "id": "core_ui_formatcurrency",
+      "community": 1,
+      "norm_label": "formatcurrency()"
+    },
+    {
+      "label": "applyDesignSystemClasses()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L56",
+      "id": "core_ui_applydesignsystemclasses",
+      "community": 1,
+      "norm_label": "applydesignsystemclasses()"
+    },
+    {
+      "label": "setCvProgress()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L147",
+      "id": "core_ui_setcvprogress",
+      "community": 1,
+      "norm_label": "setcvprogress()"
+    },
+    {
+      "label": "revealPage()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L155",
+      "id": "core_ui_revealpage",
+      "community": 1,
+      "norm_label": "revealpage()"
+    },
+    {
+      "label": "pageRoot()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L160",
+      "id": "core_ui_pageroot",
+      "community": 1,
+      "norm_label": "pageroot()"
+    },
+    {
+      "label": "showPageError()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L164",
+      "id": "core_ui_showpageerror",
+      "community": 1,
+      "norm_label": "showpageerror()"
+    },
+    {
+      "label": "initPage()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L174",
+      "id": "core_ui_initpage",
+      "community": 1,
+      "norm_label": "initpage()"
+    },
+    {
+      "label": "ensureFallback()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L184",
+      "id": "core_ui_ensurefallback",
+      "community": 1,
+      "norm_label": "ensurefallback()"
+    },
+    {
+      "label": "getFocusable()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L197",
+      "id": "core_ui_getfocusable",
+      "community": 1,
+      "norm_label": "getfocusable()"
+    },
+    {
+      "label": "handleKeyDown()",
+      "file_type": "code",
+      "source_file": "src/core/ui.js",
+      "source_location": "L200",
+      "id": "core_ui_handlekeydown",
+      "community": 1,
+      "norm_label": "handlekeydown()"
+    },
+    {
+      "label": "auth.js",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L1",
+      "id": "src_core_auth_js",
+      "community": 1,
+      "norm_label": "auth.js"
+    },
+    {
+      "label": "getSession()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L3",
+      "id": "core_auth_getsession",
+      "community": 1,
+      "norm_label": "getsession()"
+    },
+    {
+      "label": "requireAuth()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L9",
+      "id": "core_auth_requireauth",
+      "community": 1,
+      "norm_label": "requireauth()"
+    },
+    {
+      "label": "requireGuest()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L19",
+      "id": "core_auth_requireguest",
+      "community": 1,
+      "norm_label": "requireguest()"
+    },
+    {
+      "label": "isLoginAuthReturn()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L27",
+      "id": "core_auth_isloginauthreturn",
+      "community": 1,
+      "norm_label": "isloginauthreturn()"
+    },
+    {
+      "label": "completeLoginAuthReturn()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L35",
+      "id": "core_auth_completeloginauthreturn",
+      "community": 1,
+      "norm_label": "completeloginauthreturn()"
+    },
+    {
+      "label": "signIn()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L43",
+      "id": "core_auth_signin",
+      "community": 1,
+      "norm_label": "signin()"
+    },
+    {
+      "label": "signUp()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L49",
+      "id": "core_auth_signup",
+      "community": 1,
+      "norm_label": "signup()"
+    },
+    {
+      "label": "signOut()",
+      "file_type": "code",
+      "source_file": "src/core/auth.js",
+      "source_location": "L62",
+      "id": "core_auth_signout",
+      "community": 1,
+      "norm_label": "signout()"
+    },
+    {
+      "label": "supabase.js",
+      "file_type": "code",
+      "source_file": "src/core/supabase.js",
+      "source_location": "L1",
+      "id": "src_core_supabase_js",
+      "community": 37,
+      "norm_label": "supabase.js"
+    },
+    {
+      "label": "login.js",
+      "file_type": "code",
+      "source_file": "src/pages/login.js",
+      "source_location": "L1",
+      "id": "src_pages_login_js",
+      "community": 1,
+      "norm_label": "login.js"
+    },
+    {
+      "label": "initLogin()",
+      "file_type": "code",
+      "source_file": "src/pages/login.js",
+      "source_location": "L4",
+      "id": "pages_login_initlogin",
+      "community": 1,
+      "norm_label": "initlogin()"
+    },
+    {
+      "label": "status.js",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L1",
+      "id": "src_pages_status_js",
+      "community": 1,
+      "norm_label": "status.js"
+    },
+    {
+      "label": "loadApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L30",
+      "id": "pages_status_loadapplication",
+      "community": 1,
+      "norm_label": "loadapplication()"
+    },
+    {
+      "label": "loadApplicationHistory()",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L46",
+      "id": "pages_status_loadapplicationhistory",
+      "community": 1,
+      "norm_label": "loadapplicationhistory()"
+    },
+    {
+      "label": "submitNotesResponse()",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L56",
+      "id": "pages_status_submitnotesresponse",
+      "community": 1,
+      "norm_label": "submitnotesresponse()"
+    },
+    {
+      "label": "withdrawApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L65",
+      "id": "pages_status_withdrawapplication",
+      "community": 1,
+      "norm_label": "withdrawapplication()"
+    },
+    {
+      "label": "cloneRow()",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L84",
+      "id": "pages_status_clonerow",
+      "community": 1,
+      "norm_label": "clonerow()"
+    },
+    {
+      "label": "initStatus()",
+      "file_type": "code",
+      "source_file": "src/pages/status.js",
+      "source_location": "L93",
+      "id": "pages_status_initstatus",
+      "community": 1,
+      "norm_label": "initstatus()"
+    },
+    {
+      "label": "apply.js",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L1",
+      "id": "src_pages_apply_js",
+      "community": 5,
+      "norm_label": "apply.js"
+    },
+    {
+      "label": "loadApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L7",
+      "id": "pages_apply_loadapplication",
+      "community": 1,
+      "norm_label": "loadapplication()"
+    },
+    {
+      "label": "loadPrograms()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L25",
+      "id": "pages_apply_loadprograms",
+      "community": 1,
+      "norm_label": "loadprograms()"
+    },
+    {
+      "label": "saveDraft()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L37",
+      "id": "pages_apply_savedraft",
+      "community": 5,
+      "norm_label": "savedraft()"
+    },
+    {
+      "label": "uploadCV()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L75",
+      "id": "pages_apply_uploadcv",
+      "community": 5,
+      "norm_label": "uploadcv()"
+    },
+    {
+      "label": "removeCV()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L92",
+      "id": "pages_apply_removecv",
+      "community": 5,
+      "norm_label": "removecv()"
+    },
+    {
+      "label": "submitApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L102",
+      "id": "pages_apply_submitapplication",
+      "community": 5,
+      "norm_label": "submitapplication()"
+    },
+    {
+      "label": "normalizeQuestions()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L126",
+      "id": "pages_apply_normalizequestions",
+      "community": 5,
+      "norm_label": "normalizequestions()"
+    },
+    {
+      "label": "updateApplyStepper()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L139",
+      "id": "pages_apply_updateapplystepper",
+      "community": 1,
+      "norm_label": "updateapplystepper()"
+    },
+    {
+      "label": "clearGeneratedQuestions()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L153",
+      "id": "pages_apply_cleargeneratedquestions",
+      "community": 5,
+      "norm_label": "cleargeneratedquestions()"
+    },
+    {
+      "label": "questionHost()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L157",
+      "id": "pages_apply_questionhost",
+      "community": 1,
+      "norm_label": "questionhost()"
+    },
+    {
+      "label": "createGeneratedQuestion()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L177",
+      "id": "pages_apply_creategeneratedquestion",
+      "community": 5,
+      "norm_label": "creategeneratedquestion()"
+    },
+    {
+      "label": "filenameFromPath()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L216",
+      "id": "pages_apply_filenamefrompath",
+      "community": 5,
+      "norm_label": "filenamefrompath()"
+    },
+    {
+      "label": "cloneRow()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L221",
+      "id": "pages_apply_clonerow",
+      "community": 5,
+      "norm_label": "clonerow()"
+    },
+    {
+      "label": "initApply()",
+      "file_type": "code",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L230",
+      "id": "pages_apply_initapply",
+      "community": 1,
+      "norm_label": "initapply()"
+    },
+    {
+      "label": "dashboard.js",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L1",
+      "id": "src_pages_dashboard_js",
+      "community": 7,
+      "norm_label": "dashboard.js"
+    },
+    {
+      "label": "loadApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L18",
+      "id": "pages_dashboard_loadapplication",
+      "community": 7,
+      "norm_label": "loadapplication()"
+    },
+    {
+      "label": "loadNotifications()",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L34",
+      "id": "pages_dashboard_loadnotifications",
+      "community": 7,
+      "norm_label": "loadnotifications()"
+    },
+    {
+      "label": "markNotificationsRead()",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L44",
+      "id": "pages_dashboard_marknotificationsread",
+      "community": 7,
+      "norm_label": "marknotificationsread()"
+    },
+    {
+      "label": "withdrawApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L55",
+      "id": "pages_dashboard_withdrawapplication",
+      "community": 7,
+      "norm_label": "withdrawapplication()"
+    },
+    {
+      "label": "cloneRow()",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L75",
+      "id": "pages_dashboard_clonerow",
+      "community": 7,
+      "norm_label": "clonerow()"
+    },
+    {
+      "label": "initDashboard()",
+      "file_type": "code",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L84",
+      "id": "pages_dashboard_initdashboard",
+      "community": 1,
+      "norm_label": "initdashboard()"
+    },
+    {
+      "label": "enrollment.js",
+      "file_type": "code",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L1",
+      "id": "src_pages_enrollment_js",
+      "community": 1,
+      "norm_label": "enrollment.js"
+    },
+    {
+      "label": "loadApplication()",
+      "file_type": "code",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L8",
+      "id": "pages_enrollment_loadapplication",
+      "community": 1,
+      "norm_label": "loadapplication()"
+    },
+    {
+      "label": "createCheckout()",
+      "file_type": "code",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L24",
+      "id": "pages_enrollment_createcheckout",
+      "community": 1,
+      "norm_label": "createcheckout()"
+    },
+    {
+      "label": "initEnrollment()",
+      "file_type": "code",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L46",
+      "id": "pages_enrollment_initenrollment",
+      "community": 1,
+      "norm_label": "initenrollment()"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "tests_admin_api_test_js",
+      "_tgt": "tests_admin_api_test_pass",
+      "source": "tests_admin_api_test_js",
+      "target": "tests_admin_api_test_pass",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "tests_admin_api_test_js",
+      "_tgt": "tests_admin_api_test_fail",
+      "source": "tests_admin_api_test_js",
+      "target": "tests_admin_api_test_fail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "tests_admin_api_test_js",
+      "_tgt": "tests_admin_api_test_post",
+      "source": "tests_admin_api_test_js",
+      "target": "tests_admin_api_test_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/admin-api.test.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_src": "tests_admin_api_test_js",
+      "_tgt": "tests_admin_api_test_rest",
+      "source": "tests_admin_api_test_js",
+      "target": "tests_admin_api_test_rest",
+      "confidence_score": 1.0
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -1746,7 +2505,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "_src": "admin_src_components_adminapp_tsx",
       "_tgt": "components_adminapp_getroute",
@@ -1758,7 +2517,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0,
       "_src": "admin_src_components_adminapp_tsx",
       "_tgt": "components_adminapp_handlepopstate",
@@ -1770,7 +2529,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L29",
+      "source_location": "L31",
       "weight": 1.0,
       "_src": "admin_src_components_adminapp_tsx",
       "_tgt": "components_adminapp_navigate",
@@ -1782,7 +2541,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "admin/src/components/AdminApp.tsx",
-      "source_location": "L23",
+      "source_location": "L25",
       "weight": 1.0,
       "_src": "components_adminapp_handlepopstate",
       "_tgt": "components_adminapp_getroute",
@@ -1830,7 +2589,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "admin/src/components/ApplicationDetail.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "_src": "admin_src_components_applicationdetail_tsx",
       "_tgt": "components_applicationdetail_islocked",
@@ -1865,8 +2624,68 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_src": "admin_src_components_programspage_tsx",
+      "_tgt": "components_programspage_handlesave",
+      "source": "admin_src_components_programspage_tsx",
+      "target": "components_programspage_handlesave",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_src": "admin_src_components_programspage_tsx",
+      "_tgt": "components_programspage_handlearchive",
+      "source": "admin_src_components_programspage_tsx",
+      "target": "components_programspage_handlearchive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "components_programspage_handlesave",
+      "_tgt": "lib_api_updateprogram",
+      "source": "components_programspage_handlesave",
+      "target": "lib_api_updateprogram"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_src": "components_programspage_handlesave",
+      "_tgt": "lib_api_createprogram",
+      "source": "components_programspage_handlesave",
+      "target": "lib_api_createprogram"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "admin/src/components/ProgramsPage.tsx",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "components_programspage_handlearchive",
+      "_tgt": "lib_api_archiveprogram",
+      "source": "components_programspage_handlearchive",
+      "target": "lib_api_archiveprogram"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "admin/src/components/DashboardPage.tsx",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0,
       "_src": "admin_src_components_dashboardpage_tsx",
       "_tgt": "components_dashboardpage_buildcoursebreakdown",
@@ -1953,6 +2772,30 @@
       "source_location": "L4",
       "weight": 1.0,
       "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_invokeadminread",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_invokeadminread",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_invokeadminwrite",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_invokeadminwrite",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
       "_tgt": "lib_api_getapplications",
       "source": "admin_src_lib_api_ts",
       "target": "lib_api_getapplications",
@@ -1962,12 +2805,144 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "admin/src/lib/api.ts",
-      "source_location": "L31",
+      "source_location": "L52",
       "weight": 1.0,
       "_src": "admin_src_lib_api_ts",
       "_tgt": "lib_api_getprograms",
       "source": "admin_src_lib_api_ts",
       "target": "lib_api_getprograms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_createprogram",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_createprogram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_updateprogram",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_updateprogram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_archiveprogram",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_archiveprogram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_updateadminnotes",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_updateadminnotes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_getcvsignedurl",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_getcvsignedurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "admin_src_lib_api_ts",
+      "_tgt": "lib_api_gettimeline",
+      "source": "admin_src_lib_api_ts",
+      "target": "lib_api_gettimeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "lib_api_getapplications",
+      "_tgt": "lib_api_invokeadminread",
+      "source": "lib_api_invokeadminread",
+      "target": "lib_api_getapplications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_src": "lib_api_getprograms",
+      "_tgt": "lib_api_invokeadminread",
+      "source": "lib_api_invokeadminread",
+      "target": "lib_api_getprograms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_src": "lib_api_updateadminnotes",
+      "_tgt": "lib_api_invokeadminwrite",
+      "source": "lib_api_invokeadminwrite",
+      "target": "lib_api_updateadminnotes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L106",
+      "weight": 1.0,
+      "_src": "lib_api_getcvsignedurl",
+      "_tgt": "lib_api_invokeadminwrite",
+      "source": "lib_api_invokeadminwrite",
+      "target": "lib_api_getcvsignedurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/src/lib/api.ts",
+      "source_location": "L111",
+      "weight": 1.0,
+      "_src": "lib_api_gettimeline",
+      "_tgt": "lib_api_invokeadminwrite",
+      "source": "lib_api_invokeadminwrite",
+      "target": "lib_api_gettimeline",
       "confidence_score": 1.0
     },
     {
@@ -1985,6 +2960,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/admin-read/index.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "supabase_functions_admin_read_index_ts",
+      "_tgt": "admin_read_index_json",
+      "source": "supabase_functions_admin_read_index_ts",
+      "target": "admin_read_index_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "supabase/functions/handle-notification/index.ts",
       "source_location": "L7",
       "weight": 1.0,
@@ -1997,7 +2984,7 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L58",
       "weight": 1.0,
       "_src": "icit_design_system_slides_deck_stage_js",
@@ -2009,7 +2996,7 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L268",
       "weight": 1.0,
       "_src": "icit_design_system_slides_deck_stage_js",
@@ -2021,7 +3008,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L269",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2033,7 +3020,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L271",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2045,7 +3032,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L288",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2057,7 +3044,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L291",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2069,7 +3056,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L295",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2081,7 +3068,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L305",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2093,7 +3080,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L313",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2105,7 +3092,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L324",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2117,7 +3104,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L393",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2129,7 +3116,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L407",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2141,7 +3128,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L414",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2153,7 +3140,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L453",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2165,7 +3152,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L465",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2177,7 +3164,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L476",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2189,7 +3176,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L518",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2201,7 +3188,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L527",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2213,7 +3200,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L542",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2225,7 +3212,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L544",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2237,7 +3224,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L549",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2249,7 +3236,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L554",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2261,7 +3248,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L559",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2273,7 +3260,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L592",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2285,7 +3272,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L606",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2297,7 +3284,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L608",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2309,7 +3296,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L610",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2321,7 +3308,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L611",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2333,7 +3320,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L612",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2345,7 +3332,7 @@
     {
       "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L613",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage",
@@ -2357,7 +3344,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L296",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_connectedcallback",
@@ -2369,7 +3356,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L297",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_connectedcallback",
@@ -2381,7 +3368,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L298",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_connectedcallback",
@@ -2393,7 +3380,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L319",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_attributechangedcallback",
@@ -2405,7 +3392,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L320",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_attributechangedcallback",
@@ -2417,7 +3404,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L408",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onslotchange",
@@ -2429,7 +3416,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L409",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onslotchange",
@@ -2441,7 +3428,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L410",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onslotchange",
@@ -2453,7 +3440,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L411",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onslotchange",
@@ -2465,7 +3452,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L515",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_applyindex",
@@ -2477,7 +3464,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L600",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_go",
@@ -2489,7 +3476,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L546",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onmousemove",
@@ -2501,7 +3488,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L588",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onkey",
@@ -2513,7 +3500,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L596",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_go",
@@ -2525,7 +3512,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L542",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onresize",
@@ -2537,7 +3524,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L551",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_ontapback",
@@ -2549,7 +3536,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L556",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_ontapforward",
@@ -2561,7 +3548,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L569",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_onkey",
@@ -2573,7 +3560,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L610",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_goto",
@@ -2585,7 +3572,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L611",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_next",
@@ -2597,7 +3584,7 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L612",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_prev",
@@ -2609,61 +3596,13 @@
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "ICIT Design System/slides/deck-stage.js",
+      "source_file": "ICIT_Design_System/slides/deck-stage.js",
       "source_location": "L613",
       "weight": 1.0,
       "_src": "slides_deck_stage_deckstage_reset",
       "_tgt": "slides_deck_stage_deckstage_go",
       "source": "slides_deck_stage_deckstage_go",
       "target": "slides_deck_stage_deckstage_reset",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_src": "retool_test_admin_api_js",
-      "_tgt": "retool_test_admin_api_pass",
-      "source": "retool_test_admin_api_js",
-      "target": "retool_test_admin_api_pass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_src": "retool_test_admin_api_js",
-      "_tgt": "retool_test_admin_api_fail",
-      "source": "retool_test_admin_api_js",
-      "target": "retool_test_admin_api_fail",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L12",
-      "weight": 1.0,
-      "_src": "retool_test_admin_api_js",
-      "_tgt": "retool_test_admin_api_post",
-      "source": "retool_test_admin_api_js",
-      "target": "retool_test_admin_api_post",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "retool/test-admin-api.js",
-      "source_location": "L22",
-      "weight": 1.0,
-      "_src": "retool_test_admin_api_js",
-      "_tgt": "retool_test_admin_api_rest",
-      "source": "retool_test_admin_api_js",
-      "target": "retool_test_admin_api_rest",
       "confidence_score": 1.0
     },
     {
@@ -3186,7 +4125,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L705",
+      "source_location": "L704",
       "weight": 1.0,
       "_src": "src_icit_app_js",
       "_tgt": "src_icit_app_initdashboard",
@@ -3198,7 +4137,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L870",
+      "source_location": "L869",
       "weight": 1.0,
       "_src": "src_icit_app_js",
       "_tgt": "src_icit_app_initapply",
@@ -3210,7 +4149,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1246",
+      "source_location": "L1244",
       "weight": 1.0,
       "_src": "src_icit_app_js",
       "_tgt": "src_icit_app_initstatus",
@@ -3222,7 +4161,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1363",
+      "source_location": "L1361",
       "weight": 1.0,
       "_src": "src_icit_app_js",
       "_tgt": "src_icit_app_initenrollment",
@@ -3270,7 +4209,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L706",
+      "source_location": "L705",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_requireauth",
@@ -3282,7 +4221,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L871",
+      "source_location": "L870",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_requireauth",
@@ -3294,7 +4233,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1247",
+      "source_location": "L1245",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_requireauth",
@@ -3306,7 +4245,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1364",
+      "source_location": "L1362",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_requireauth",
@@ -3366,7 +4305,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L708",
+      "source_location": "L707",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_loadapplication",
@@ -3378,7 +4317,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L875",
+      "source_location": "L874",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_loadapplication",
@@ -3390,7 +4329,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1249",
+      "source_location": "L1247",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_loadapplication",
@@ -3402,7 +4341,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1366",
+      "source_location": "L1364",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_loadapplication",
@@ -3414,7 +4353,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L709",
+      "source_location": "L708",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_loadnotifications",
@@ -3426,7 +4365,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L874",
+      "source_location": "L873",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_loadprograms",
@@ -3438,7 +4377,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1255",
+      "source_location": "L1253",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_loadapplicationhistory",
@@ -3522,7 +4461,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L714",
+      "source_location": "L713",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_q",
@@ -3534,7 +4473,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L904",
+      "source_location": "L903",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_q",
@@ -3546,7 +4485,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1257",
+      "source_location": "L1255",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_q",
@@ -3558,7 +4497,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1375",
+      "source_location": "L1373",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_q",
@@ -3594,7 +4533,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L730",
+      "source_location": "L729",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_show",
@@ -3606,7 +4545,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L934",
+      "source_location": "L933",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_show",
@@ -3618,7 +4557,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1258",
+      "source_location": "L1256",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_show",
@@ -3642,7 +4581,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L714",
+      "source_location": "L713",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_hide",
@@ -3654,7 +4593,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L933",
+      "source_location": "L932",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_hide",
@@ -3666,7 +4605,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1257",
+      "source_location": "L1255",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_hide",
@@ -3678,7 +4617,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1375",
+      "source_location": "L1373",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_hide",
@@ -3726,7 +4665,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L718",
+      "source_location": "L717",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_settext",
@@ -3738,7 +4677,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L935",
+      "source_location": "L934",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_settext",
@@ -3750,7 +4689,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1272",
+      "source_location": "L1270",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_settext",
@@ -3762,7 +4701,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1377",
+      "source_location": "L1375",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_settext",
@@ -3774,7 +4713,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L754",
+      "source_location": "L753",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_sethref",
@@ -3798,7 +4737,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L743",
+      "source_location": "L742",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_revealpage",
@@ -3810,7 +4749,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L884",
+      "source_location": "L883",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_revealpage",
@@ -3822,7 +4761,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1256",
+      "source_location": "L1254",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_revealpage",
@@ -3834,7 +4773,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1374",
+      "source_location": "L1372",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_revealpage",
@@ -3870,7 +4809,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L735",
+      "source_location": "L734",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_ensurefallback",
@@ -3882,7 +4821,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L779",
+      "source_location": "L778",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_escapehtml",
@@ -3894,7 +4833,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L885",
+      "source_location": "L884",
       "weight": 1.0,
       "_src": "src_icit_app_initapply",
       "_tgt": "src_icit_app_applydesignsystemclasses",
@@ -3906,7 +4845,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L755",
+      "source_location": "L754",
       "weight": 1.0,
       "_src": "src_icit_app_initdashboard",
       "_tgt": "src_icit_app_formatdate",
@@ -3918,7 +4857,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1273",
+      "source_location": "L1271",
       "weight": 1.0,
       "_src": "src_icit_app_initstatus",
       "_tgt": "src_icit_app_formatdate",
@@ -3930,7 +4869,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "src/icit-app.js",
-      "source_location": "L1378",
+      "source_location": "L1376",
       "weight": 1.0,
       "_src": "src_icit_app_initenrollment",
       "_tgt": "src_icit_app_formatcurrency",
@@ -4344,6 +5283,1362 @@
       "_tgt": "src_icit_app_min_g",
       "source": "src_icit_app_min_g",
       "target": "src_icit_app_min",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_q",
+      "source": "src_core_ui_js",
+      "target": "core_ui_q",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_show",
+      "source": "src_core_ui_js",
+      "target": "core_ui_show",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_hide",
+      "source": "src_core_ui_js",
+      "target": "core_ui_hide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_settext",
+      "source": "src_core_ui_js",
+      "target": "core_ui_settext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_sethref",
+      "source": "src_core_ui_js",
+      "target": "core_ui_sethref",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_escapehtml",
+      "source": "src_core_ui_js",
+      "target": "core_ui_escapehtml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_formatdate",
+      "source": "src_core_ui_js",
+      "target": "core_ui_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_formatcurrency",
+      "source": "src_core_ui_js",
+      "target": "core_ui_formatcurrency",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_applydesignsystemclasses",
+      "source": "src_core_ui_js",
+      "target": "core_ui_applydesignsystemclasses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L147",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_setcvprogress",
+      "source": "src_core_ui_js",
+      "target": "core_ui_setcvprogress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_revealpage",
+      "source": "src_core_ui_js",
+      "target": "core_ui_revealpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L160",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_pageroot",
+      "source": "src_core_ui_js",
+      "target": "core_ui_pageroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L164",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_showpageerror",
+      "source": "src_core_ui_js",
+      "target": "core_ui_showpageerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L174",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_initpage",
+      "source": "src_core_ui_js",
+      "target": "core_ui_initpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L184",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_ensurefallback",
+      "source": "src_core_ui_js",
+      "target": "core_ui_ensurefallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L197",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_getfocusable",
+      "source": "src_core_ui_js",
+      "target": "core_ui_getfocusable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L200",
+      "weight": 1.0,
+      "_src": "src_core_ui_js",
+      "_tgt": "core_ui_handlekeydown",
+      "source": "src_core_ui_js",
+      "target": "core_ui_handlekeydown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_src": "core_ui_applydesignsystemclasses",
+      "_tgt": "core_ui_q",
+      "source": "core_ui_q",
+      "target": "core_ui_applydesignsystemclasses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L149",
+      "weight": 1.0,
+      "_src": "core_ui_setcvprogress",
+      "_tgt": "core_ui_q",
+      "source": "core_ui_q",
+      "target": "core_ui_setcvprogress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L166",
+      "weight": 1.0,
+      "_src": "core_ui_showpageerror",
+      "_tgt": "core_ui_q",
+      "source": "core_ui_q",
+      "target": "core_ui_showpageerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_ui_q",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_ui_q",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_apply_updateapplystepper",
+      "source": "core_ui_q",
+      "target": "pages_apply_updateapplystepper"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L159",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_apply_questionhost",
+      "source": "core_ui_q",
+      "target": "pages_apply_questionhost"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L261",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_ui_q",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_q",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_src": "core_ui_q",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "core_ui_q",
+      "target": "pages_enrollment_initenrollment"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_src": "core_ui_showpageerror",
+      "_tgt": "core_ui_show",
+      "source": "core_ui_show",
+      "target": "core_ui_showpageerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "core_ui_show",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_ui_show",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_src": "core_ui_show",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_ui_show",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L290",
+      "weight": 1.0,
+      "_src": "core_ui_show",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_ui_show",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "core_ui_show",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_show",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "core_ui_hide",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_ui_hide",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_src": "core_ui_hide",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_ui_hide",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L289",
+      "weight": 1.0,
+      "_src": "core_ui_hide",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_ui_hide",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_src": "core_ui_hide",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_hide",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_src": "core_ui_hide",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "core_ui_hide",
+      "target": "pages_enrollment_initenrollment"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L149",
+      "weight": 1.0,
+      "_src": "core_ui_setcvprogress",
+      "_tgt": "core_ui_settext",
+      "source": "core_ui_settext",
+      "target": "core_ui_setcvprogress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L170",
+      "weight": 1.0,
+      "_src": "core_ui_showpageerror",
+      "_tgt": "core_ui_settext",
+      "source": "core_ui_settext",
+      "target": "core_ui_showpageerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "core_ui_settext",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_ui_settext",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L118",
+      "weight": 1.0,
+      "_src": "core_ui_settext",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_ui_settext",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L291",
+      "weight": 1.0,
+      "_src": "core_ui_settext",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_ui_settext",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L98",
+      "weight": 1.0,
+      "_src": "core_ui_settext",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_settext",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "core_ui_settext",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "core_ui_settext",
+      "target": "pages_enrollment_initenrollment"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L134",
+      "weight": 1.0,
+      "_src": "core_ui_sethref",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_sethref",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L159",
+      "weight": 1.0,
+      "_src": "core_ui_escapehtml",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_escapehtml",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L119",
+      "weight": 1.0,
+      "_src": "core_ui_formatdate",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_ui_formatdate",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L135",
+      "weight": 1.0,
+      "_src": "core_ui_formatdate",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_formatdate",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_src": "core_ui_formatcurrency",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "core_ui_formatcurrency",
+      "target": "pages_enrollment_initenrollment"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_src": "core_ui_applydesignsystemclasses",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_ui_applydesignsystemclasses",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "core_ui_revealpage",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_ui_revealpage",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_src": "core_ui_revealpage",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_ui_revealpage",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L243",
+      "weight": 1.0,
+      "_src": "core_ui_revealpage",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_ui_revealpage",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L123",
+      "weight": 1.0,
+      "_src": "core_ui_revealpage",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_revealpage",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_src": "core_ui_revealpage",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "core_ui_revealpage",
+      "target": "pages_enrollment_initenrollment"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/ui.js",
+      "source_location": "L186",
+      "weight": 1.0,
+      "_src": "core_ui_ensurefallback",
+      "_tgt": "core_ui_pageroot",
+      "source": "core_ui_pageroot",
+      "target": "core_ui_ensurefallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_src": "core_ui_ensurefallback",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_ui_ensurefallback",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_getsession",
+      "source": "src_core_auth_js",
+      "target": "core_auth_getsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_requireauth",
+      "source": "src_core_auth_js",
+      "target": "core_auth_requireauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_requireguest",
+      "source": "src_core_auth_js",
+      "target": "core_auth_requireguest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_isloginauthreturn",
+      "source": "src_core_auth_js",
+      "target": "core_auth_isloginauthreturn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_completeloginauthreturn",
+      "source": "src_core_auth_js",
+      "target": "core_auth_completeloginauthreturn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_signin",
+      "source": "src_core_auth_js",
+      "target": "core_auth_signin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_signup",
+      "source": "src_core_auth_js",
+      "target": "core_auth_signup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "src_core_auth_js",
+      "_tgt": "core_auth_signout",
+      "source": "src_core_auth_js",
+      "target": "core_auth_signout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "core_auth_requireauth",
+      "_tgt": "core_auth_getsession",
+      "source": "core_auth_getsession",
+      "target": "core_auth_requireauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "core_auth_requireguest",
+      "_tgt": "core_auth_getsession",
+      "source": "core_auth_getsession",
+      "target": "core_auth_requireguest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_src": "core_auth_completeloginauthreturn",
+      "_tgt": "core_auth_getsession",
+      "source": "core_auth_getsession",
+      "target": "core_auth_completeloginauthreturn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/status.js",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_src": "core_auth_requireauth",
+      "_tgt": "pages_status_initstatus",
+      "source": "core_auth_requireauth",
+      "target": "pages_status_initstatus"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/apply.js",
+      "source_location": "L231",
+      "weight": 1.0,
+      "_src": "core_auth_requireauth",
+      "_tgt": "pages_apply_initapply",
+      "source": "core_auth_requireauth",
+      "target": "pages_apply_initapply"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_src": "core_auth_requireauth",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "core_auth_requireauth",
+      "target": "pages_dashboard_initdashboard"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "core_auth_requireauth",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "core_auth_requireauth",
+      "target": "pages_enrollment_initenrollment"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "core_auth_requireguest",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_auth_requireguest",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_src": "core_auth_completeloginauthreturn",
+      "_tgt": "core_auth_isloginauthreturn",
+      "source": "core_auth_isloginauthreturn",
+      "target": "core_auth_completeloginauthreturn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/core/auth.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_src": "core_auth_completeloginauthreturn",
+      "_tgt": "core_auth_signout",
+      "source": "core_auth_completeloginauthreturn",
+      "target": "core_auth_signout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/pages/login.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "core_auth_completeloginauthreturn",
+      "_tgt": "pages_login_initlogin",
+      "source": "core_auth_completeloginauthreturn",
+      "target": "pages_login_initlogin"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/login.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "src_pages_login_js",
+      "_tgt": "pages_login_initlogin",
+      "source": "src_pages_login_js",
+      "target": "pages_login_initlogin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "src_pages_status_js",
+      "_tgt": "pages_status_loadapplication",
+      "source": "src_pages_status_js",
+      "target": "pages_status_loadapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_src": "src_pages_status_js",
+      "_tgt": "pages_status_loadapplicationhistory",
+      "source": "src_pages_status_js",
+      "target": "pages_status_loadapplicationhistory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "src_pages_status_js",
+      "_tgt": "pages_status_submitnotesresponse",
+      "source": "src_pages_status_js",
+      "target": "pages_status_submitnotesresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_src": "src_pages_status_js",
+      "_tgt": "pages_status_withdrawapplication",
+      "source": "src_pages_status_js",
+      "target": "pages_status_withdrawapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L84",
+      "weight": 1.0,
+      "_src": "src_pages_status_js",
+      "_tgt": "pages_status_clonerow",
+      "source": "src_pages_status_js",
+      "target": "pages_status_clonerow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L93",
+      "weight": 1.0,
+      "_src": "src_pages_status_js",
+      "_tgt": "pages_status_initstatus",
+      "source": "src_pages_status_js",
+      "target": "pages_status_initstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_src": "pages_status_initstatus",
+      "_tgt": "pages_status_loadapplication",
+      "source": "pages_status_loadapplication",
+      "target": "pages_status_initstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/status.js",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_src": "pages_status_initstatus",
+      "_tgt": "pages_status_loadapplicationhistory",
+      "source": "pages_status_loadapplicationhistory",
+      "target": "pages_status_initstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_loadapplication",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_loadapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_loadprograms",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_loadprograms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_savedraft",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_savedraft",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_uploadcv",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_uploadcv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_removecv",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_removecv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_submitapplication",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_submitapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L126",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_normalizequestions",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_normalizequestions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_updateapplystepper",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_updateapplystepper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L153",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_cleargeneratedquestions",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_cleargeneratedquestions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L157",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_questionhost",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_questionhost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L177",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_creategeneratedquestion",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_creategeneratedquestion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L216",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_filenamefrompath",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_filenamefrompath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L221",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_clonerow",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_clonerow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L230",
+      "weight": 1.0,
+      "_src": "src_pages_apply_js",
+      "_tgt": "pages_apply_initapply",
+      "source": "src_pages_apply_js",
+      "target": "pages_apply_initapply",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L235",
+      "weight": 1.0,
+      "_src": "pages_apply_initapply",
+      "_tgt": "pages_apply_loadapplication",
+      "source": "pages_apply_loadapplication",
+      "target": "pages_apply_initapply",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/apply.js",
+      "source_location": "L234",
+      "weight": 1.0,
+      "_src": "pages_apply_initapply",
+      "_tgt": "pages_apply_loadprograms",
+      "source": "pages_apply_loadprograms",
+      "target": "pages_apply_initapply",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "src_pages_dashboard_js",
+      "_tgt": "pages_dashboard_loadapplication",
+      "source": "src_pages_dashboard_js",
+      "target": "pages_dashboard_loadapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "src_pages_dashboard_js",
+      "_tgt": "pages_dashboard_loadnotifications",
+      "source": "src_pages_dashboard_js",
+      "target": "pages_dashboard_loadnotifications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_src": "src_pages_dashboard_js",
+      "_tgt": "pages_dashboard_marknotificationsread",
+      "source": "src_pages_dashboard_js",
+      "target": "pages_dashboard_marknotificationsread",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "src_pages_dashboard_js",
+      "_tgt": "pages_dashboard_withdrawapplication",
+      "source": "src_pages_dashboard_js",
+      "target": "pages_dashboard_withdrawapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_src": "src_pages_dashboard_js",
+      "_tgt": "pages_dashboard_clonerow",
+      "source": "src_pages_dashboard_js",
+      "target": "pages_dashboard_clonerow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L84",
+      "weight": 1.0,
+      "_src": "src_pages_dashboard_js",
+      "_tgt": "pages_dashboard_initdashboard",
+      "source": "src_pages_dashboard_js",
+      "target": "pages_dashboard_initdashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_src": "pages_dashboard_initdashboard",
+      "_tgt": "pages_dashboard_loadapplication",
+      "source": "pages_dashboard_loadapplication",
+      "target": "pages_dashboard_initdashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/dashboard.js",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_src": "pages_dashboard_initdashboard",
+      "_tgt": "pages_dashboard_loadnotifications",
+      "source": "pages_dashboard_loadnotifications",
+      "target": "pages_dashboard_initdashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "src_pages_enrollment_js",
+      "_tgt": "pages_enrollment_loadapplication",
+      "source": "src_pages_enrollment_js",
+      "target": "pages_enrollment_loadapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_src": "src_pages_enrollment_js",
+      "_tgt": "pages_enrollment_createcheckout",
+      "source": "src_pages_enrollment_js",
+      "target": "pages_enrollment_createcheckout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_src": "src_pages_enrollment_js",
+      "_tgt": "pages_enrollment_initenrollment",
+      "source": "src_pages_enrollment_js",
+      "target": "pages_enrollment_initenrollment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/enrollment.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "pages_enrollment_initenrollment",
+      "_tgt": "pages_enrollment_loadapplication",
+      "source": "pages_enrollment_loadapplication",
+      "target": "pages_enrollment_initenrollment",
       "confidence_score": 1.0
     }
   ],

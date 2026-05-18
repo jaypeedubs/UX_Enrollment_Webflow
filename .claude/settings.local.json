@@ -31,7 +31,11 @@
       "Bash(node *)",
       "Bash(xargs ls *)",
       "Bash(xargs -I{} sh -c 'jq -r \"select\\(.message.content != null\\) | .message.content[] | select\\(.type == \\\\\"tool_use\\\\\"\\) | [.name, \\(.input.command // \\\\\"\\\\\"\\)] | @tsv\" \"{}\" 2>/dev/null')",
-      "Skill(checkpoint)"
+      "Skill(checkpoint)",
+      "Skill(next-file)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git *)"
     ]
   }
 }

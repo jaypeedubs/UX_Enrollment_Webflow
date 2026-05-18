@@ -1,0 +1,12 @@
+{
+  "name": "icit-enrollment-webflow",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0"
+  }
+}
