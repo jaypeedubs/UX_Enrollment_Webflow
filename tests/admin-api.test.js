@@ -1,7 +1,8 @@
 async page => {
-  const FN_URL   = 'https://xvweanlqcbgbiyxqhwux.supabase.co/functions/v1/admin-transition'
-  const REST_URL = 'https://xvweanlqcbgbiyxqhwux.supabase.co/rest/v1'
-  const SVC_KEY  = 'sb_secret_-2cXx9nuwQzr9pOJ7Ocmnw_4D6Z0ovN'
+  const SUPABASE_URL = process.env.SUPABASE_URL || ''
+  const FN_URL   = `${SUPABASE_URL}/functions/v1/admin-transition`
+  const REST_URL = `${SUPABASE_URL}/rest/v1`
+  const SVC_KEY  = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
   const FAKE_ID  = '00000000-0000-0000-0000-000000000001'
 
   const pass = (name, detail) => ({ name, pass: true,  ...detail })
@@ -101,10 +102,11 @@ async page => {
   }
   {
     // Anon key should NOT be able to read applications (RLS guard)
+    const ANON_KEY = process.env.SUPABASE_ANON_KEY || ''
     const r = await page.request.get(`${REST_URL}/applications?select=id`, {
       headers: {
-        'apikey':        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2d2VhbmxxY2JnYml5eHFod3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTY0NjcsImV4cCI6MjA5MjYzMjQ2N30.Fs819XQjDXoT8l0qZreFEjeu_Xf2zjzqBG87BjGTQM4',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2d2VhbmxxY2JnYml5eHFod3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTY0NjcsImV4cCI6MjA5MjYzMjQ2N30.Fs819XQjDXoT8l0qZreFEjeu_Xf2zjzqBG87BjGTQM4',
+        'apikey':        ANON_KEY,
+        'Authorization': `Bearer ${ANON_KEY}`,
       },
       failOnStatusCode: false,
     })
